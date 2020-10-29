@@ -1,0 +1,17 @@
+<div class="main-box">
+  <div class="example-button-container">
+    <button [ngClass]="{'red': click, 'green' : !click}"
+            (click)=sendInfromation()
+            class="button-properties" mat-fab>
+      <mat-icon>{{iconName}}</mat-icon>
+    </button>
+  </div>
+
+
+<!--  <div class="example-button-container">-->
+<!--    <button class="mini-button-properties" mat-mini-fab aria-label="Example icon button with a menu icon">-->
+<!--      <mat-icon>add</mat-icon>-->
+<!--    </button>-->
+<!--  </div>-->
+
+</div>

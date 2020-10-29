@@ -1,0 +1,9 @@
+<div class="main-box">
+    <div *ngFor="let i of buttons;">
+        <app-main-category-button #buttons
+                                  [iconName]="i.iconName"
+                                  [buttonName]="i.nameRef"
+                                  (changeEvent)="changeOther($event)">
+        </app-main-category-button>
+    </div>
+</div>

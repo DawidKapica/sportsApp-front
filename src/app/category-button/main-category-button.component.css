@@ -1,0 +1,42 @@
+.main-box {
+  margin-bottom: 3vh;
+  /*width: 100%;*/
+  display: flex;
+  /*justify-content: center;*/
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  /*width: 100px;*/
+  margin: 10px;
+}
+
+.button-properties {
+  width: 7vh;
+  height: 7vh;
+  /*font-size: 76px;*/
+  /*background-color: lightgreen;*/
+  color: #fff;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+
+.mini-button-properties {
+  background-color: #fff;
+  /*width: 11vh;*/
+  /*height: 11vh;*/
+  color: #aaa;
+
+}
+
+button:hover {
+  background-color: lightsteelblue;
+}

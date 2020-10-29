@@ -1,0 +1,10 @@
+.main-box {
+    display: flex;
+
+    margin-top: 5vh;
+    width: 150px;
+    height: 150px;
+
+
+    maintainAspectRatio: false;
+}
