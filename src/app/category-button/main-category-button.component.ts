@@ -23,7 +23,6 @@ export class MainCategoryButtonComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log(this.iconName);
     }
 
     sendInfromation() {

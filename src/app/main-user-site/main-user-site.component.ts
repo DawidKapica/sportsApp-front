@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {SectionMainCategoryViewComponent} from '../section-main-category-view/section-main-category-view.component';
 import {categoryEnum} from '../categoryEnum';
+import {ApiService} from '../service/api.service';
 
 @Component({
     selector: 'app-main-user-site',
@@ -10,23 +11,17 @@ import {categoryEnum} from '../categoryEnum';
 export class MainUserSiteComponent implements OnInit {
 
     @ViewChild('sectionCategory') sectionCategory: SectionMainCategoryViewComponent;
-    constructor() {
+    constructor(private api: ApiService) {
     }
 
-    ngOnInit(): void {
+    async ngOnInit() {
+        let x = await this.api.getFullObject("/users");
+        console.log(x);
+
     }
 
     changeOther($event): void {
-        console.log($event);
-        console.log('');
-        // if ($event == categoryEnum.fitness) {
-        //     this.sectionCategory.gym = true;
-        //     this.sectionCategory.food = false;
-        // }
-        // if ($event == categoryEnum.food) {
-        //     this.sectionCategory.changeCategory(enum) = false;
-        //     this.sectionCategory.food = true;
-        // }
+
         this.sectionCategory.changeCategory($event)
     }
 

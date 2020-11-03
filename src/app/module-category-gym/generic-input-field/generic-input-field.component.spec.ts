@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChartComponent } from './chart.component';
+import { GenericInputFieldComponent } from './generic-input-field.component';
 
-describe('ChartComponent', () => {
-  let component: ChartComponent;
-  let fixture: ComponentFixture<ChartComponent>;
+describe('GenericInputFieldComponent', () => {
+  let component: GenericInputFieldComponent;
+  let fixture: ComponentFixture<GenericInputFieldComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChartComponent ]
+      declarations: [ GenericInputFieldComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChartComponent);
+    fixture = TestBed.createComponent(GenericInputFieldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

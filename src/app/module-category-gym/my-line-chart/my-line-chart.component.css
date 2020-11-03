@@ -1,0 +1,14 @@
+.main-box {
+    /*display: flex;*/
+    width: 100%;
+    height: 100%;
+    /*flex-grow:1;*/
+
+}
+
+.qwe {
+    /*maintainAspectRatio: false;*/
+    /*responsive: true;*/
+    /*height: 100% !important;*/
+    /*width: 200px !important;*/
+}

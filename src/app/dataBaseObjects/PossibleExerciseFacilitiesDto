@@ -1,0 +1,5 @@
+export interface PossibleExerciseFacilitiesDto {
+    id: number;
+    sportFacilitiesId: number;
+    exerciseId: number;
+}

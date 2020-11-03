@@ -31,8 +31,7 @@ export class SectionMainButtonsComponent implements AfterViewInit {
     }
 
     changeOther($event): void {
-        console.log($event);
-        console.log('ffff');
+
         for (let buttonComp of this.buttonsComponent) {
             if (buttonComp.buttonName != $event) {
                 buttonComp.click = false;
@@ -41,7 +40,6 @@ export class SectionMainButtonsComponent implements AfterViewInit {
                 this.sendInfromation($event)
 
             }
-            console.log(buttonComp.buttonName + buttonComp.click);
         }
 
     }

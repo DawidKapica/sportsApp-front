@@ -14,7 +14,7 @@ export class MyLineChartComponent implements OnInit {
   ];
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartOptions: ChartOptions = {
-    responsive: true,
+    // responsive: true,
   };
   public lineChartColors: Color[] = [
     {

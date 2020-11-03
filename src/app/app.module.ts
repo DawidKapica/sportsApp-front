@@ -1,7 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
-
 import {AppComponent} from './app.component';
 import {TopBarComponent} from './top-bar/top-bar.component';
 import {RouterModule} from '@angular/router';
@@ -14,22 +12,24 @@ import {MatButtonModule} from '@angular/material/button';
 import {MainDiagramsComponent} from './main-diagrams/main-diagrams.component';
 import {MainCategoryButtonComponent} from './category-button/main-category-button.component';
 import {SectionMainButtonsComponent} from './section-main-buttons/section-main-buttons.component';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {ChartComponent} from './chart/chart.component';
 import {ChartsModule} from 'ng2-charts';
-import {MyLineChartComponent} from './my-line-chart/my-line-chart.component';
 import {SectionMainCategoryViewComponent} from './section-main-category-view/section-main-category-view.component';
-import {CategoryGymComponent} from './category-gym/category-gym.component';
-import {CategoryFoodComponent} from './category-food/category-food.component';
-import {CategoryAboutMeComponent} from './category-about-me/category-about-me.component';
-import {CategorySettingComponent} from './category-setting/category-setting.component';
-import {CategoryMessageComponent} from './category-message/category-message.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {FormsModule} from '@angular/forms';
+import {ModuleCategoryGymModule} from './module-category-gym/module-category-gym.module';
+import {ModuleCategoryAboutMeModule} from './module-category-about-me/module-category-about-me.module';
+import {ModuleCategoryFoodModule} from './module-category-food/module-category-food.module';
+import {ModuleCategoryMessageModule} from './module-category-message/module-category-message.module';
+import {ModuleCategorySettingModule} from './module-category-setting/module-category-setting.module';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -40,14 +40,7 @@ import {MatInputModule} from '@angular/material/input';
         MainDiagramsComponent,
         MainCategoryButtonComponent,
         SectionMainButtonsComponent,
-        ChartComponent,
-        MyLineChartComponent,
         SectionMainCategoryViewComponent,
-        CategoryGymComponent,
-        CategoryFoodComponent,
-        CategoryAboutMeComponent,
-        CategorySettingComponent,
-        CategoryMessageComponent
     ],
     imports: [
         BrowserModule,
@@ -64,6 +57,17 @@ import {MatInputModule} from '@angular/material/input';
         MatPaginatorModule,
         MatSortModule,
         MatInputModule,
+        MatCheckboxModule,
+        MatAutocompleteModule,
+        ReactiveFormsModule,
+        FormsModule,
+        ModuleCategoryGymModule,
+        ModuleCategoryAboutMeModule,
+        ModuleCategoryFoodModule,
+        ModuleCategoryMessageModule,
+        ModuleCategorySettingModule,
+        HttpClientModule,
+
     ],
     providers: [],
     bootstrap: [AppComponent]

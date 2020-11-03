@@ -9,6 +9,7 @@
             "root": "",
             "sourceRoot": "src",
             "prefix": "app",
+
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
@@ -29,7 +30,8 @@
                             "src/styles.css"
                         ],
                         "scripts": [
-                            "node_modules/bootstrap/dist/js/bootstrap.min.js"
+                            "node_modules/jquery/dist/jquery.min.js",
+                            "node_modules/bootstrap/dist/js/bootstrap.js"
                         ]
                     },
                     "configurations": {
