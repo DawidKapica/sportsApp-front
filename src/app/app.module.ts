@@ -30,6 +30,8 @@ import {ModuleCategoryFoodModule} from './module-category-food/module-category-f
 import {ModuleCategoryMessageModule} from './module-category-message/module-category-message.module';
 import {ModuleCategorySettingModule} from './module-category-setting/module-category-setting.module';
 import {HttpClientModule} from '@angular/common/http';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -67,6 +69,8 @@ import {HttpClientModule} from '@angular/common/http';
         ModuleCategoryMessageModule,
         ModuleCategorySettingModule,
         HttpClientModule,
+        MatSidenavModule,
+        MatListModule,
 
     ],
     providers: [],

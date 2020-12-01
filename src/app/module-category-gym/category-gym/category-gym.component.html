@@ -2,13 +2,20 @@
     <div class="row no-gutters row-height">
 
         <div class="col-6 column-height">
-            <div class="element-row-div"  *ngIf="rerender">
+            <div class="element-row-div">
                 <mat-form-field>
                     <mat-label>Filter</mat-label>
                     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
                 </mat-form-field>
+
+                <div class="example-loading-shade"
+                     *ngIf="isLoadingResults==true">
+                    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+
+                </div>
+
                 <div class="table-container mat-elevation-z8">
-                    <table mat-table [dataSource]="userTrainingsInformation" matSort>
+                    <table mat-table [dataSource]="dataSource" matSort>
                         <ng-container matColumnDef="select">
                             <th mat-header-cell *matHeaderCellDef>
                                 <mat-checkbox (change)="$event ? masterToggle() : null"
@@ -41,59 +48,79 @@
                         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         <tr class="mat-row" *matNoDataRow>
-                            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                            <td class="mat-cell" colspan="4"><span *ngIf="isLoadingResults==false">No data matching the filter "{{input.value}}
+                                "</span></td>
                         </tr>
                     </table>
-
                     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
                 </div>
+
             </div>
 
         </div>
+
         <div class="col-6 column-height">
             <div class="element-row-div">
             </div>
         </div>
 
-
     </div>
     <div class="row no-gutters row-height">
+
         <div class="col-8 column-height">
             <div class="element-row-div">
-
                 <span>Znajdź trening dla siebie</span>
                 <div class="training-proposition">
-                    <div class="col-4 ">
-                        <app-generic-input-field></app-generic-input-field>
-                        <app-generic-input-field></app-generic-input-field>
-                        <app-generic-input-field></app-generic-input-field>
-                        <app-generic-input-field></app-generic-input-field>
-                        <button mat-button><span class="button-span-color">Szukaj</span></button>
+                    <div *ngIf="isLoadingResults==false" class="col-4 ">
+                        <!--                        <app-generic-input-field [placeholder]="'Nazwa'" [type]="'text'"-->
+                        <!--                                                 [hints]="exerciseNames" #nameExerciseInput></app-generic-input-field>-->
+
+                        <form [formGroup]="formControl">
+                            <mat-form-field>
+                                <input matInput formControlName="nazwa">
+                                <mat-placeholder>No. (exact)</mat-placeholder>
+
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput formControlName="kategoria">
+                                <mat-placeholder>Name (substring)</mat-placeholder>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput formControlName="kalorieSpalane" type="number" min="0">
+                                <mat-placeholder>Symbol (exact)</mat-placeholder>
+                            </mat-form-field>
+                        </form>
+                        <!--                        <app-generic-input-field [placeholder]="'Kategoria'" [type]="'text'"-->
+                        <!--                                                 [hints]="exerciseCategories" #categoryExerciseInput></app-generic-input-field>-->
+                        <!--                        <app-generic-input-field [placeholder]="'Fragment opisu'"-->
+                        <!--                                                 [type]="'text'"></app-generic-input-field>-->
+                        <!--                        <app-generic-input-field [placeholder]="'Spalane kalorie na minute'"-->
+                        <!--                                                 [type]="'number'" #caloriesExerciseInput></app-generic-input-field>-->
+                        <!--                        <button mat-button (click)=findTraining()><span class="button-span-color">Szukaj</span></button>-->
                     </div>
                     <div class="col-8 ">
                         <div class="table-container mat-elevation-z8">
-
                             <table mat-table
                                    [dataSource]="dataSourceExtended" multiTemplateDataRows
                                    class="mat-elevation-z8">
-                                <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-                                    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                                <ng-container matColumnDef="{{column}}"
+                                              *ngFor="let column of columnsToDisplay, let i=index">
+                                    <th mat-header-cell *matHeaderCellDef> {{columnsHeaderNames[i]}} </th>
                                     <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
                                 </ng-container>
-
                                 <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
                                 <ng-container matColumnDef="expandedDetail">
                                     <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
                                         <div class="example-element-detail"
                                              [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                                             <div class="example-element-diagram">
-                                                <div class="example-element-position"> {{element.position}} </div>
-                                                <div class="example-element-symbol"> {{element.symbol}} </div>
-                                                <div class="example-element-name"> {{element.name}} </div>
-                                                <div class="example-element-weight"> {{element.weight}} </div>
+                                                <div class="example-element-position"> {{element.nazwa}} </div>
+                                                <div class="example-element-symbol"> {{element.kategoria}} </div>
+                                                <div class="example-element-name"> {{element.kalorieSpalane}} </div>
                                             </div>
                                             <div class="example-element-description">
-                                                {{element.description}}
+                                                {{element.opis}}
                                                 <span
                                                     class="example-element-description-attribution"> -- Wikipedia </span>
                                             </div>
@@ -110,18 +137,17 @@
                                     class="example-detail-row"></tr>
                             </table>
                             <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="col-4 column-height">
             <div class="element-row-div">
-
                 <app-my-line-chart></app-my-line-chart>
             </div>
         </div>
+
     </div>
 </div>

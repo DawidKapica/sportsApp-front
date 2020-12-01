@@ -1,28 +1,36 @@
-import {AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {SelectionModel} from '@angular/cdk/collections';
-import {Observable} from 'rxjs';
-import {FormControl} from '@angular/forms';
-import {map, startWith} from 'rxjs/operators';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ApiService} from '../../service/api.service';
 import {Mapping} from '../../dataBaseObjects/Mapping';
 import {ExerciseDto} from '../../dataBaseObjects/ExerciseDto';
 import {TrainingDto} from '../../dataBaseObjects/TrainingDto';
+import {GenericInputFieldComponent} from '../generic-input-field/generic-input-field.component';
+import {AbstractControl, FormBuilder, FormControl} from '@angular/forms';
 
 
-export interface TrainingData {
+export interface UserTrainingInterface {
     data: string;
     nazwa: string;
     kategoria: string;
 }
 
+export interface PropositionTrainingInterface {
+    nazwa: string;
+    kategoria: string;
+    kalorieSpalane: number;
+    opis: string;
+}
 
-const NAMES: string[] = [
-    'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver'
-];
+export interface TableNames {
+    name: string;
+    value: string
+}
+
+
 
 @Component({
     selector: 'app-category-gym',
@@ -39,50 +47,65 @@ const NAMES: string[] = [
 
 
 
-export class CategoryGymComponent implements AfterViewInit, OnInit {
+export class CategoryGymComponent implements AfterViewInit {
+
+    @ViewChild('nameExerciseInput') nameExerciseInput: GenericInputFieldComponent;
+    @ViewChild('categoryExerciseInput') categoryExerciseInput: GenericInputFieldComponent;
+    @ViewChild('caloriesExerciseInput') caloriesExerciseInput: GenericInputFieldComponent;
+
 
     displayedColumns: string[] = ['select', 'data', 'nazwa', 'kateogria'];
-    dataSource: MatTableDataSource<TrainingData>;
-    selection = new SelectionModel<TrainingData>(true, []);
+    dataSource: MatTableDataSource<UserTrainingInterface> = new MatTableDataSource<UserTrainingInterface>();
+    selection = new SelectionModel<UserTrainingInterface>(true, []);
 
-    dataSourceExtended = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-    columnsToDisplay = ['Nazwa', 'weight', 'symbol', 'position'];
-    expandedElement: PeriodicElement | null;
 
-    rerender = false;
 
-    userTrainingsInformation: TrainingData[] = []
+    dataSourceExtended = new MatTableDataSource<PropositionTrainingInterface>();
+    columnsToDisplay = ['nazwa', 'kategoria', 'kalorieSpalane'];
+    columnsHeaderNames = ['Nazwa', 'Kategoria', 'Spalane Kalorie'];
+    expandedElement: PropositionTrainingInterface | null;
+
+
+    readonly formControl: AbstractControl;
+
+    // columnsToDisplay: TableNames[] = [
+    //     {name: 'nazwa', value: 'Nazwa'},
+    //     {name: 'kategoria', value: 'Kategoria'},
+    //     {name: 'spaloneKalorie', value: 'Spalane kalorie'}];
+    isLoadingResults = true;
 
     allTrainingsData: TrainingDto[] = [];
     allExercisesData: ExerciseDto[] = [];
+    allCategoriesData: string[] = [];
 
+    exerciseNames: string[] = [];
+    exerciseCategories: string[] = [];
 
     @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
     @ViewChild(MatSort) sort: MatSort;
 
 
-    isAllSelected() {
-        const numSelected = this.selection.selected.length;
-        const numRows = this.dataSource.data.length;
-        return numSelected === numRows;
+
+    constructor(formBuilder: FormBuilder, private cdRef: ChangeDetectorRef, private api: ApiService) {
+        this.dataSourceExtended.filterPredicate = ((data, filter) => {
+            const a = !filter.nazwa || data.nazwa.toLowerCase().includes(filter.nazwa);
+            const b = !filter.kategoria || data.kategoria.toLowerCase().includes(filter.kategoria);
+            const c = !filter.kalorieSpalane || data.kalorieSpalane === filter.kalorieSpalane;
+            return a && b && c;
+        }) as (PeriodicElement, string) => boolean;
+
+        this.formControl = formBuilder.group({
+            nazwa: '',
+            kategoria: '',
+            kalorieSpalane: '',
+        });
+        this.formControl.valueChanges.subscribe(value => {
+            let filter = {...value, nazwa: value.nazwa.toLowerCase()} as string;
+            this.dataSourceExtended.filter = filter;
+        });
     }
-
-    constructor(private api: ApiService) {
-        const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-        // Assign the data to the data source for the table to render
-        this.dataSource = new MatTableDataSource(users);
-    }
-
-
 
     async ngAfterViewInit() {
-
-
-
-    }
-
-    async ngOnInit() {
         await this.loadData();
         await this.eneablePaginators();
 
@@ -91,27 +114,56 @@ export class CategoryGymComponent implements AfterViewInit, OnInit {
     async loadData() {
         this.allTrainingsData = await this.api.get(Mapping.TRAINING + Mapping.SEARCH + "userId=3");
         this.allExercisesData = await this.api.get(Mapping.EXERCISE);
+        this.allCategoriesData = await this.api.get(Mapping.EXERCISE_CATEGORY);
 
         for (let singleTraing of this.allTrainingsData) {
             let exercise = this.allExercisesData.find(({id}) => id === singleTraing.exerciseId);
-            let training:TrainingData = {data: singleTraing.trainingDate.toString(), nazwa: exercise.name, kategoria: exercise.exerciseCategory.name}
-            this.userTrainingsInformation.push(training);
+            let training:UserTrainingInterface = {
+                data: singleTraing.trainingDate.toString(),
+                nazwa: exercise.name,
+                kategoria: exercise.exerciseCategory.name
+            };
+            this.dataSource.data.push(training);
         }
 
-        console.log(this.userTrainingsInformation)
-        this.rerender = true;
+        for (let exercise of this.allExercisesData) {
+            this.exerciseNames.push(exercise.name);
+            this.exerciseCategories.push(exercise.exerciseCategory.name);
+
+            let singleExercise: PropositionTrainingInterface = {
+                nazwa: exercise.name,
+                kategoria: exercise.exerciseCategory.name,
+                kalorieSpalane:exercise.caloriesBurnedInMinute,
+                opis: exercise.exerciseDescription
+            };
+            this.dataSourceExtended.data.push(singleExercise);
+        }
+
+        this.isLoadingResults = false;
     }
+
     async eneablePaginators() {
-        if (this.rerender === true) {
             this.dataSource.paginator = this.paginator.toArray()[0];
             this.dataSource.sort = this.sort;
             this.dataSourceExtended.paginator = this.paginator.toArray()[1];
-        } else {
-            console.log(":{")
-        }
     }
 
+    findTraining() {
+        let url: string = "";
+        let nameOFExercise = this.nameExerciseInput.valueInput;
+        let categoryOfExercise = this.categoryExerciseInput.valueInput;
+        let caloriesOfExercises = this.caloriesExerciseInput.valueInput;
 
+        // this.api.get(Mapping.EXERCISE + Mapping.SEARCH + "name=" + nameOFExercise )
+
+        console.log(nameOFExercise);
+    }
+
+    isAllSelected() {
+        const numSelected = this.selection.selected.length;
+        const numRows = this.dataSource.data.length;
+        return numSelected === numRows;
+    }
 
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
@@ -129,127 +181,10 @@ export class CategoryGymComponent implements AfterViewInit, OnInit {
     }
 
     /** The label for the checkbox on the passed row */
-    checkboxLabel(row?: TrainingData): string {
+    checkboxLabel(row?: UserTrainingInterface): string {
         if (!row) {
             return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
         }
         return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.data + 1}`;
     }
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-function createNewUser(id: number): TrainingData {
-    const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-        NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-    return {
-        data: id.toString(),
-        nazwa: name,
-        kategoria: Math.round(Math.random() * 100).toString(),
-        // color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-    };
-}
-
-
-
-export interface PeriodicElement {
-    name: string;
-    position: number;
-    weight: number;
-    symbol: string;
-    description: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-    {
-        position: 1,
-        name: 'Hydrogen',
-        weight: 1.0079,
-        symbol: 'H',
-        description: `Hydrogen is a chemical element with symbol H and atomic number 1. With a standard
-        atomic weight of 1.008, hydrogen is the lightest element on the periodic table.`
-    }, {
-        position: 2,
-        name: 'Helium',
-        weight: 4.0026,
-        symbol: 'He',
-        description: `Helium is a chemical element with symbol He and atomic number 2. It is a
-        colorless, odorless, tasteless, non-toxic, inert, monatomic gas, the first in the noble gas
-        group in the periodic table. Its boiling point is the lowest among all the elements.`
-    }, {
-        position: 3,
-        name: 'Lithium',
-        weight: 6.941,
-        symbol: 'Li',
-        description: `Lithium is a chemical element with symbol Li and atomic number 3. It is a soft,
-        silvery-white alkali metal. Under standard conditions, it is the lightest metal and the
-        lightest solid element.`
-    }, {
-        position: 4,
-        name: 'Beryllium',
-        weight: 9.0122,
-        symbol: 'Be',
-        description: `Beryllium is a chemical element with symbol Be and atomic number 4. It is a
-        relatively rare element in the universe, usually occurring as a product of the spallation of
-        larger atomic nuclei that have collided with cosmic rays.`
-    }, {
-        position: 5,
-        name: 'Boron',
-        weight: 10.811,
-        symbol: 'B',
-        description: `Boron is a chemical element with symbol B and atomic number 5. Produced entirely
-        by cosmic ray spallation and supernovae and not by stellar nucleosynthesis, it is a
-        low-abundance element in the Solar system and in the Earth's crust.`
-    }, {
-        position: 6,
-        name: 'Carbon',
-        weight: 12.0107,
-        symbol: 'C',
-        description: `Carbon is a chemical element with symbol C and atomic number 6. It is nonmetallic
-        and tetravalent—making four electrons available to form covalent chemical bonds. It belongs
-        to group 14 of the periodic table.`
-    }, {
-        position: 7,
-        name: 'Nitrogen',
-        weight: 14.0067,
-        symbol: 'N',
-        description: `Nitrogen is a chemical element with symbol N and atomic number 7. It was first
-        discovered and isolated by Scottish physician Daniel Rutherford in 1772.`
-    }, {
-        position: 8,
-        name: 'Oxygen',
-        weight: 15.9994,
-        symbol: 'O',
-        description: `Oxygen is a chemical element with symbol O and atomic number 8. It is a member of
-         the chalcogen group on the periodic table, a highly reactive nonmetal, and an oxidizing
-         agent that readily forms oxides with most elements as well as with other compounds.`
-    }, {
-        position: 9,
-        name: 'Fluorine',
-        weight: 18.9984,
-        symbol: 'F',
-        description: `Fluorine is a chemical element with symbol F and atomic number 9. It is the
-        lightest halogen and exists as a highly toxic pale yellow diatomic gas at standard
-        conditions.`
-    }, {
-        position: 10,
-        name: 'Neon',
-        weight: 20.1797,
-        symbol: 'Ne',
-        description: `Neon is a chemical element with symbol Ne and atomic number 10. It is a noble gas.
-        Neon is a colorless, odorless, inert monatomic gas under standard conditions, with about
-        two-thirds the density of air.`
-    },
-];

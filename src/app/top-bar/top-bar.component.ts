@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MainUserSiteComponent} from '../main-user-site/main-user-site.component';
 
 @Component({
   selector: 'app-top-bar',
@@ -6,11 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-bar.component.css']
 })
 
-export class TopBarComponent implements OnInit {
+export class TopBarComponent  {
 
-  constructor() { }
-
+  // constructor() { }
+  //
   ngOnInit(): void {
   }
+
+    constructor(private comp: MainUserSiteComponent) {
+    }
+
+    public toogleSideNav() {
+        this.comp.toogleNavBar();
+    }
 
 }

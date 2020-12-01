@@ -1,0 +1,31 @@
+<div class="main-box">
+    <div class="add-water-buttons">
+        <span>Dodaj wypitą wodę!</span>
+        <div class="add-water-buttons">
+            <button mat-raised-button>+250ml</button>
+            <button mat-raised-button>+500ml</button>
+            <mat-form-field class="example-full-width">
+                <mat-label>Inna wartość</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <button mat-raised-button>+</button>
+        </div>
+    </div>
+    <div class="progress-water-bar">
+        <circle-progress
+            [percent]=percentOfWaterConsumed()
+            [radius]="100"
+            [outerStrokeWidth]="16"
+            [innerStrokeWidth]="8"
+            [outerStrokeColor]="'#78C000'"
+            [innerStrokeColor]="'#C7E596'"
+            [animation]="true"
+            [animationDuration]="400"
+            [unitsFontSize]="22"
+            [titleFontSize]="25"
+            [subtitleFontSize]="20"
+
+        ></circle-progress>
+    </div>
+
+</div>

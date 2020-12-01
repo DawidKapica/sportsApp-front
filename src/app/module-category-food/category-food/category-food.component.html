@@ -1,2 +1,26 @@
-
-CATEGORY FOOD
+<div class="main-box">
+    <div class="row no-gutters first-row-height">
+        <div class="col-6 column-height ">
+            <div class="element-row-div">
+                <app-food-eaten-field *ngIf="isLoadingResults == false" [eatenFoods]="userMealNutritional"></app-food-eaten-field>
+            </div>
+        </div>
+        <div class="col-6 column-height">
+            <div *ngIf="isLoadingResults == false" class="element-row-div">
+                <app-water-drink  [waterConsumed]="waterDrink"></app-water-drink>
+            </div>
+        </div>
+    </div>
+    <div class="row no-gutters second-row-height">
+        <div class="col-7 column-height ">
+            <div *ngIf="isLoadingResults == false" class="element-row-div">
+                <app-today-meal-field [eatenFoods]="userMealNutritional"></app-today-meal-field>
+            </div>
+        </div>
+        <div class="col-5 column-height ">
+            <div *ngIf="isLoadingResults == false" class="element-row-div">
+                <app-search-product-field [nutritionalProducts]="nutritionalProducts"></app-search-product-field>
+            </div>
+        </div>
+    </div>
+</div>

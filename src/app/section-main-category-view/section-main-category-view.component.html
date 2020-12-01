@@ -2,9 +2,9 @@
     <div class="category-box">
         <app-category-gym class="category" *ngIf="isCatActive(en.fitness)" #categoryGym></app-category-gym>
         <app-category-food class="category" *ngIf="isCatActive(en.food)" #categoryFood></app-category-food>
-        <app-category-about-me *ngIf="isCatActive(en.aboutMe)" #categoryFood></app-category-about-me>
-        <app-category-message *ngIf="isCatActive(en.message)" #categoryFood></app-category-message>
-        <app-category-setting *ngIf="isCatActive(en.setting)" #categoryFood></app-category-setting>
+        <app-category-about-me class="category" *ngIf="isCatActive(en.aboutMe)" #categoryFood></app-category-about-me>
+        <app-category-message class="category" *ngIf="isCatActive(en.message)" #categoryFood></app-category-message>
+        <app-category-setting class="category" *ngIf="isCatActive(en.setting)" #categoryFood></app-category-setting>
         <!--    <app-category-gym></app-category-gym>-->
     </div>
 </div>

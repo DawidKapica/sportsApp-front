@@ -13,12 +13,16 @@ import {MyLineChartComponent} from './my-line-chart/my-line-chart.component';
 import {ChartsModule} from 'ng2-charts';
 import {ApiService} from '../service/api.service';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSortModule} from '@angular/material/sort';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { PropositionTrainingComponent } from './proposition-training/proposition-training.component';
 
 @NgModule({
     declarations: [
         CategoryGymComponent,
         GenericInputFieldComponent,
-        MyLineChartComponent
+        MyLineChartComponent,
+        PropositionTrainingComponent
     ],
     imports: [
         CommonModule,
@@ -32,6 +36,8 @@ import {MatButtonModule} from '@angular/material/button';
         ReactiveFormsModule,
         FormsModule,
         MatButtonModule,
+        MatSortModule,
+        MatProgressSpinnerModule
 
     ],
     exports: [

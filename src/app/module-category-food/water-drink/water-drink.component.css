@@ -1,0 +1,11 @@
+.main-box {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.progress-water-bar {
+    width: 100%;
+    height: 70%;
+}

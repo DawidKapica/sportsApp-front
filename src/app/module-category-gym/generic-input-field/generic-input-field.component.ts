@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -11,24 +11,36 @@ import {map, startWith} from 'rxjs/operators';
 export class GenericInputFieldComponent implements OnInit {
 
     myControl = new FormControl();
-    options: string[] = ['One', 'Two', 'Three'];
     filteredOptions: Observable<string[]>;
 
+
+    @Input()
+    placeholder: string = "";
+
+    @Input()
+    type: string = "text";
+
+    @Input()
+    hints: string[] = [];
+
+    valueInput: string;
 
   constructor() { }
 
     ngOnInit(): void {
-        this.filteredOptions = this.myControl.valueChanges
-            .pipe(
-                startWith(''),
-                map(value => this._filter(value))
-            );
+      // if (this.hints != []) {
+          this.filteredOptions = this.myControl.valueChanges
+              .pipe(
+                  startWith(''),
+                  map(value => this._filter(value))
+              );
+      // }
     }
 
 
     private _filter(value: string): string[] {
-        const filterValue = value.toLowerCase();
+        const filterValue = value.toString().toLowerCase();
 
-        return this.options.filter(option => option.toLowerCase().includes(filterValue));
+        return this.hints.filter(option => option.toString().toLowerCase().includes(filterValue));
     }
 }

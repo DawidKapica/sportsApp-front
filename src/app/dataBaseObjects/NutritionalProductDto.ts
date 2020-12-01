@@ -1,8 +1,11 @@
 import {NutritionalProductCategoryDto} from './NutritionalProductCategoryDto';
 
-export interface NutritionalProduct {
+export interface NutritionalProductDto {
     id: number;
     name: string;
-    calorificValue: string;
+    calorificValue: number;
     nutritionalProductCategory: NutritionalProductCategoryDto;
+    carbohydratesValue: number;
+    proteinValue: number;
+    fatValue: number;
 }
