@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -16,10 +16,10 @@ import {mealNutritionalValInterface} from '../../interfaceComunicationObjects/me
     templateUrl: './search-product-field.component.html',
     styleUrls: ['./search-product-field.component.css']
 })
-export class SearchProductFieldComponent implements OnInit {
+export class SearchProductFieldComponent implements OnInit, AfterViewInit {
 
-    @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
     @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     @Input()
     nutritionalProducts: NutritionalProductDto[];
@@ -29,13 +29,17 @@ export class SearchProductFieldComponent implements OnInit {
 
     isLoadingResults = true;
 
-    constructor(private cdRef: ChangeDetectorRef) {
+    constructor() {
     }
 
-    ngOnInit(): void {
+    async ngOnInit() {
         this.dataSource = new MatTableDataSource<NutritionalProductDto>(this.nutritionalProducts);
-        // this.eneablePaginators();
+        this.isLoadingResults = false;
+    }
 
+    async ngAfterViewInit() {
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
     }
 
     applyFilter(event: Event) {
@@ -46,10 +50,4 @@ export class SearchProductFieldComponent implements OnInit {
             this.dataSource.paginator.firstPage();
         }
     }
-
-    // async eneablePaginators() {
-    //     this.dataSource.paginator = this.paginator.toArray()[0];
-    //     this.dataSource.sort = this.sort;
-    //     // this.dataSourceExtended.paginator = this.paginator.toArray()[1];
-    // }
 }

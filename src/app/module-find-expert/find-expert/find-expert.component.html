@@ -1,0 +1,12 @@
+<div class="main-box">
+    <div class="filter-row-div">
+        <app-filters-field></app-filters-field>
+    </div>
+    <div class="expert-proposition-row-div">
+        <app-expert-list class="list-of-experts" [dataSource]="experts"></app-expert-list>
+    </div>
+    <mat-paginator [length]="100"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+</div>

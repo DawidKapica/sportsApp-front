@@ -1,0 +1,34 @@
+.main-box {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /*padding: 10px;*/
+    /*color: red;*/
+    font-family: "Verdana";
+    color: rgb(51, 51, 51);
+}
+
+.filter-row-div {
+    max-height: 20%;
+    width: 100%;
+    background-color: lightsteelblue !important;
+    border-radius: 15px;
+
+    /*margin: 10px;*/
+}
+
+.expert-proposition-row-div {
+    min-height: 80%;
+    width: 100%;
+    background-color: lightsteelblue !important;
+    border-radius: 15px;
+    padding: 10px;
+    position: relative;
+
+}
+
+
+.list-of-experts{
+    /*height: 600px;*/
+    /*position: relative;*/
+ }

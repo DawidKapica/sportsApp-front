@@ -1,1 +1,31 @@
-<p>category-about-me works!</p>
+<div class="main-box">
+    <div class="row no-gutters first-row-height">
+        <div class="col-6 first-row-height">
+            <div class="row no-gutters half-row-height">
+                <div class="element-row-div">
+                    <app-new-mesaurement [dataSource]="actualMeasurmentArray" *ngIf="isLoadingResults == false"></app-new-mesaurement>
+                </div>
+            </div>
+            <div class="row no-gutters half-row-height">
+                <div class="element-row-div">
+                    <app-goals-field *ngIf="isLoadingResults == false"></app-goals-field>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 first-row-height">
+            <div class="row no-gutters half-row-height">
+                <div class="element-row-div">
+                    <app-measeaure-chart-history-field *ngIf="isLoadingResults == false"></app-measeaure-chart-history-field>
+                </div>
+            </div>
+            <div class="row no-gutters half-row-height">
+                <div class="element-row-div">
+                    <app-account-seetings *ngIf="isLoadingResults == false"></app-account-seetings>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

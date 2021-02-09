@@ -1,0 +1,17 @@
+<div class="main-box">
+    <div class="mesaurment-box">
+        <form [formGroup]="formGroup">
+            <div class="measure-input" *ngFor="let item of dataSource">
+                <span>{{item.firsrtFieldName}}</span>
+                <mat-form-field class="list-attribute-value-form">
+                    <input matInput value={{item.secondFieldName}} [formControlName]=item.formControlName>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+
+    <div class="button-update-box">
+        <button class="update-button" mat-raised-button>Zaaktualizuj pomiary</button>
+    </div>
+
+</div>

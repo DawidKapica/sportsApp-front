@@ -3,5 +3,6 @@ export enum categoryEnum {
     food = 'food',
     aboutMe = 'aboutMe',
     message = 'message',
-    setting = 'settings'
+    personSearch = 'personSearch',
+    sportFacilitySearch = 'sportFacilitySearch'
 }

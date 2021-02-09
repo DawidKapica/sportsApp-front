@@ -1,0 +1,14 @@
+.main-box {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /*padding: 10px;*/
+    /*color: red;*/
+    font-family: "Verdana";
+    color: rgb(51, 51, 51);
+}
+
+.map {
+    height: 100%;
+    width: 100%;
+}

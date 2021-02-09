@@ -1,0 +1,25 @@
+<div *ngIf="!isLoadingResults" class="main-box">
+    <div class="first-line">
+        <span>Imię: {{person.firstName}}</span>
+        <span>Nazwisko: {{person.lastName}}</span>
+        <span>Telefon: {{expert.phone}}</span>
+        <span>Mail: {{expert.mail}}</span>
+    </div>
+    <div class="second-">
+        <span>Specjalizacje:
+            <span *ngFor="let spec of specialisationsNames; let i = index">
+            {{spec}}
+                <span *ngIf="specialisations[i].experienceYear==1">1 rok</span>
+                <span *ngIf="specialisations[i].experienceYear!=1">{{specialisations[i].experienceYear}} lata</span>
+            </span>
+        </span>
+    </div>
+    <div>
+        <span>Edukacja: {{expert.education}}</span>
+        <span>O mnie: {{expert.description}}</span>
+        <span>Opinie: {{opinionRate}}/5</span><button mat-button>Zobacz opinie</button>
+    </div>
+    <div>
+        <button mat-raised-button>Nawiąż Kontakt</button>
+    </div>
+</div>

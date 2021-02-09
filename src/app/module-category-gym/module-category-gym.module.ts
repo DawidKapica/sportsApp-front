@@ -26,7 +26,6 @@ import { PropositionTrainingComponent } from './proposition-training/proposition
     ],
     imports: [
         CommonModule,
-        ReactiveFormsModule,
         MatAutocompleteModule,
         MatInputModule,
         MatPaginatorModule,

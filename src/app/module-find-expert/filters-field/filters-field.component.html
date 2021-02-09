@@ -1,0 +1,45 @@
+<div class="main-box">
+    <div>
+    <form class="form-box" [formGroup]="formGroup">
+        <div class="forms-line">
+            <div>
+                <mat-form-field class="attribute-value-form">
+                    <input matInput placeholder="Phone" value="phone" formControlName="phone">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="attribute-value-form">
+                    <input matInput placeholder="E-mail" value="mail" formControlName="mail">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="attribute-value-form">
+                    <input matInput placeholder="First name" value="firstName" formControlName="firstName">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="forms-line">
+            <div>
+                <mat-form-field class="attribute-value-form">
+                    <input matInput placeholder="Second name" value="secondName" formControlName="secondName">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="attribute-value-form">
+                    <input matInput placeholder="Specialisation" value="specialisation"
+                           formControlName="specialisation">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="attribute-value-form">
+                    <input matInput placeholder="Opinion" value="opinion" formControlName="opinion">
+                </mat-form-field>
+            </div>
+        </div>
+
+    </form>
+    </div>
+    <div>
+        <button mat-raised-button>Szukaj</button>
+    </div>
+</div>

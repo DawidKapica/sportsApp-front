@@ -1,0 +1,52 @@
+<div class="main-box">
+    <form class="example-form" [formGroup]="inputFormsGroup">
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="emailFormControl" placeholder="Ex. pat@example.com">
+            <mat-error
+                *ngIf="inputFormsGroup.controls['emailFormControl'].hasError('email') && !inputFormsGroup.controls['emailFormControl'].hasError('required')">
+                Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="inputFormsGroup.controls['emailFormControl'].hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Imie</mat-label>
+            <input type="email" matInput formControlName="desiredCaloriesIntake" placeholder="Ex. pat@example.com">
+
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nazwisko</mat-label>
+            <input type="email" matInput formControlName="desiredCaloriesIntake" placeholder="Ex. pat@example.com">
+
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Planowane spożycie kalorii</mat-label>
+            <input type="email" matInput formControlName="desiredCaloriesIntake" placeholder="Ex. pat@example.com">
+
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Planowane spożycie białka</mat-label>
+            <input type="email" matInput formControlName="desiredCaloriesIntake" placeholder="Ex. pat@example.com">
+
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Planowane spożycie węglowodwanów</mat-label>
+            <input type="email" matInput formControlName="desiredCaloriesIntake" placeholder="Ex. pat@example.com">
+
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Planowane spożycie tłuszczy</mat-label>
+            <input type="email" matInput formControlName="desiredCaloriesIntake" placeholder="Ex. pat@example.com">
+
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Data urodzenia</mat-label>
+            <input type="email" matInput formControlName="desiredCaloriesIntake" placeholder="Ex. pat@example.com">
+        </mat-form-field>
+    </form>
+        <button mat-raised-button>
+            Zmień hasło
+        </button>
+</div>

@@ -32,6 +32,8 @@ import {ModuleCategorySettingModule} from './module-category-setting/module-cate
 import {HttpClientModule} from '@angular/common/http';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import {ModuleFindExpertModule} from './module-find-expert/module-find-expert.module';
+import {ModuleFindSportFacilityModule} from './module-find-sport-facility/module-find-sport-facility.module';
 
 
 @NgModule({
@@ -71,6 +73,8 @@ import {MatListModule} from '@angular/material/list';
         HttpClientModule,
         MatSidenavModule,
         MatListModule,
+        ModuleFindExpertModule,
+        ModuleFindSportFacilityModule,
 
     ],
     providers: [],

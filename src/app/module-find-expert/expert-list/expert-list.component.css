@@ -1,0 +1,27 @@
+.main-box {
+    /*margin: auto;*/
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.elements-list {
+    margin: 10px;
+    height: 100%;
+}
+
+.single-element {
+
+}
+
+
+.list-of-experts {
+    height: 100%;
+}
+
+.paginator-position {
+    width: 98%;
+    margin-top: auto;
+    position: absolute;
+    bottom: 0;
+}

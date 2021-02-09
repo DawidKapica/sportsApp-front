@@ -1,0 +1,25 @@
+.main-box {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /*padding: 10px;*/
+    /*color: red;*/
+    font-family: "Verdana";
+    color: rgb(51, 51, 51);
+    display: flex;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.attribute-value-form {
+    margin: 3px;
+}
+
+.forms-line {
+    display: flex;
+    flex-direction: row;
+}

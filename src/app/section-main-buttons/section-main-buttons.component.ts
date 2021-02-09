@@ -17,9 +17,10 @@ export class SectionMainButtonsComponent implements AfterViewInit {
     buttons: buttonIconName[] = [
         {iconName: 'fitness_center', nameRef: categoryEnum.fitness},
         {iconName: 'restaurant', nameRef: categoryEnum.food},
-        {iconName: 'person', nameRef: categoryEnum.aboutMe},
+        {iconName: 'face', nameRef: categoryEnum.aboutMe},
         {iconName: 'mail', nameRef: categoryEnum.message},
-        {iconName: 'settings', nameRef: categoryEnum.setting},
+        {iconName: 'person_search', nameRef: categoryEnum.personSearch},
+        {iconName: 'home_work', nameRef: categoryEnum.sportFacilitySearch}
     ];
 
     constructor(private cdRef:ChangeDetectorRef) {
