@@ -29,11 +29,14 @@ import {ModuleCategoryAboutMeModule} from './module-category-about-me/module-cat
 import {ModuleCategoryFoodModule} from './module-category-food/module-category-food.module';
 import {ModuleCategoryMessageModule} from './module-category-message/module-category-message.module';
 import {ModuleCategorySettingModule} from './module-category-setting/module-category-setting.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {ModuleFindExpertModule} from './module-find-expert/module-find-expert.module';
 import {ModuleFindSportFacilityModule} from './module-find-sport-facility/module-find-sport-facility.module';
+import {AuthHttpInterceptor, AuthModule} from '@auth0/auth0-angular';
+import {ModuleLoginModule} from './module-login/module-login.module';
+import {environment} from '../environments/environment';
 
 
 @NgModule({
@@ -75,9 +78,21 @@ import {ModuleFindSportFacilityModule} from './module-find-sport-facility/module
         MatListModule,
         ModuleFindExpertModule,
         ModuleFindSportFacilityModule,
+        AuthModule.forRoot({
+            domain: 'dawidkapica.eu.auth0.com',
+            clientId: 'g6T9X3fcIYbvHV3m3vhhjvx8SjtiVpxu',
+            httpInterceptor: {
+                allowedList: [`${environment.dev.serverUrl}/experts`],
+            },
+        }),
+        ModuleLoginModule,
 
     ],
-    providers: [],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

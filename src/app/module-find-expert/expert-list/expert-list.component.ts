@@ -15,6 +15,8 @@ export class ExpertListComponent implements OnInit {
     }
 
     ngOnInit(): void {
+
+
     }
 
 }

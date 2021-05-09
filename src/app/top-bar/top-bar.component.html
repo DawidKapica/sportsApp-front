@@ -1,12 +1,32 @@
 <mat-toolbar class="top-bar">
   <span>
       <button mat-icon-button id="menu">
-        <mat-icon class="button-span-color" (click)="toogleSideNav()">search</mat-icon>
+          <mat-icon class="button-span-color menu-icon-size" (click)="toogleSideNav()">menu</mat-icon>
       </button>
 
+
+      <!--      <ul *ngIf="auth.user$ | async as user">-->
+      <!--      <li>{{ user.name }}</li>-->
+      <!--      <li>{{ user.email }}</li>-->
+      <!--    </ul>-->
   </span>
-  <h1>SPORTS APP</h1>
-  <span>
-    <a href="/login"><button mat-button><span class="button-span-color">Logout</span></button></a>
+    <h1>SPORTS APP</h1>
+    <!--    <button (click)="callApi()" type="button" class="btn btn-primary">-->
+    <!--        Get Public Message-->
+    <!--    </button>-->
+    <!--    <button (click)="callSecureApi()" type="button" class="btn btn-primary">-->
+    <!--        Get Protected Message-->
+    <!--    </button>-->
+    <span>
+        <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+          <button mat-button (click)="auth.logout({ returnTo: 'http://localhost:4200/login' })">
+            <span class="button-span-color">Log out</span>
+        </button>
+    </ng-container>
+
+    <ng-template #loggedOut>
+      <button (click)="auth.loginWithRedirect()">Log in</button>
+    </ng-template>
+        <!--    <a href="/login"><button mat-button><span class="button-span-color">Logout</span></button></a>-->
   </span>
 </mat-toolbar>

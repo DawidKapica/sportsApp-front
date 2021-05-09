@@ -2,10 +2,20 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+
 export const environment = {
   production: false,
     mapbox: {
         accessToken: 'pk.eyJ1IjoiZGF3aWRrIiwiYSI6ImNraWI2MmRjNDB3Y2EzMWxjaHE4b3V5aTIifQ.qvXuKs0c6RBiFKPbiFQMxw'
+    },
+    auth: {
+        domain: "dawidkapica.eu.auth0.com",
+        clientId: "g6T9X3fcIYbvHV3m3vhhjvx8SjtiVpxu",
+        redirectUri: window.location.origin,
+        audience: "https://sportsapp.com/api"
+    },
+    dev: {
+      serverUrl: "http://localhost:8080"
     }
 };
 

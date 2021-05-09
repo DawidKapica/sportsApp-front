@@ -15,19 +15,26 @@
 
 .v1 {
     height: 7%;
+    /*background-color: greenyellow;*/
+
 }
 
 .v2 {
     height: 100%;
     width: 10%;
+    /*background-color: greenyellow;*/
+
 }
 
 .v3 {
     height: 93%;
     width: 92%;
+    /*background-color: greenyellow;*/
+
 }
 
 .custom-sidenav-container-size {
     width: 100%;
     height: 100%;
+    /*background-color: #eee;*/
 }
