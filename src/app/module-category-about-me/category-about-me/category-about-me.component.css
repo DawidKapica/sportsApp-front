@@ -3,9 +3,28 @@
     height: 100%;
     overflow: auto;
     /*padding: 10px;*/
-    /*color: red;*/
-    font-family: "Verdana";
-    color: rgb(51, 51, 51);
+}
+
+@media (min-width: 992px) {
+    .row-height {
+        height: 50%;
+        justify-content: space-around;
+    }
+
+    .column-height {
+        height: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    .row-height {
+        height: 100%;
+        justify-content: space-around;
+    }
+
+    .column-height {
+        height: 50%;
+    }
 }
 
 .element-row-div {
@@ -13,6 +32,7 @@
     width: 100%;
     background-color: lightsteelblue !important;
     border-radius: 15px;
+    margin: 15px;
     /*margin: 10px;*/
 }
 

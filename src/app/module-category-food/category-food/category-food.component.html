@@ -1,25 +1,35 @@
 <div class="main-box">
     <div class="row no-gutters first-row-height">
-        <div class="col-6 column-height ">
-            <div class="element-row-div">
-                <app-food-eaten-field *ngIf="isLoadingResults == false" [eatenFoods]="userMealNutritional"></app-food-eaten-field>
+        <div class="col-lg-6 col-12 column-height">
+            <div class="element-row-div justify-align-content">
+                <div class="food-eaten-field padding-field">
+                    <app-food-eaten-field *ngIf="isLoadingResults == false"
+                                          [eatenFoods]="userMealNutritional"
+                                          [userData]="userData"></app-food-eaten-field>
+                </div>
             </div>
         </div>
-        <div class="col-6 column-height">
-            <div *ngIf="isLoadingResults == false" class="element-row-div">
-                <app-water-drink  [waterConsumed]="waterDrink"></app-water-drink>
+        <div class="col-lg-6 col-12 column-height">
+            <div *ngIf="isLoadingResults == false" class="element-row-div justify-align-content">
+                <div class="water-drink-field padding-field">
+                    <app-water-drink [waterConsumed]="waterDrink"></app-water-drink>
+                </div>
             </div>
         </div>
     </div>
     <div class="row no-gutters second-row-height">
-        <div class="col-7 column-height ">
-            <div *ngIf="isLoadingResults == false" class="element-row-div">
-                <app-today-meal-field [eatenFoods]="userMealNutritional"></app-today-meal-field>
+        <div class="col-lg-7 col-12 column-height">
+            <div *ngIf="isLoadingResults == false" class="element-row-div justify-align-content">
+                <div class="today-meal-field padding-field">
+                    <app-today-meal-field [eatenFoods]="userMealNutritional"></app-today-meal-field>
+                </div>
             </div>
         </div>
-        <div class="col-5 column-height ">
-            <div *ngIf="isLoadingResults == false" class="element-row-div">
-                <app-search-product-field [nutritionalProducts]="nutritionalProducts"></app-search-product-field>
+        <div class="col-lg-5 col-12 column-height">
+            <div *ngIf="isLoadingResults == false" class="element-row-div justify-align-content">
+                <div class="search-product-field padding-field">
+                    <app-search-product-field [nutritionalProducts]="nutritionalProducts"></app-search-product-field>
+                </div>
             </div>
         </div>
     </div>

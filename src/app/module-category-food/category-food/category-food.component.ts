@@ -4,6 +4,7 @@ import {Mapping} from '../../dataBaseObjects/Mapping';
 import {ConsumedFoodDto} from '../../dataBaseObjects/ConsumedFoodDto';
 import {NutritionalProductDto} from '../../dataBaseObjects/NutritionalProductDto';
 import {mealNutritionalValInterface} from '../../interfaceComunicationObjects/mealNutritionalValInterface';
+import {UserDto} from '../../dataBaseObjects/UserDto';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class CategoryFoodComponent implements OnInit {
 
     todayUserConsumedFood: ConsumedFoodDto[];
     nutritionalProducts: NutritionalProductDto[];
+    userData: Object;
 
     waterDrink: number;
     userMealNutritional: mealNutritionalValInterface[];
@@ -46,8 +48,9 @@ export class CategoryFoodComponent implements OnInit {
 
         this.todayUserConsumedFood = await this.api.get(Mapping.CONSUMED_FOOD + Mapping.SEARCH + 'consumedFoodDate=' + test20201010String);
         this.nutritionalProducts = await this.api.get(Mapping.NUTRITIONAL_PRODUCT);
+        this.userData = await this.api.getFullObject(Mapping.USER + '/3');
 
-
+        console.log(this.userData);
     }
 
     waterExtract(consumedFoods: ConsumedFoodDto[]): number {

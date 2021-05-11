@@ -1,31 +1,39 @@
 <div class="main-box">
-    <div class="add-water-buttons">
-        <span>Dodaj wypitą wodę!</span>
+    <span>Dodaj wypitą wodę!</span>
+    <div class="main-data-box">
         <div class="add-water-buttons">
-            <button mat-raised-button>+250ml</button>
-            <button mat-raised-button>+500ml</button>
-            <mat-form-field class="example-full-width">
-                <mat-label>Inna wartość</mat-label>
-                <input matInput>
-            </mat-form-field>
-            <button mat-raised-button>+</button>
+
+<!--            <div class="add-water-buttons">-->
+                <div class="add-const-val-button">
+                    <button mat-raised-button>+250ml</button>
+                    <button mat-raised-button>+500ml</button>
+                </div>
+                <div class="add-custom-val">
+                    <mat-form-field class="input-val">
+                        <mat-label style="color: white">Inna wartość</mat-label>
+                        <input matInput type="number">
+                    </mat-form-field>
+                    <div class="add-custom-val-button">
+                        <button mat-raised-button>+</button>
+                    </div>
+                </div>
+<!--            </div>-->
+        </div>
+        <div class="progress-water-bar">
+            <circle-progress
+                [percent]=percentOfWaterConsumed()
+                [radius]="100"
+                [outerStrokeWidth]="16"
+                [innerStrokeWidth]="8"
+                [outerStrokeColor]="'#78C000'"
+                [innerStrokeColor]="'#C7E596'"
+                [animation]="true"
+                [animationDuration]="400"
+                [unitsFontSize]="22"
+                [titleFontSize]="25"
+                [subtitleFontSize]="20"
+
+            ></circle-progress>
         </div>
     </div>
-    <div class="progress-water-bar">
-        <circle-progress
-            [percent]=percentOfWaterConsumed()
-            [radius]="100"
-            [outerStrokeWidth]="16"
-            [innerStrokeWidth]="8"
-            [outerStrokeColor]="'#78C000'"
-            [innerStrokeColor]="'#C7E596'"
-            [animation]="true"
-            [animationDuration]="400"
-            [unitsFontSize]="22"
-            [titleFontSize]="25"
-            [subtitleFontSize]="20"
-
-        ></circle-progress>
-    </div>
-
 </div>

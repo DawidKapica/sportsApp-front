@@ -1,6 +1,9 @@
 .main-box {
+    display: flex;
+    flex-direction: column;
     color: rgb(51, 51, 51);
     height: 100%;
+    width: 100%;
 }
 
 
@@ -10,14 +13,15 @@
 }
 
 ::ng-deep .mat-tab-label {
-    color: red !important;
+    color: white !important;
+    opacity: 1 !important;
 }
 /* Styles for the active tab label */
 .mat-tab-label.mat-tab-label-active {
     min-width: 25px !important;
     padding: 5px;
     background-color: transparent;
-    color: red;
+    color: white;
     font-weight: 700;
 }
 

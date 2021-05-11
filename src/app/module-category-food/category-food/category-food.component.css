@@ -16,24 +16,93 @@
     /*padding: 10px;*/
     /*color: red;*/
     font-family: "Verdana";
-    color: rgb(51, 51, 51);
+    /*color: rgb(51, 51, 51);*/
 }
 
 .element-row-div {
-    height: 100%;
+    /*height: 100%;*/
+    /*background-color: lightsteelblue !important;*/
+    /*border-radius: 15px;*/
+    /*margin: 10px;*/
+
+    height: 95%;
     background-color: lightsteelblue !important;
     border-radius: 15px;
-    /*margin: 10px;*/
+    margin: 10px;
 }
 
-.column-height {
+/*.column-height {*/
+/*    height: 100%;*/
+/*}*/
+
+/*.first-row-height {*/
+/*    height: 35%;*/
+/*}*/
+
+/*.second-row-height {*/
+/*    height: 65%;*/
+/*}*/
+
+@media (min-width: 992px) {
+    .first-row-height {
+        height: 35%;
+        justify-content: space-around;
+    }
+
+    .second-row-height {
+        height: 65%;
+        justify-content: space-around;
+    }
+
+    .column-height {
+        height: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    .first-row-height {
+        height: 65%;
+        justify-content: space-around;
+    }
+
+    .second-row-height {
+        height: 100%;
+        justify-content: space-around;
+    }
+
+    .column-height {
+        height: 50%;
+    }
+}
+
+
+.justify-align-content {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+}
+
+.padding-field {
+    padding: 2%;
+}
+
+.food-eaten-field {
+    width: 100%;
     height: 100%;
 }
 
-.first-row-height {
-    height: 35%;
+.water-drink-field {
+    width: 100%;
+    height: 100%;
 }
 
-.second-row-height {
-    height: 65%;
+.today-meal-field {
+    width: 100%;
+    height: 100%;
+}
+
+.search-product-field {
+    width: 100%;
+    height: 100%;
 }
