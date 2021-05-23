@@ -4,6 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {NutritionalProductDto} from '../../dataBaseObjects/NutritionalProductDto';
 import {mealNutritionalValInterface} from '../../interfaceComunicationObjects/mealNutritionalValInterface';
+import {FormControl} from '@angular/forms';
 
 // export interface MealInterface {
 //     nazwa: string;
@@ -29,11 +30,18 @@ export class SearchProductFieldComponent implements OnInit, AfterViewInit {
 
     isLoadingResults = true;
 
+    dateForm = new FormControl(new Date());
+
+    timeForm = new FormControl();
     constructor() {
     }
 
     async ngOnInit() {
         this.dataSource = new MatTableDataSource<NutritionalProductDto>(this.nutritionalProducts);
+        const index = this.nutritionalProducts.findIndex(e => e.name == 'water');
+        if (index > -1) {
+            this.nutritionalProducts.splice(index, 1);
+        }
         this.isLoadingResults = false;
     }
 

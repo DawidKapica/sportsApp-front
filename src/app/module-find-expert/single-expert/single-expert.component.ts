@@ -31,7 +31,7 @@ export class SingleExpertComponent implements OnInit {
         if (this.expert != null) {
             this.specialisations = await this.api.get(Mapping.EXPERT_SPECIALISATION + Mapping.SEARCH + 'expertId=' + this.expert.id);
             this.person = await this.api.getFullObject(Mapping.PERSON + '/' + this.expert.id);
-            this.opinions = await this.api.get(Mapping.OPINION + Mapping.SEARCH + this.expert.id);
+            this.opinions = await this.api.get(Mapping.OPINION + Mapping.SEARCH + 'expertId=' + this.expert.id);
 
             for (let specialisation of this.specialisations) {
                 let singleSpecialisationName: any = await this.api.getFullObject(Mapping.SPECIALISATION + '/' + specialisation.specialisationId);

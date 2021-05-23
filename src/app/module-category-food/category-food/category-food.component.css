@@ -8,29 +8,6 @@
 
 /*    maintainAspectRatio: false;*/
 /*}*/
-
-.main-box {
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    /*padding: 10px;*/
-    /*color: red;*/
-    font-family: "Verdana";
-    /*color: rgb(51, 51, 51);*/
-}
-
-.element-row-div {
-    /*height: 100%;*/
-    /*background-color: lightsteelblue !important;*/
-    /*border-radius: 15px;*/
-    /*margin: 10px;*/
-
-    height: 95%;
-    background-color: lightsteelblue !important;
-    border-radius: 15px;
-    margin: 10px;
-}
-
 /*.column-height {*/
 /*    height: 100%;*/
 /*}*/
@@ -43,15 +20,36 @@
 /*    height: 65%;*/
 /*}*/
 
+
+
+.main-box {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /*padding: 10px;*/
+    /*color: red;*/
+    font-family: "Verdana";
+    /*color: rgb(51, 51, 51);*/
+}
+
+.element-row-div {
+    height: 95%;
+    background-color: lightsteelblue !important;
+    border-radius: 15px;
+    margin: 1%;
+}
+
+
+
 @media (min-width: 992px) {
     .first-row-height {
-        height: 35%;
+        height: 30%;
         justify-content: space-around;
     }
 
     .second-row-height {
-        height: 65%;
-        justify-content: space-around;
+        height: 70%;
+        /*justify-content: space-around;*/
     }
 
     .column-height {
@@ -79,7 +77,6 @@
 .justify-align-content {
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
     align-items: center;
 }
 

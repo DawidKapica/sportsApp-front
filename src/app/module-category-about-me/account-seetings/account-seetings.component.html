@@ -1,52 +1,68 @@
 <div class="main-box">
-    <form class="example-form" [formGroup]="inputFormsGroup">
-        <mat-form-field class="example-full-width">
-            <mat-label>Email</mat-label>
-            <input type="email" matInput formControlName="emailFormControl" placeholder="Ex. pat@example.com">
-            <mat-error
-                *ngIf="inputFormsGroup.controls['emailFormControl'].hasError('email') && !inputFormsGroup.controls['emailFormControl'].hasError('required')">
-                Please enter a valid email address
-            </mat-error>
-            <mat-error *ngIf="inputFormsGroup.controls['emailFormControl'].hasError('required')">
-                Email is <strong>required</strong>
-            </mat-error>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <mat-label>Imie</mat-label>
-            <input type="email" matInput formControlName="desiredCaloriesIntake" placeholder="Ex. pat@example.com">
+    <div class="span-background">
+        <span class="title-of-field">Podstawowe informacje o tobie</span>
+    </div>
+    <div class="main-data-box row">
+        <div class="user-data-diet-box ">
+            <!--            <div class="row">-->
+            <form class="user-data-box" [formGroup]="formGroup">
+                <div class="col-lg-3 col-md-12" *ngFor="let item of userInformation">
+                    <div class="">
+                        <mat-form-field class="form-field">
+                            <mat-label>{{item.firsrtFieldName}}</mat-label>
+                            <input matInput value={{item.secondFieldName}} formControlName={{item.formControlName}}>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+            <!--            </div>-->
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <span>Twoje zakładane spożycie:</span>
+                    <form class="user-diet-box" [formGroup]="formGroup">
+                        <div class="user-diet-inputs row" *ngFor="let item of userDietInformation">
+                            <span class="title col-lg-5">{{item.firsrtFieldName}}</span>
+                            <mat-form-field class="list-attribute-value-form col-lg-3">
+                                <input matInput value={{item.secondFieldName}} formControlName={{item.formControlName}}
+                                       type="number">
+                            </mat-form-field>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="bmi-box">
+                        <div *ngIf="BMI==0">
+                            <span>Uzupełnij wszystkie informacje o swojej aktualnej wadze, i wzroście aby poznać swoje BMI</span>
+                        </div>
 
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <mat-label>Nazwisko</mat-label>
-            <input type="email" matInput formControlName="desiredCaloriesIntake" placeholder="Ex. pat@example.com">
+                        <div *ngIf="BMI>0">
+                            <span>Twoje BMI wynosi: {{BMI}}</span>
+                        </div>
+                        <br>
+                        <span>Znaczenia wartoci BMI</span>
+                        <div class="line-bmi-info">
+                            <span>BMI<18.5 </span>
+                            <span> niedowaga</span>
+                        </div>
+                        <div class="line-bmi-info">
+                            <span>18.5 < BMI<24.99 </span>
+                            <span> prawidłowa waga</span>
+                        </div>
+                        <div class="line-bmi-info">
+                            <span>25 < BMI < 29.99 </span>
+                            <span> nadwaga</span>
+                        </div>
+                        <div class="line-bmi-info">
+                            <span>30 < BMI < 18.5 </span>
+                            <span> otyłość</span>
+                        </div>
+                    </div>
 
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <mat-label>Planowane spożycie kalorii</mat-label>
-            <input type="email" matInput formControlName="desiredCaloriesIntake" placeholder="Ex. pat@example.com">
-
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <mat-label>Planowane spożycie białka</mat-label>
-            <input type="email" matInput formControlName="desiredCaloriesIntake" placeholder="Ex. pat@example.com">
-
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <mat-label>Planowane spożycie węglowodwanów</mat-label>
-            <input type="email" matInput formControlName="desiredCaloriesIntake" placeholder="Ex. pat@example.com">
-
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <mat-label>Planowane spożycie tłuszczy</mat-label>
-            <input type="email" matInput formControlName="desiredCaloriesIntake" placeholder="Ex. pat@example.com">
-
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <mat-label>Data urodzenia</mat-label>
-            <input type="email" matInput formControlName="desiredCaloriesIntake" placeholder="Ex. pat@example.com">
-        </mat-form-field>
-    </form>
-        <button mat-raised-button>
-            Zmień hasło
-        </button>
+                </div>
+            </div>
+        </div>
+        <div class="button-update-box">
+            <button class="update-button" mat-raised-button>Zaaktualizuj dane</button>
+        </div>
+    </div>
 </div>

@@ -35,7 +35,18 @@
     height: 95%;
     background-color: lightsteelblue !important;
     border-radius: 15px;
-    margin: 10px;
+    margin: 1%;
+    padding: 1%;
+}
+
+.element-add-new-training {
+    /*height: 95%;*/
+    /*background-color: lightsteelblue !important;*/
+    /*border-radius: 15px;*/
+    /*margin: 1%;*/
+
+    width:95%;
+    height: 100%;
 }
 
 .training-table {

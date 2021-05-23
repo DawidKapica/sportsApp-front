@@ -1,10 +1,22 @@
-.main-box {
-    height: 20%;
-    width: 95%;
-    background-color: rgb(240,240,240);
-    border-radius: 15px;
-    margin: 20px;
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
+/*.main-box {*/
+/*    height: 20%;*/
+/*    width: 95%;*/
+/*    background-color: rgb(240,240,240);*/
+/*    border-radius: 15px;*/
+/*    margin: 20px;*/
+/*    padding: 5px;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*}*/
+
+.single-card {
+    width: 100%;
+}
+
+.button-contact {
+    background-color: green;
+}
+
+.button-opinion {
+    background-color: #3e69ad;
 }

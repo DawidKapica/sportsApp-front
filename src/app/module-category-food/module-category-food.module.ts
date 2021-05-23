@@ -22,6 +22,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {ApiService} from '../service/api.service';
+import {ReactiveFormsModule} from '@angular/forms';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {ChartsModule} from 'ng2-charts';
 
 
 
@@ -59,7 +62,10 @@ import {ApiService} from '../service/api.service';
         MatRadioModule,
         MatCheckboxModule,
         MatPaginatorModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        ReactiveFormsModule,
+        NgxMaterialTimepickerModule,
+        ChartsModule
 
     ],
     exports: [

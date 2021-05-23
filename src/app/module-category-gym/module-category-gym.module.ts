@@ -16,13 +16,18 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSortModule} from '@angular/material/sort';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PropositionTrainingComponent } from './proposition-training/proposition-training.component';
+import {MatIconModule} from '@angular/material/icon';
+import { AddNewTrainingComponent } from './add-new-training/add-new-training.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
     declarations: [
         CategoryGymComponent,
         GenericInputFieldComponent,
         MyLineChartComponent,
-        PropositionTrainingComponent
+        PropositionTrainingComponent,
+        AddNewTrainingComponent
     ],
     imports: [
         CommonModule,
@@ -36,7 +41,10 @@ import { PropositionTrainingComponent } from './proposition-training/proposition
         FormsModule,
         MatButtonModule,
         MatSortModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatIconModule,
+        MatDatepickerModule,
+        MatSelectModule
 
     ],
     exports: [

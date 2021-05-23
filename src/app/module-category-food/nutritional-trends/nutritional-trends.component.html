@@ -1,1 +1,26 @@
-<p>nutritional-trends works!</p>
+<!--<div class="">-->
+<div class="main-box row">
+    <div class="main-box-chart">
+        <canvas baseChart width="0.5" height="1"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                [plugins]="lineChartPlugins">
+        </canvas>
+    </div>
+    <div class="main-box-chart">
+        <canvas baseChart width="0.5" height="1"
+                [datasets]="lineChartMakroData"
+                [labels]="lineChartLabels"
+                [options]="lineChartMakroOptions"
+                [colors]="lineChartMakroColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                [plugins]="lineChartPlugins">
+        </canvas>
+    </div>
+</div>
+<!--</div>-->

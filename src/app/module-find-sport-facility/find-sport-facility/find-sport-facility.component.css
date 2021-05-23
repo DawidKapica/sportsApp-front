@@ -12,3 +12,12 @@
     height: 100%;
     width: 100%;
 }
+
+.element-row-div {
+    /*height: 95%;*/
+    width: 100%;
+    background-color: #3e69ad !important;
+    border-radius: 15px;
+    margin: 1%;
+    overflow: scroll;
+}

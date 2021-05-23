@@ -1,0 +1,22 @@
+<mat-card class="single-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"><mat-icon aria-hidden="false" aria-label="Example home icon">check</mat-icon></div>
+        <mat-card-title>{{planTitle}}</mat-card-title>
+        <mat-card-subtitle>Data końcowa planu: {{planEndDate}}</mat-card-subtitle>
+    </mat-card-header>
+<!--    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+    <mat-card-content>
+        <p>
+<!--            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.-->
+<!--            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally-->
+<!--            bred for hunting.-->
+            {{planDescription}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <span>Plan jest: </span>
+        <button mat-raised-button class="button-done">Wykonany</button>
+        <button mat-raised-button class="button-doing">Realizowany</button>
+        <button mat-button class="button-undone">Nie wykonany</button>
+    </mat-card-actions>
+</mat-card>

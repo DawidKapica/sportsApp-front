@@ -1,31 +1,30 @@
 <div class="main-box">
     <div class="row no-gutters first-row-height">
-        <div class="col-6 first-row-height">
-            <div class="row no-gutters half-row-height">
-                <div class="element-row-div">
-                    <app-new-mesaurement [dataSource]="actualMeasurmentArray" *ngIf="isLoadingResults == false"></app-new-mesaurement>
-                </div>
-            </div>
-            <div class="row no-gutters half-row-height">
-                <div class="element-row-div">
-                    <app-goals-field *ngIf="isLoadingResults == false"></app-goals-field>
-                </div>
+        <div class="col-lg-6 col-md-12 column-height">
+            <div class="element-row-div padding-field">
+                <app-new-mesaurement
+                                     [dataSource]="inputUserTypeFirstCol"
+                                     [lastMeasureUpdate]="lastMeasureUpdateDate"
+                                     *ngIf="isLoadingResults == false"></app-new-mesaurement>
             </div>
         </div>
-        <div class="col-6 first-row-height">
-            <div class="row no-gutters half-row-height">
-                <div class="element-row-div">
-                    <app-measeaure-chart-history-field *ngIf="isLoadingResults == false"></app-measeaure-chart-history-field>
-                </div>
+        <div class="col-lg-6 col-md-12 column-height">
+            <div class="element-row-div padding-field">
+                <app-goals-field *ngIf="isLoadingResults == false" [userPlans]="userPlans"></app-goals-field>
             </div>
-            <div class="row no-gutters half-row-height">
-                <div class="element-row-div">
-                    <app-account-seetings *ngIf="isLoadingResults == false"></app-account-seetings>
-                </div>
-            </div>
-
         </div>
     </div>
-
-
+    <div class="row no-gutters second-row-height">
+        <div class="col-lg-6 col-md-12 column-height">
+            <div class="element-row-div padding-field">
+                <app-measeaure-chart-history-field
+                    *ngIf="isLoadingResults == false" [userDetailsData]="userDetailsTab"></app-measeaure-chart-history-field>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 column-height">
+            <div class="element-row-div padding-field">
+                <app-account-seetings *ngIf="isLoadingResults == false" [userInformation]="inputUserData" [userDietInformation]="inputUserDietData" [BMI]="BMI"></app-account-seetings>
+            </div>
+        </div>
+    </div>
 </div>

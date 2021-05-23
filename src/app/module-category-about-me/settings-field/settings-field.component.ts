@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {UserDto} from '../../dataBaseObjects/UserDto';
 
 @Component({
-  selector: 'app-settings-field',
-  templateUrl: './settings-field.component.html',
-  styleUrls: ['./settings-field.component.css']
+    selector: 'app-settings-field',
+    templateUrl: './settings-field.component.html',
+    styleUrls: ['./settings-field.component.css']
 })
 export class SettingsFieldComponent implements OnInit {
 
-  constructor() { }
+    @Input()
+    userData: UserDto;
 
-  ngOnInit(): void {
-  }
+    constructor() {
+    }
+
+    ngOnInit(): void {
+    }
 
 }

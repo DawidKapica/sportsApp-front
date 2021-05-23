@@ -1,4 +1,38 @@
 <div class="main-box">
-    <span>Twoje Plany</span>
+    <div class="span-background">
+        <span class="title-of-field span-background">Twoje plany</span>
+    </div>
+    <div class="main-data-box">
+        <div class="add-new-plan-box col-lg-4 col-md-12">
+            <span>Dodaj swój nowy plan</span>
+            <div class="title-date-plan full-width row no-gutters">
+                <mat-form-field class="col-md-6 col-lg-12 no-gutters">
+                    <mat-label>Tytuł planu</mat-label>
+                    <input matInput placeholder="Tytuł" #input>
+                </mat-form-field>
+                <mat-form-field class="col-md-6 col-lg-12 no-gutters " appearance="fill">
+                    <mat-label>Data osiągniecia planu</mat-label>
+                    <input matInput [matDatepicker]="picker" [formControl]="dateForm">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <form class="full-width">
+                <mat-form-field class="full-width">
+                    <textarea matInput placeholder="Opisz tutaj swój plan"></textarea>
+                </mat-form-field>
+            </form>
 
+            <button mat-raised-button>Dodaj plan</button>
+
+        </div>
+        <div class="plans-history col-lg-8 col-md-12">
+            <div *ngFor="let item of userPlans">
+                <app-goals-field-card [planTitle]="item.title"
+                                      [planDescription]="item.description"
+                                      [plan_status]="item.goalStatus"
+                                      [planEndDate]="item.endDate"></app-goals-field-card>
+            </div>
+        </div>
+    </div>
 </div>

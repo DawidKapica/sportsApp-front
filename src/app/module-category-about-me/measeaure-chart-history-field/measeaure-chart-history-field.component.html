@@ -1,1 +1,23 @@
-<p>measeaure-chart-history-field works!</p>
+<div class="main-box">
+    <div class="span-background">
+        <span class="title-of-field">Historia twoich pomiarów</span>
+    </div>
+    <div class="main-box-data">
+        <mat-tab-group mat-stretch-tabs class="mat-elevation-z4 main-box-data">
+            <mat-tab label="Waga">
+                <app-generic-chart [dataForChartLabels]="dataForChartLabelsWeight"
+                                   [dateForChart]="dateForChartWeight"></app-generic-chart>
+            </mat-tab>
+            <mat-tab label="Góra ciała">
+                <app-generic-chart *ngIf="isLoadingData==false" [dataForChartLabels]="dataForChartLabelsUpBody"
+                                   [dateForChart]="dataForChartUpBody"></app-generic-chart>
+            </mat-tab>
+            <mat-tab label="Dół ciała">
+                <app-generic-chart *ngIf="isLoadingData==false" [dataForChartLabels]="dataForChartLabelsDownBody"
+                                   [dateForChart]="dataForChartDownBody"></app-generic-chart>
+            </mat-tab>
+        </mat-tab-group>
+        <!--        <app-generic-chart [eatenFoods]=""></app-generic-chart>-->
+
+    </div>
+</div>

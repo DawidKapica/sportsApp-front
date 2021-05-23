@@ -1,17 +1,35 @@
 <div class="main-box">
-    <div class="mesaurment-box">
-        <form [formGroup]="formGroup">
-            <div class="measure-input" *ngFor="let item of dataSource">
-                <span>{{item.firsrtFieldName}}</span>
-                <mat-form-field class="list-attribute-value-form">
-                    <input matInput value={{item.secondFieldName}} [formControlName]=item.formControlName>
-                </mat-form-field>
+    <div class="span-background">
+        <span class="title-of-field">Podaj swoje aktualne pomiary</span>
+    </div>
+    <div class="main-data-box">
+        <div class="mesaurment-box row">
+            <div *ngIf="isLoadingResults==false" class="first-col-mesaurment-box col-lg-5 col-md-12">
+                <form [formGroup]="formGroup">
+                    <div class="measure-input" *ngFor="let item of userDataInfoFirstCol">
+                        <span class="title">{{item.firsrtFieldName}}</span>
+                        <mat-form-field class="list-attribute-value-form">
+                            <input matInput value={{item.secondFieldName}} formControlName={{item.formControlName}}
+                                   type="number">
+                        </mat-form-field>
+                    </div>
+                </form>
             </div>
-        </form>
+            <div class="second-col-mesaurment-box col-lg-5 col-md-12">
+                <form [formGroup]="formGroup">
+                    <div class="measure-input" *ngFor="let item of userDataInfoSecondCol">
+                        <span class="title">{{item.firsrtFieldName}}</span>
+                        <mat-form-field class="list-attribute-value-form">
+                            <input matInput value={{item.secondFieldName}} [formControlName]=item.formControlName
+                                   type="number">
+                        </mat-form-field>
+                    </div>
+                </form>
+                <span>Ostatnia aktualizacja pomiarów: {{lastMeasureUpdate}}</span>
+            </div>
+        </div>
+        <div class="button-update-box">
+            <button class="update-button" mat-raised-button>Zaaktualizuj pomiary</button>
+        </div>
     </div>
-
-    <div class="button-update-box">
-        <button class="update-button" mat-raised-button>Zaaktualizuj pomiary</button>
-    </div>
-
 </div>

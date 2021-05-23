@@ -1,4 +1,79 @@
 .main-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-data-box {
     width: 100%;
     height: 100%;
+}
+
+.button-update-box {
+    width: 100%;
+    max-height: 15%;
+    margin-top:auto;
+
+}
+
+.update-button {
+    width: 100%;
+}
+
+.user-data-diet-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.user-data-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.user-diet-box {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: space-between;*/
+    /*align-items: ;*/
+}
+
+.user-diet-inputs {
+    display: flex;
+    flex-direction: row;
+    /*justify-content: space-between;*/
+}
+
+.title {
+    width: 30%;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+}
+
+.list-attribute-value-form {
+    width: 20%;
+}
+
+.form-field {
+    max-width: 100%;
+}
+
+.bmi-box {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+
+}
+
+.line-bmi-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

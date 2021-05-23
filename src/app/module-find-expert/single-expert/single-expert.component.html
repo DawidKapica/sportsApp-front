@@ -1,25 +1,61 @@
-<div *ngIf="!isLoadingResults" class="main-box">
-    <div class="first-line">
-        <span>Imię: {{person.firstName}}</span>
-        <span>Nazwisko: {{person.lastName}}</span>
-        <span>Telefon: {{expert.phone}}</span>
-        <span>Mail: {{expert.mail}}</span>
-    </div>
-    <div class="second-">
-        <span>Specjalizacje:
+<!--<div *ngIf="!isLoadingResults" class="main-box">-->
+<!--    <div class="first-line">-->
+<!--        <span>Imię: {{person.firstName}}</span>-->
+<!--        <span>Nazwisko: {{person.lastName}}</span>-->
+<!--        <span>Telefon: {{expert.phone}}</span>-->
+<!--        <span>Mail: {{expert.mail}}</span>-->
+<!--    </div>-->
+<!--    <div class="second-">-->
+<!--        <span>Specjalizacje:-->
+<!--            <span *ngFor="let spec of specialisationsNames; let i = index">-->
+<!--            {{spec}}-->
+<!--                <span *ngIf="specialisations[i].experienceYear==1">1 rok</span>-->
+<!--                <span *ngIf="specialisations[i].experienceYear!=1">{{specialisations[i].experienceYear}} lata</span>-->
+<!--            </span>-->
+<!--        </span>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <span>Edukacja: {{expert.education}}</span>-->
+<!--        <span>O mnie: {{expert.description}}</span>-->
+<!--        <span>Opinie: {{opinionRate}}/5</span><button mat-button>Zobacz opinie</button>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <button mat-raised-button>Nawiąż Kontakt</button>-->
+<!--    </div>-->
+<!--</div>-->
+
+<mat-card class="single-card" *ngIf="isLoadingResults==false">
+    <mat-card-header>
+<!--        <div mat-card-avatar class="example-header-image"><mat-icon aria-hidden="false" aria-label="Example home icon">check</mat-icon></div>-->
+        <mat-card-title>{{person.firstName}} {{person.lastName}}</mat-card-title>
+        <mat-card-subtitle>
+            Specjalizacje:
             <span *ngFor="let spec of specialisationsNames; let i = index">
             {{spec}}
                 <span *ngIf="specialisations[i].experienceYear==1">1 rok</span>
                 <span *ngIf="specialisations[i].experienceYear!=1">{{specialisations[i].experienceYear}} lata</span>
             </span>
-        </span>
-    </div>
-    <div>
-        <span>Edukacja: {{expert.education}}</span>
-        <span>O mnie: {{expert.description}}</span>
-        <span>Opinie: {{opinionRate}}/5</span><button mat-button>Zobacz opinie</button>
-    </div>
-    <div>
-        <button mat-raised-button>Nawiąż Kontakt</button>
-    </div>
-</div>
+        </mat-card-subtitle>
+        <mat-card-subtitle>
+            Email:<span *ngIf="expert.mail != '' && expert.mail != null">{{expert.mail}}</span>
+            Telefon: <span *ngIf="expert.phone != '' && expert.phone != null">{{expert.phone}}</span>
+        </mat-card-subtitle>
+        <mat-card-subtitle *ngIf="expert.education != '' && expert.education">
+            Edukacja:<span *ngIf="expert.education != '' && expert.education != null">{{expert.education}}</span>
+        </mat-card-subtitle>
+
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            <!--            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.-->
+            <!--            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally-->
+            <!--            bred for hunting.-->
+            {{expert.description}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <span>Opinie: {{opinionRate}}/5</span><button mat-button class="button-opinion">Zobacz opinie</button>
+        <button mat-raised-button class="button-contact">Nawiąż kontakt</button>
+
+    </mat-card-actions>
+</mat-card>

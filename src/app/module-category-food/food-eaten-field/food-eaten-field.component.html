@@ -1,45 +1,51 @@
 <div class="main-box">
-    <div class="row-item-position row no-gutters row-height">
-        <div class="row information-about-calories">
-            <div class="item-position eaten col-3">
-                <span>{{calories}} kcal</span>
-                <span>Zjedzone</span>
-            </div>
-<!--            <div class="item-position eaten-percent col-6">-->
-<!--                <span>{{percentOfDailyCal}}%</span>-->
-<!--                &lt;!&ndash;                <span>dzinnego zapotrzebowania</span>&ndash;&gt;-->
-<!--            </div>-->
-            <div class="item-position daily-requirement col-3">
-                <span>{{userData.dailyCalRequirement}} kcal</span>
-                <span>zapotrzebowanie</span>
-            </div>
-        </div>
-        <div class="progress-bar-box">
-            <mat-progress-bar class="progressbar-width"  mode="determinate"
-                              value="{{percentOfDailyCal}}"></mat-progress-bar>
-            <div style="position:relative; top: -26px;">{{percentOfDailyCal}}%</div>
-        </div>
+    <div class="span-background">
+        <span class="title-of-field">Dzisiejsze kalorie i makroskładniki</span>
     </div>
-    <div class="row no-gutters row-height">
-        <div class="item-position eaten-carbohydrates col-4">
-            <span>Węglowodany</span>
-            <div><span>{{carbohydrates}}</span>/<span>{{userData.dailyCarbRequirement}}</span></div>
-            <mat-progress-bar class="progressbar-width" mode="determinate"
-                              value="{{percentOfCarbohydrates}}"></mat-progress-bar>
-
+    <div class="main-box-data">
+        <div class="row-item-position row no-gutters row-height">
+            <div class="row information-about-calories">
+                <div class="item-position eaten col-3">
+                    <span>{{calories}} kcal</span>
+                    <span>Zjedzone</span>
+                </div>
+                <!--            <div class="item-position eaten-percent col-6">-->
+                <!--                <span>{{percentOfDailyCal}}%</span>-->
+                <!--                &lt;!&ndash;                <span>dzinnego zapotrzebowania</span>&ndash;&gt;-->
+                <!--            </div>-->
+                <div class="item-position daily-requirement col-3">
+                    <span>{{userData.dailyCalRequirement}} kcal</span>
+                    <span>zapotrzebowanie</span>
+                </div>
+            </div>
+            <div class="progress-bar-box">
+                <mat-progress-bar class="progressbar-width" mode="determinate"
+                                  value="{{percentOfDailyCal}}"></mat-progress-bar>
+                <div style="position:relative; top: -26px;">{{percentOfDailyCal}}%</div>
+            </div>
         </div>
-        <div class="item-position eaten-proteins col-4">
-            <span>Białka</span>
-            <div><span>{{proteins}}</span>/<span>{{userData.dailyProtRequirement}}</span></div>
-            <mat-progress-bar class="progressbar-width" mode="determinate"
-                              value="{{percentOfProteins}}"></mat-progress-bar>
+        <div class="row no-gutters row-height">
+            <div class="item-position eaten-carbohydrates col-4">
+                <span>Węglowodany</span>
+                <div><span>{{carbohydrates}}</span>/<span>{{userData.dailyCarbRequirement}}</span></div>
+                <mat-progress-bar class="progressbar-width" mode="determinate"
+                                  value="{{percentOfCarbohydrates}}"></mat-progress-bar>
 
-        </div>
-        <div class="item-position eaten-fats col-4">
-            <span>Tłuszcze</span>
-            <div><span>{{fat}}</span>/<span>{{userData.dailyFatRequirement}}</span></div>
-            <mat-progress-bar class="progressbar-width" mode="determinate" value="{{percentOfFats}}"></mat-progress-bar>
+            </div>
+            <div class="item-position eaten-proteins col-4">
+                <span>Białka</span>
+                <div><span>{{proteins}}</span>/<span>{{userData.dailyProtRequirement}}</span></div>
+                <mat-progress-bar class="progressbar-width" mode="determinate"
+                                  value="{{percentOfProteins}}"></mat-progress-bar>
 
+            </div>
+            <div class="item-position eaten-fats col-4">
+                <span>Tłuszcze</span>
+                <div><span>{{fat}}</span>/<span>{{userData.dailyFatRequirement}}</span></div>
+                <mat-progress-bar class="progressbar-width" mode="determinate"
+                                  value="{{percentOfFats}}"></mat-progress-bar>
+
+            </div>
         </div>
     </div>
 </div>

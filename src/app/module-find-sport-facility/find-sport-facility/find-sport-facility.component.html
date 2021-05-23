@@ -1,8 +1,8 @@
 <div class="main-box">
-    <div class="filters">
+    <div class="filters element-row-div">
         <app-filters-field></app-filters-field>
     </div>
-    <div class="map">
-        <app-map></app-map>
+    <div *ngIf="isLoadingResults==false" class="map">
+        <app-map [sportFacilities]="sportFacilities"></app-map>
     </div>
 </div>

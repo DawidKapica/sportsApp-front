@@ -30,8 +30,6 @@ export interface TableNames {
     value: string
 }
 
-
-
 @Component({
     selector: 'app-category-gym',
     templateUrl: './category-gym.component.html',
@@ -90,7 +88,7 @@ export class CategoryGymComponent implements AfterViewInit {
         this.dataSourceExtended.filterPredicate = ((data, filter) => {
             const a = !filter.nazwa || data.nazwa.toLowerCase().includes(filter.nazwa);
             const b = !filter.kategoria || data.kategoria.toLowerCase().includes(filter.kategoria);
-            const c = !filter.kalorieSpalane || data.kalorieSpalane === filter.kalorieSpalane;
+            const c = !filter.kalorieSpalane || data.kalorieSpalane >= filter.kalorieSpalane;
             return a && b && c;
         }) as (PeriodicElement, string) => boolean;
 
@@ -109,12 +107,14 @@ export class CategoryGymComponent implements AfterViewInit {
         await this.loadData();
         await this.eneablePaginators();
 
+
     }
 
     async loadData() {
         this.allTrainingsData = await this.api.get(Mapping.TRAINING + Mapping.SEARCH + "userId=3");
         this.allExercisesData = await this.api.get(Mapping.EXERCISE);
         this.allCategoriesData = await this.api.get(Mapping.EXERCISE_CATEGORY);
+
 
         for (let singleTraing of this.allTrainingsData) {
             let exercise = this.allExercisesData.find(({id}) => id === singleTraing.exerciseId);
@@ -141,6 +141,7 @@ export class CategoryGymComponent implements AfterViewInit {
 
         this.isLoadingResults = false;
     }
+
 
     async eneablePaginators() {
             this.dataSource.paginator = this.paginator.toArray()[0];
@@ -187,4 +188,15 @@ export class CategoryGymComponent implements AfterViewInit {
         }
         return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.data + 1}`;
     }
+
+    openDialog() {
+        // const dialogRef = this.dialog.open(AddApplicantDialogComponent, {
+        //     width: '90%',
+        //     height: '65%',
+        //     position: {top: '5%'}
+        // });
+        //
+        // dialogRef.afterClosed().subscribe(r => console.log('The dialog was closed'));
+    }
+
 }

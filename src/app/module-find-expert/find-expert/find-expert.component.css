@@ -2,6 +2,8 @@
     width: 100%;
     height: 100%;
     overflow: auto;
+    display: flex;
+    flex-direction: column;
     /*padding: 10px;*/
     /*color: red;*/
     font-family: "Verdana";
@@ -11,10 +13,18 @@
 .filter-row-div {
     max-height: 20%;
     width: 100%;
-    background-color: lightsteelblue !important;
-    border-radius: 15px;
+
+    /*margin: 1%;*/
+    /*padding: 1%;*/
+    /*margin: 1%;*/
 
     /*margin: 10px;*/
+}
+.filter-box {
+    margin-bottom: 1%;
+    padding: 1%;
+    background-color: #3e69ad !important;
+    border-radius: 15px;
 }
 
 .expert-proposition-row-div {
@@ -22,7 +32,7 @@
     width: 100%;
     background-color: lightsteelblue !important;
     border-radius: 15px;
-    padding: 10px;
+    /*padding: 10px;*/
     position: relative;
 
 }

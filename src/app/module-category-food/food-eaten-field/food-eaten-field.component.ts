@@ -4,6 +4,7 @@ import {mealNutritionalValInterface} from '../../interfaceComunicationObjects/me
 import {UserDto} from '../../dataBaseObjects/UserDto';
 import {ThemePalette} from '@angular/material/core';
 import {ProgressBarMode} from '@angular/material/progress-bar';
+import {DatePipe} from '@angular/common';
 
 @Component({
     selector: 'app-food-eaten-field',
@@ -34,30 +35,34 @@ export class FoodEatenFieldComponent implements OnInit {
 
     ngOnInit(): void {
         this.calcNutritionalValues();
-
-        console.log(this.carbohydrates);
-        console.log(this.proteins);
-        console.log(this.fat);
-        console.log(this.percentOfDailyCal);
-        console.log(this.percentOfCarbohydrates)
     }
 
     calcNutritionalValues() {
+
+        let today = new Date();
         if (this.eatenFoods != undefined && this.eatenFoods != []) {
+            let choosenDateString: string = '';
+            const datepipe: DatePipe = new DatePipe('en-US');
+            choosenDateString = datepipe.transform(today, 'yyy-MM-dd');
             for (let meal of this.eatenFoods) {
-                this.carbohydrates = this.carbohydrates + meal.carbohydrates;
-                this.proteins = this.proteins + meal.proteins;
-                this.fat = this.fat + meal.fats;
-                this.calories = this.calories + meal.calories;
+                // if (meal.consumedFoodDate == today) {
+                let lineDate = meal.consumedFoodDate;
+                let lineDateFormatted: string = datepipe.transform(lineDate, 'yyy-MM-dd');
+
+                if (lineDateFormatted == choosenDateString) {
+                    this.carbohydrates = this.carbohydrates + meal.carbohydrates;
+                    this.proteins = this.proteins + meal.proteins;
+                    this.fat = this.fat + meal.fats;
+                    this.calories = this.calories + meal.calories;
+                }
             }
         }
 
-        console.log(this.userData);
         if (this.userData != undefined && this.userData != null) {
-            this.percentOfDailyCal = this.calories / this.userData.dailyCalRequirement * 100;
-            this.percentOfCarbohydrates = this.carbohydrates / this.userData.dailyCarbRequirement * 100;
-            this.percentOfProteins = this.proteins / this.userData.dailyProtRequirement * 100;
-            this.percentOfFats = this.fat / this.userData.dailyFatRequirement * 100
+            this.percentOfDailyCal = Math.round(this.calories / this.userData.dailyCalRequirement * 100 * 100)/100;
+            this.percentOfCarbohydrates = Math.round(this.carbohydrates / this.userData.dailyCarbRequirement * 100 *100)/100;
+            this.percentOfProteins =  Math.round(this.proteins / this.userData.dailyProtRequirement * 100 * 100)/100;
+            this.percentOfFats =  Math.round(this.fat / this.userData.dailyFatRequirement * 100 * 100)/100;
         }
     }
 

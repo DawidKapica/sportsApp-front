@@ -1,25 +1,62 @@
 .main-box {
+    display: flex;
     width: 100%;
     height: 100%;
     overflow: auto;
     /*padding: 10px;*/
     /*color: red;*/
     font-family: "Verdana";
+    overflow: scroll;
     color: rgb(51, 51, 51);
-    display: flex;
-}
 
-.form-box {
-    display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
+
+@media (max-width: 992px) {
+    .form-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (min-width: 992px) {
+    .form-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
 
 .attribute-value-form {
-    margin: 3px;
+    margin: 4px;
 }
 
-.forms-line {
-    display: flex;
-    flex-direction: row;
+@media (min-width: 792px) {
+    .forms-line {
+        display: flex;
+        flex-direction: row;
+        /*min-width: 45%;*/
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 792px) {
+    .forms-line {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.button-search {
+    margin: 4px;
+    /*min-width: 100px;*/
 }

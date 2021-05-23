@@ -5,4 +5,6 @@ export interface UserPlanDto {
     goal: number;
     startDate: Date;
     endDate: Date;
+    goalStatus?: number;
+    title?: string;
 }

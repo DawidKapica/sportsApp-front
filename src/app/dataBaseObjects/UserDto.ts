@@ -7,4 +7,5 @@ export interface UserDto extends PersonDto{
     dailyCarbRequirement: number;
     dailyFatRequirement: number;
     dailyProtRequirement: number;
+    height: number
 }

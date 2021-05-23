@@ -4,4 +4,5 @@ export interface TrainingDto {
     userId: number;
     exerciseId: number;
     trainingDate: Date;
+    trainingValues?: number;
 }

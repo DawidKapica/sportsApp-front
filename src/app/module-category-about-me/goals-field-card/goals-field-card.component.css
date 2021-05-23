@@ -1,0 +1,25 @@
+.single-card {
+    width: 100%;
+    margin: 1%;
+}
+
+.example-header-image {
+    /*background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');*/
+    background-color: green;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-done {
+    background-color: green;
+}
+
+.button-doing {
+    background-color: #3e69ad;
+}
+
+.button-undone {
+    background-color: red;
+}

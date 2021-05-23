@@ -1,0 +1,88 @@
+<div class="main-box">
+
+    <div class="main-data-box" *ngIf="isLoadingResults == false">
+        <form class="form-sizes" [formGroup]="formGroup">
+            <div class="name-date-row">
+                <mat-form-field class="trening-title padding-1-percent input-same-size">
+                    <input matInput placeholder="Tytuł treningu" value=""
+                           formControlName="name">
+                </mat-form-field>
+
+                <mat-form-field class="padding-1-percent input-same-size" appearance="fill">
+                    <mat-label>Data treningu</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="category-exercise-row">
+                <mat-form-field class="padding-1-percent input-same-size" appearance="fill">
+                    <mat-label>Kategoria</mat-label>
+                    <mat-select [(value)]="selected">
+                        <mat-option>None</mat-option>
+                        <div *ngFor="let item of categories">
+                            <mat-option value="{{item.id}}">{{item.name}}</mat-option>
+                        </div>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="padding-1-percent input-same-size" appearance="fill">
+                    <mat-label>Ćwiczenie</mat-label>
+                    <mat-select [formControl]="exerciseForm">
+                        <mat-option>-- None --</mat-option>
+                        <mat-optgroup *ngFor="let group of exercisesGroups" [label]="group.name"
+                                      [disabled]="group.disabled">
+                            <mat-option *ngFor="let exercise of group.exercises" [value]="exercise.id">
+                                {{exercise.name}}
+                            </mat-option>
+                        </mat-optgroup>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="parameters-values-row">
+                <div class="single-parameter">
+                    <mat-form-field class="attribute-value-form-select" appearance="fill">
+                        <mat-label>Pierwszy parametr</mat-label>
+                        <mat-select [(value)]="selected">
+                            <mat-option>None</mat-option>
+                            <div *ngFor="let parameter of parameters">
+                                <mat-option value="{{parameter.id}}">{{parameter.name}} w [{{parameter.unit}}]
+                                </mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="attribute-value-form-input">
+                        <input matInput type="number" placeholder="Wartoć" value=""
+                               formControlName="parameterValue">
+                    </mat-form-field>
+                </div>
+                <div class="single-parameter">
+                    <mat-form-field class="attribute-value-form-select" appearance="fill">
+                        <mat-label>Drugi parametr</mat-label>
+                        <mat-select [(value)]="selected">
+                            <mat-option>None</mat-option>
+                            <div *ngFor="let secondParameter of parameters">
+                                <mat-option value="{{secondParameter.id}}">{{secondParameter.name}} w
+                                    [{{secondParameter.unit}}
+                                    ]
+                                </mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="attribute-value-form-input">
+                        <input matInput type="number" placeholder="Wartoć" value=""
+                               formControlName="secondParameterValue">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="description">
+                <mat-form-field class="description-box">
+                    <textarea matInput placeholder="Opisz tutaj swój plan" formControlName="duration"></textarea>
+                </mat-form-field>
+            </div>
+        </form>
+
+        <button class="add-button" mat-raised-button>Dodaj trening</button>
+    </div>
+</div>

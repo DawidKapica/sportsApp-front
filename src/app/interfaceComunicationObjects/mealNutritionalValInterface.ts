@@ -1,3 +1,5 @@
+import {Time} from '@angular/common';
+
 export interface mealNutritionalValInterface {
     name?: string
     categoryName?: string;
@@ -6,4 +8,6 @@ export interface mealNutritionalValInterface {
     proteins?: number;
     fats?: number;
     carbohydrates?: number;
+    consumedFoodDate?: Date;
+    consumedFoodTime?: Time;
 }

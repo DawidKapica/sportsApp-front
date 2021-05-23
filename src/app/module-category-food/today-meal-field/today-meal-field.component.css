@@ -1,11 +1,23 @@
 .main-box {
     display: flex;
     flex-direction: column;
-    color: rgb(51, 51, 51);
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-box-data {
+    display: flex;
+    flex-direction: column;
+    /*color: rgb(51, 51, 51);*/
     height: 100%;
     width: 100%;
 }
 
+.title-of-field {
+    margin: 3px;
+}
 
 .butt {
     height: 100px;
@@ -35,7 +47,20 @@
 }
 
 .choosedate-chart-height {
-    max-height: 40%;
+    height: 40%;
+    max-height: 45%;
 
 }
 
+.chart {
+    /*padding: 2%;*/
+    height: 100%;
+    width: 100%;
+}
+
+.choose-date {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

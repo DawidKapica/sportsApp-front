@@ -1,6 +1,7 @@
 export enum Mapping {
     ID = '/id',
     SEARCH = '/search?',
+    USERID = 'userId=',
 
     CONSUMED_FOOD = '/consumed-foods',
     EXERCISE_CATEGORY = '/exercise-categories',
@@ -26,5 +27,6 @@ export enum Mapping {
     PARAMETER = '/parameters',
     POSSIBLE_EXERCISE_FACILITIES = '/possible-exercise-facilities',
     TRAINING_VALUES = '/training-values'
+
 
 }

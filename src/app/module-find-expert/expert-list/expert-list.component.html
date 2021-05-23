@@ -1,6 +1,6 @@
 <div class="main-box">
-    <div class="elements-list">
-        <div class="single-element" *ngFor="let expert of dataSource">
+    <div class="elements-list row">
+        <div class="single-element col-lg-6 col-md-6" *ngFor="let expert of dataSource">
             <app-single-expert [expert]="expert"></app-single-expert>
         </div>
     </div>

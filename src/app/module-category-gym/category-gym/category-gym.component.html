@@ -3,10 +3,17 @@
 
         <div class="col-lg-6 col-12 column-height">
             <div class="element-row-div justify-align-content padding-bottom">
+                <div class="span-background">
+                    <span>Historia twoich treningów</span>
+                </div>
                 <mat-form-field class="filter-leftup-input">
                     <mat-label>Filter</mat-label>
                     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
                 </mat-form-field>
+                <!--                <button mat-icon-button id="addApplicant">-->
+                <!--                    <mat-icon class="button-span-color" (click)="openDialog()" matTooltip="Add new applicant"-->
+                <!--                              matTooltipPosition="right">add</mat-icon>-->
+                <!--                </button>-->
 
                 <div class="example-loading-shade"
                      *ngIf="isLoadingResults==true">
@@ -62,7 +69,10 @@
 
         <div class="col-lg-6 col-12 column-height">
             <div class="element-row-div">
-                xxx
+                <div class="span-background">
+                    <span class="title-of-field">Dodaj nowy trening</span>
+                </div>
+                <app-add-new-training class="element-add-new-training"></app-add-new-training>
             </div>
         </div>
 
@@ -71,7 +81,9 @@
 
         <div class="col-lg-8 col-12 column-height">
             <div class="element-row-div justify-align-content">
-                <span>Znajdź trening dla siebie</span>
+                <div class="span-background">
+                    <span>Znajdź trening dla siebie</span>
+                </div>
                 <div class="training-proposition">
                     <div *ngIf="isLoadingResults==false" class="input-box-find-training">
                         <!--                        <app-generic-input-field [placeholder]="'Nazwa'" [type]="'text'"-->
@@ -80,16 +92,16 @@
                         <form [formGroup]="formControl">
                             <mat-form-field>
                                 <input matInput formControlName="nazwa">
-                                <mat-placeholder>No. (exact)</mat-placeholder>
+                                <mat-placeholder>Nazwa</mat-placeholder>
 
                             </mat-form-field>
                             <mat-form-field>
                                 <input matInput formControlName="kategoria">
-                                <mat-placeholder>Name (substring)</mat-placeholder>
+                                <mat-placeholder>Kategoria</mat-placeholder>
                             </mat-form-field>
                             <mat-form-field>
                                 <input matInput formControlName="kalorieSpalane" type="number" min="0">
-                                <mat-placeholder>Symbol (exact)</mat-placeholder>
+                                <mat-placeholder>Minimalne spalane kalorie</mat-placeholder>
                             </mat-form-field>
                         </form>
                         <!--                        <app-generic-input-field [placeholder]="'Kategoria'" [type]="'text'"-->
@@ -102,10 +114,10 @@
                     </div>
                     <div class="table-box-find-training">
                         <div class="table-container width-100per height-100per mat-elevation-z8">
-                            <div class="table-proposition-train">
+                            <div class="table-proposition-train ">
                                 <table mat-table
                                        [dataSource]="dataSourceExtended" multiTemplateDataRows
-                                       class="mat-elevation-z8">
+                                       class="mat-elevation-z8 width-100per">
                                     <ng-container matColumnDef="{{column}}"
                                                   *ngFor="let column of columnsToDisplay, let i=index">
                                         <th mat-header-cell *matHeaderCellDef> {{columnsHeaderNames[i]}} </th>
@@ -150,8 +162,13 @@
 
         <div class="col-lg-4 col-12 column-height">
             <div class="element-row-div">
+                <div class="span-background">
+                        <span>Wykres liczby twoich treningów tygodniowo w ostatnich 16 tygodniach</span>
+                </div>
                 <div class="chart">
-                    <app-my-line-chart></app-my-line-chart>
+
+                    <app-my-line-chart *ngIf="isLoadingResults==false"
+                                       [trainings]="allTrainingsData"></app-my-line-chart>
                 </div>
             </div>
         </div>

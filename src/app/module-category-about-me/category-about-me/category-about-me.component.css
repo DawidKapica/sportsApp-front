@@ -2,11 +2,15 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    /*padding: 10px;*/
 }
 
 @media (min-width: 992px) {
-    .row-height {
+    .first-row-height {
+        height: 50%;
+        justify-content: space-around;
+    }
+
+    .second-row-height {
         height: 50%;
         justify-content: space-around;
     }
@@ -17,23 +21,27 @@
 }
 
 @media (max-width: 992px) {
-    .row-height {
-        height: 100%;
+    .first-row-height {
+        height: 90%;
+        justify-content: space-around;
+    }
+
+    .second-row-height {
+        height: 65%;
         justify-content: space-around;
     }
 
     .column-height {
-        height: 50%;
+        height: 45%;
     }
 }
 
 .element-row-div {
-    height: 100%;
-    width: 100%;
+    height: 95%;
     background-color: lightsteelblue !important;
     border-radius: 15px;
-    margin: 15px;
-    /*margin: 10px;*/
+    margin: 1%;
+    overflow: scroll;
 }
 
 .column-full-height {
@@ -44,10 +52,14 @@
     height: 100%;
 }
 
-.first-row-height {
+/*.first-row-height {*/
+/*    height: 100%;*/
+/*}*/
+
+.half-row-height {
     height: 100%;
 }
 
-.half-row-height {
-    height: 50%;
+.padding-field {
+    padding: 2%;
 }

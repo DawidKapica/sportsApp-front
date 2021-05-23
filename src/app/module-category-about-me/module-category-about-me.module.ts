@@ -13,6 +13,15 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatButtonModule} from '@angular/material/button';
 import {MeaseaureChartHistoryFieldComponent} from './measeaure-chart-history-field/measeaure-chart-history-field.component';
 import { GoalsFieldComponent } from './goals-field/goals-field.component';
+import {ApiService} from '../service/api.service';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { GoalsFieldCardComponent } from './goals-field-card/goals-field-card.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs';
+import { GenericChartComponent } from './generic-chart/generic-chart.component';
+import {ChartsModule} from 'ng2-charts';
 
 
 @NgModule({
@@ -22,7 +31,9 @@ import { GoalsFieldComponent } from './goals-field/goals-field.component';
         AccountSeetingsComponent,
         SettingsFieldComponent,
         MeaseaureChartHistoryFieldComponent,
-        GoalsFieldComponent
+        GoalsFieldComponent,
+        GoalsFieldCardComponent,
+        GenericChartComponent
     ],
     imports: [
         CommonModule,
@@ -32,10 +43,17 @@ import { GoalsFieldComponent } from './goals-field/goals-field.component';
         ReactiveFormsModule,
         FormsModule,
         MatButtonModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatCardModule,
+        MatIconModule,
+        MatTabsModule,
+        ChartsModule,
     ],
     exports: [
         CategoryAboutMeComponent
-    ]
+    ],
+    providers: [ApiService]
 })
 export class ModuleCategoryAboutMeModule {
 }

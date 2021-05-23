@@ -1,41 +1,45 @@
 <div class="main-box">
-    <div class="tab-table-hight">
-
-        <mat-tab-group mat-stretch-tabs class="mat-elevation-z4">
-            <mat-tab label="Wszystko">
-                <app-today-meal-table></app-today-meal-table>
-            </mat-tab>
-            <mat-tab label="Śniadanie">
-                <app-today-meal-table></app-today-meal-table>
-            </mat-tab>
-            <mat-tab label="Obiad">
-                <app-today-meal-table></app-today-meal-table>
-            </mat-tab>
-            <mat-tab label="Kolacja">
-                <app-today-meal-table></app-today-meal-table>
-            </mat-tab>
-        </mat-tab-group>
+    <div class="span-background">
+        <span class="title-of-field">Zjedzone posiłki w wybranym dniu</span>
     </div>
-    <div class="choosedate-chart-height">
-        <div class="today-meal-makro-value">
+    <div class="main-box-data">
+        <div class="tab-table-hight">
 
-        </div>
-<!--        <div class="add-meal">-->
+            <mat-tab-group mat-stretch-tabs class="mat-elevation-z4">
+                <mat-tab label="Wszystko">
+                    <app-today-meal-table #todayMealTable [eatenFoods]="eatenAllFoods"></app-today-meal-table>
+                </mat-tab>
+                <mat-tab label="Rano">
+                    <app-today-meal-table [eatenFoods]="eatenMorningFoods"></app-today-meal-table>
+                </mat-tab>
+                <mat-tab label="Po południu">
+                    <app-today-meal-table [eatenFoods]="eatenAfternoonFoods"></app-today-meal-table>
+                </mat-tab>
+                <mat-tab label="Wieczorem">
+                    <app-today-meal-table [eatenFoods]="eatenEveningFoods"></app-today-meal-table>
+                </mat-tab>
+            </mat-tab-group>
+            <div class="choose-date">
+                <mat-form-field appearance="fill">
+                    <mat-label>Input & change events</mat-label>
+                    <input matInput [matDatepicker]="picker" [formControl]="dateForm"
+                           (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
 
-<!--        </div>-->
-        <mat-form-field appearance="fill">
-            <mat-label>Input & change events</mat-label>
-            <input matInput [matDatepicker]="picker"
-                   (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+                <div>
+                    <button #todayButton (click)="todayClick()" mat-raised-button>Dzisiaj</button>
+                </div>
+            </div>
+        </div>
+        <div class="choosedate-chart-height">
 
-        <div class="example-events">
-            <div *ngFor="let e of events">{{e}}</div>
+            <div class="chart">
+                <app-nutritional-trends class="" [eatenFoods]="eatenFoods"></app-nutritional-trends>
+            </div>
         </div>
-        <div>
-            <button mat-raised-button>Dzisiaj</button>
-        </div>
+
     </div>
+
 </div>

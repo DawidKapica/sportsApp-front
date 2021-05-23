@@ -6,6 +6,7 @@
 
 table {
     width: 100%;
+    overflow: scroll;
     /*min-height: 15vh;*/
     /*max-height: vh;*/
 }

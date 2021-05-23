@@ -9,6 +9,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
         MatInputModule,
         MatButtonModule,
         MatPaginatorModule,
+        MatCardModule,
+        MatIconModule,
     ],
     exports: [
         FindExpertComponent

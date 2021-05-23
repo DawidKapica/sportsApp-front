@@ -1,10 +1,29 @@
 .main-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-box-data {
     width: 100%;
     height: 100%;
 }
 
-.radio-meal-choose {
+.title-of-field {
+    margin: 3px;
+}
+
+.date-time-choose {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     max-height: 20%;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .meal-choose-list {
@@ -20,11 +39,31 @@
 
 table {
     width: 100%;
-    min-height: 33vh;
+    min-height: 30vh;
     max-height: 100%;
 }
 
+/*.tablica {*/
+/*        width: 100%;*/
+/*        min-height: 90%;*/
+/*}*/
 .mat-form-field {
     font-size: 14px;
     width: 100%;
+}
+
+.datepicker {
+    min-width: 40%;
+}
+
+.timepicker {
+    min-width: 40%;
+}
+
+.confirm-add-product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*max-width: 50%;*/
 }

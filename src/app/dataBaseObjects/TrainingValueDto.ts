@@ -1,6 +1,7 @@
 export interface TrainingValueDto {
     id: number;
     parameterId: number;
+    secondParameterId: number;
     value: number;
-    duration: number;
+    description: string;
 }
