@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {mealNutritionalValInterface} from '../../interfaceComunicationObjects/mealNutritionalValInterface';
 import {FormControl} from '@angular/forms';
 import {UserPlanDto} from '../../dataBaseObjects/UserPlanDto';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-goals-field',
@@ -16,9 +17,20 @@ export class GoalsFieldComponent implements OnInit {
     displayedColumns: string[] = ['Nazwa', 'Kalorie', 'Kategoria', 'Dodaj1'];
     isLoadingResults = false;
     dateForm = new FormControl(new Date());
-  constructor() { }
+  constructor(private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
+
+  addPlan() {
+
+  }
+
+
+    openSnackBar() {
+        this._snackBar.open("Dodano nowy plan", );
+    }
+
+
 
 }

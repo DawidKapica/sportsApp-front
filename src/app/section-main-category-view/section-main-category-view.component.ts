@@ -12,9 +12,9 @@ export class SectionMainCategoryViewComponent implements OnInit {
 
     openCategoryList: choosenCategory[] = [
         {name: categoryEnum.fitness, isOn: false},
-        {name: categoryEnum.food, isOn: true},
+        {name: categoryEnum.food, isOn: false},
         {name: categoryEnum.aboutMe, isOn: false},
-        {name: categoryEnum.message, isOn: false},
+        {name: categoryEnum.message, isOn: true},
         {name: categoryEnum.personSearch, isOn: false},
         {name: categoryEnum.sportFacilitySearch, isOn: false}
     ];

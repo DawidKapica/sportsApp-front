@@ -5,12 +5,16 @@ import {MatTableDataSource} from '@angular/material/table';
 import {NutritionalProductDto} from '../../dataBaseObjects/NutritionalProductDto';
 import {mealNutritionalValInterface} from '../../interfaceComunicationObjects/mealNutritionalValInterface';
 import {FormControl} from '@angular/forms';
+import {SelectionModel} from '@angular/cdk/collections';
+import {UserTrainingInterface} from '../../module-category-gym/category-gym/category-gym.component';
+import {ConsumedFoodDto} from '../../dataBaseObjects/ConsumedFoodDto';
+import {ApiService} from '../../service/api.service';
+import {Mapping} from '../../dataBaseObjects/Mapping';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
-// export interface MealInterface {
-//     nazwa: string;
-//     kalorie: string;
-//     kategoria: string;
-// }
+interface NutritionalProductCheck extends NutritionalProductDto {
+    isChecked: boolean;
+}
 
 @Component({
     selector: 'app-search-product-field',
@@ -23,21 +27,23 @@ export class SearchProductFieldComponent implements OnInit, AfterViewInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     @Input()
-    nutritionalProducts: NutritionalProductDto[];
+    nutritionalProducts: NutritionalProductCheck[];
 
-    displayedColumns: string[] = ['Nazwa', 'Kalorie', 'Kategoria', 'Dodaj1'];
-    dataSource: MatTableDataSource<NutritionalProductDto> = new MatTableDataSource<NutritionalProductDto>();
+    displayedColumns: string[] = ['Nazwa', 'Kalorie', 'Kategoria', 'Dodaj'];
+    dataSource: MatTableDataSource<NutritionalProductCheck> = new MatTableDataSource<NutritionalProductCheck>();
 
     isLoadingResults = true;
 
     dateForm = new FormControl(new Date());
 
+    selection = new SelectionModel<NutritionalProductCheck>(true, []);
+
     timeForm = new FormControl();
-    constructor() {
+    constructor(private api: ApiService, private cdRef: ChangeDetectorRef, private _snackBar: MatSnackBar) {
     }
 
     async ngOnInit() {
-        this.dataSource = new MatTableDataSource<NutritionalProductDto>(this.nutritionalProducts);
+        this.dataSource = new MatTableDataSource<NutritionalProductCheck>(this.nutritionalProducts);
         const index = this.nutritionalProducts.findIndex(e => e.name == 'water');
         if (index > -1) {
             this.nutritionalProducts.splice(index, 1);
@@ -57,5 +63,48 @@ export class SearchProductFieldComponent implements OnInit, AfterViewInit {
         if (this.dataSource.paginator) {
             this.dataSource.paginator.firstPage();
         }
+        console.log(this.selection)
     }
+
+    checkboxLabel(row?: NutritionalProductCheck): string {
+        if (!row) {
+        }
+        // console.log("${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.fatValue + 1}")
+        return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.fatValue + 1}`;
+    }
+
+    // addMealToDatabse() {
+    //     for(let selectionRow of this.selection.selected)
+    //     let meal:ConsumedFoodDto = {
+    //         userId: this.api.userId,
+    //         nutritionalProductId: selectionRow
+    //     }
+    // }
+
+    addMeal() {
+        // console.log(this.dataSource.data)
+
+        for (let meal of this.dataSource.data) {
+            if (meal.isChecked == true) {
+                let singleConsumedFood: ConsumedFoodDto = {
+                    userId: this.api.userId,
+                    nutritionalProductId : meal.id,
+                    quantity: 1,
+                    consumedFoodDate: this.dateForm.value,
+                    consumedFoodTime: this.timeForm.value
+                };
+                this.api.post(Mapping.CONSUMED_FOOD, singleConsumedFood);
+            }
+        }
+
+        this.openSnackBar();
+
+    }
+
+
+    openSnackBar() {
+        this._snackBar.open("Twój posiłek został dodany", );
+    }
+
+
 }

@@ -5,12 +5,25 @@
 
 .example-header-image {
     /*background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');*/
-    background-color: green;
+    /*background-color: green;*/
     background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+.background-red {
+    background-color: red;
+}
+
+.background-blue {
+    background-color: #3e69ad;
+}
+
+.background-green {
+    background-color: green;
+}
+
 
 .button-done {
     background-color: green;

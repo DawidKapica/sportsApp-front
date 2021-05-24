@@ -52,6 +52,11 @@
 
 }
 
+.scrollx {
+    max-height: 80%;
+    overflow: scroll;
+}
+
 .chart {
     /*padding: 2%;*/
     height: 100%;

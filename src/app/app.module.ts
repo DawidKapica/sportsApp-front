@@ -37,6 +37,7 @@ import {ModuleFindSportFacilityModule} from './module-find-sport-facility/module
 import {AuthHttpInterceptor, AuthModule} from '@auth0/auth0-angular';
 import {ModuleLoginModule} from './module-login/module-login.module';
 import {environment} from '../environments/environment';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -86,7 +87,7 @@ import {environment} from '../environments/environment';
             },
         }),
         ModuleLoginModule,
-
+        MatSnackBarModule
     ],
     providers: [
         {

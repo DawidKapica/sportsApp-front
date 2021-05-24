@@ -15,8 +15,8 @@ export class SectionMainButtonsComponent implements AfterViewInit {
     changeEvent = new EventEmitter<string>();
 
     buttons: buttonIconName[] = [
-        {iconName: 'fitness_center', nameRef: categoryEnum.fitness},
         {iconName: 'restaurant', nameRef: categoryEnum.food},
+        {iconName: 'fitness_center', nameRef: categoryEnum.fitness},
         {iconName: 'face', nameRef: categoryEnum.aboutMe},
         {iconName: 'mail', nameRef: categoryEnum.message},
         {iconName: 'person_search', nameRef: categoryEnum.personSearch},

@@ -7,16 +7,16 @@
 
             <!--            <div class="add-water-buttons">-->
             <div class="add-const-val-button">
-                <button mat-raised-button>+250ml</button>
-                <button mat-raised-button>+500ml</button>
+                <button mat-raised-button (click)="add250ml()">+250ml</button>
+                <button mat-raised-button (click)="add500ml()">+500ml</button>
             </div>
             <div class="add-custom-val">
                 <mat-form-field class="input-val">
                     <mat-label style="color: white">Inna wartość</mat-label>
-                    <input matInput type="number">
+                    <input matInput type="number" [formControl]=custumWaterFalue>
                 </mat-form-field>
                 <div class="add-custom-val-button">
-                    <button mat-raised-button>+</button>
+                    <button mat-raised-button (click)="addCustomWater()">+</button>
                 </div>
             </div>
             <!--            </div>-->
@@ -34,7 +34,7 @@
                 [unitsFontSize]="22"
                 [titleFontSize]="25"
                 [subtitleFontSize]="20"
-
+                [subtitleColor]="'#EEEEEE'"
             ></circle-progress>
         </div>
     </div>

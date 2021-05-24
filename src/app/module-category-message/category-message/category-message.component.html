@@ -1,1 +1,8 @@
-<p>category-message works!</p>
+<mat-sidenav-container class="custom-sidenav-container-size">
+    <mat-sidenav #sidenav mode="side" opened>
+        <mat-nav-list class="nav-list-height">
+            <app-contacts class="v2" (changeEvent)="changeOther($event)"></app-contacts>
+        </mat-nav-list>
+    </mat-sidenav>
+    <app-messages-display class="v3" #sectionCategory></app-messages-display>
+</mat-sidenav-container>

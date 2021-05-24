@@ -6,17 +6,10 @@ import {categoryEnum} from '../../categoryEnum';
 import {ExerciseCategoryDto} from '../../dataBaseObjects/ExerciseCategoryDto';
 import {ExerciseDto} from '../../dataBaseObjects/ExerciseDto';
 import {ParameterDto} from '../../dataBaseObjects/ParameterDto';
+import {TrainingDto} from '../../dataBaseObjects/TrainingDto';
+import {TrainingValueDto} from '../../dataBaseObjects/TrainingValueDto';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
-// interface Pokemon {
-//     value: string;
-//     viewValue: string;
-// }
-
-// interface PokemonGroup {
-//     disabled?: boolean;
-//     name: string;
-//     pokemon: Pokemon[];
-// }
 
 interface ExercisesGroups {
     disabled?: boolean;
@@ -43,7 +36,7 @@ export class AddNewTrainingComponent implements OnInit {
     exercisesGroups: ExercisesGroups[] = [];
     formGroup: FormGroup = new FormGroup({});
 
-    constructor(private api: ApiService, private cdRef: ChangeDetectorRef) {
+    constructor(private api: ApiService, private cdRef: ChangeDetectorRef, private _snackBar: MatSnackBar) {
     }
 
     async ngOnInit() {
@@ -80,6 +73,38 @@ export class AddNewTrainingComponent implements OnInit {
             this.exercisesGroups.find(e => e.name == singleExercises.exerciseCategory.name).exercises.push(singleExercises);
         }
     }
+
+    addTraining() {
+        this.formGroup.controls['name'].value;
+        // let trainingValues: TrainingValueDto = {
+        //     parameterId: this.formGroup.controls['name'].value,
+        //     value:  this.formGroup.controls['name'].value,
+        //     secondParameterId:  this.formGroup.controls['name'].value,
+        //     description:  this.formGroup.controls['name'].value,
+        //     secondValue:  this.formGroup.controls['name'].value,
+        // }
+
+
+        let training: TrainingDto = {
+            userId: this.api.userId,
+            exerciseId: this.exerciseForm.value,
+            trainingDate: this.formGroup.controls['date'].value,
+            name: this.formGroup.controls['name'].value,
+            trainingValuesId: 1
+        }
+        console.log(this.exerciseForm)
+        this.api.post(Mapping.TRAINING, training)
+
+        this.openSnackBar();
+
+    }
+
+
+    openSnackBar() {
+        this._snackBar.open("Twój trening został dodany", );
+    }
+
+
 
 
 }

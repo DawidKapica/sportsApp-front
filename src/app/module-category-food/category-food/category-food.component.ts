@@ -6,6 +6,8 @@ import {NutritionalProductDto} from '../../dataBaseObjects/NutritionalProductDto
 import {mealNutritionalValInterface} from '../../interfaceComunicationObjects/mealNutritionalValInterface';
 import {DatePipe} from '@angular/common';
 
+
+
 @Component({
     selector: 'app-category-food',
     templateUrl: './category-food.component.html',
@@ -32,7 +34,6 @@ export class CategoryFoodComponent implements OnInit {
         this.userMealNutritional = this.dataAboutTodayProductExtract(this.todayUserConsumedFood);
 
         this.isLoadingResults = false;
-        console.log(this.waterDrink);
         this.cdRef.detectChanges();
     }
 
@@ -46,6 +47,7 @@ export class CategoryFoodComponent implements OnInit {
         let test20201010String = '2020-10-10';
 
         this.todayUserConsumedFood = await this.api.get(Mapping.CONSUMED_FOOD + Mapping.SEARCH + Mapping.USERID + 3);
+        console.log(this.todayUserConsumedFood);
         this.nutritionalProducts = await this.api.get(Mapping.NUTRITIONAL_PRODUCT);
         this.userData = await this.api.getFullObject(Mapping.USER + '/3');
 

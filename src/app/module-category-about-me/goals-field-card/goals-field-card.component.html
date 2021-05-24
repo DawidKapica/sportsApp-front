@@ -1,6 +1,10 @@
 <mat-card class="single-card">
     <mat-card-header>
-        <div mat-card-avatar class="example-header-image"><mat-icon aria-hidden="false" aria-label="Example home icon">check</mat-icon></div>
+
+        <div *ngIf="plan_status>0" mat-card-avatar class="example-header-image background-green"><mat-icon aria-hidden="false" aria-label="Example home icon">check</mat-icon></div>
+        <div *ngIf="plan_status==0" mat-card-avatar class="example-header-image background-blue"><mat-icon aria-hidden="false" aria-label="Example home icon">hourglass_bottom</mat-icon></div>
+        <div *ngIf="plan_status<0" mat-card-avatar class="example-header-image background-red"><mat-icon aria-hidden="false" aria-label="Example home icon">close</mat-icon></div>
+
         <mat-card-title>{{planTitle}}</mat-card-title>
         <mat-card-subtitle>Data końcowa planu: {{planEndDate}}</mat-card-subtitle>
     </mat-card-header>
@@ -15,8 +19,8 @@
     </mat-card-content>
     <mat-card-actions>
         <span>Plan jest: </span>
-        <button mat-raised-button class="button-done">Wykonany</button>
-        <button mat-raised-button class="button-doing">Realizowany</button>
-        <button mat-button class="button-undone">Nie wykonany</button>
+        <button mat-raised-button class="button-done" (click)="change(1)">Wykonany</button>
+        <button mat-raised-button class="button-doing" (click)="change(0)">Realizowany</button>
+        <button mat-button class="button-undone" (click)="change(-1)">Nie wykonany</button>
     </mat-card-actions>
 </mat-card>

@@ -52,7 +52,7 @@ export class CategoryGymComponent implements AfterViewInit {
     @ViewChild('caloriesExerciseInput') caloriesExerciseInput: GenericInputFieldComponent;
 
 
-    displayedColumns: string[] = ['select', 'data', 'nazwa', 'kateogria'];
+    displayedColumns: string[] = ['data', 'nazwa', 'kateogria', 'select'];
     dataSource: MatTableDataSource<UserTrainingInterface> = new MatTableDataSource<UserTrainingInterface>();
     selection = new SelectionModel<UserTrainingInterface>(true, []);
 
@@ -106,8 +106,6 @@ export class CategoryGymComponent implements AfterViewInit {
     async ngAfterViewInit() {
         await this.loadData();
         await this.eneablePaginators();
-
-
     }
 
     async loadData() {

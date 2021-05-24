@@ -1,8 +1,8 @@
 export interface TrainingDto {
-    id: number;
+    id?: number;
     name: string;
     userId: number;
     exerciseId: number;
     trainingDate: Date;
-    trainingValues?: number;
+    trainingValuesId?: number;
 }

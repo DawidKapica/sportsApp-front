@@ -23,7 +23,7 @@
                 </mat-form-field>
             </form>
 
-            <button mat-raised-button>Dodaj plan</button>
+            <button mat-raised-button (click)="addPlan()">Dodaj plan</button>
 
         </div>
         <div class="plans-history col-lg-8 col-md-12">
@@ -31,7 +31,8 @@
                 <app-goals-field-card [planTitle]="item.title"
                                       [planDescription]="item.description"
                                       [plan_status]="item.goalStatus"
-                                      [planEndDate]="item.endDate"></app-goals-field-card>
+                                      [planEndDate]="item.endDate"
+                                        [plan]="item"></app-goals-field-card>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 export interface UserDetailDto {
-    id: number;
+    id?: number;
     circumferenceAbdomen: number;
     weight: number;
     bicepsCircumference: number;
