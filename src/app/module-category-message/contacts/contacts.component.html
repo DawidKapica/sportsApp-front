@@ -1,1 +1,12 @@
-<p>contacts works!</p>
+<div style="padding: 1%; border-radius: 10px">
+    <span style="margin: 1%">Lista osób z którymi się kontaktowałes</span>
+    <mat-button-toggle-group class="button-group">
+<!--    <div *ngFor="let expert of ExpertList">-->
+<!--        <div>-->
+            <mat-button-toggle *ngFor="let expert of ExpertList" [checked]="ExpertCheck.id==expert.id" mat-button (click)="sendInfromation(expert)">
+                {{expert.firstName}} {{expert.lastName}}
+            </mat-button-toggle>
+<!--        </div>-->
+<!--    </div>-->
+    </mat-button-toggle-group>
+</div>

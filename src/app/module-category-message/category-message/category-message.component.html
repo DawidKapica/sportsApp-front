@@ -1,8 +1,19 @@
-<mat-sidenav-container class="custom-sidenav-container-size">
-    <mat-sidenav #sidenav mode="side" opened>
-        <mat-nav-list class="nav-list-height">
-            <app-contacts class="v2" (changeEvent)="changeOther($event)"></app-contacts>
-        </mat-nav-list>
-    </mat-sidenav>
-    <app-messages-display class="v3" #sectionCategory></app-messages-display>
-</mat-sidenav-container>
+<div class="header-message" >
+    <button mat-raised-button class="menu" (click)="toogleSideNav()">
+        <mat-icon class="button-span-color menu-icon-size">menu_open</mat-icon>
+        <span *ngIf="isCollapsed == false">Schowaj listę osób</span>
+        <span *ngIf="isCollapsed == true">Pokaż listę osób</span>
+
+    </button>
+    <div *ngIf="isLoadingResults==false">TWOJE WIADOMOSCi Z {{ExpertChosen.firstName}} {{ExpertChosen.lastName}}</div>
+</div>
+<div class="main-box">
+    <mat-sidenav-container  autosize class="custom-sidenav-container-size">
+        <mat-sidenav #sidenav mode="side" opened>
+            <mat-nav-list class="nav-list-heightf">
+                <app-contacts class="v2" *ngIf="isLoadingResults==false" (changeEvent)="changeOther($event)" [ExpertList]="expertsList" [ExpertCheck]="ExpertChosen"></app-contacts>
+            </mat-nav-list>
+        </mat-sidenav>
+        <app-messages-display class="v3" #messageDisplay></app-messages-display>
+    </mat-sidenav-container>
+</div>

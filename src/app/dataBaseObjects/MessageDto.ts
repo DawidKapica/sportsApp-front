@@ -1,7 +1,8 @@
 export interface MessageDto {
-    id: number;
+    id?: number;
     userId: number;
     expertId: number;
-    time: string;
+    time: number;
     isUserSender: boolean;
+    content: string;
 }

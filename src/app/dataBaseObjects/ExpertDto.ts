@@ -1,4 +1,6 @@
-export interface ExpertDto {
+import {PersonDto} from './PersonDto';
+
+export interface ExpertDto extends PersonDto{
     id: number;
     education: string;
     description: string;

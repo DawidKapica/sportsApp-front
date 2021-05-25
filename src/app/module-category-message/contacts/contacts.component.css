@@ -1,0 +1,9 @@
+.button-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-button-toggle-checked{
+    background-color: #3e69ad;
+    border-radius: 15px;
+}

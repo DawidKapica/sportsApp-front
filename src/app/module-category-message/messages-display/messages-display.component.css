@@ -1,0 +1,49 @@
+.main-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.expert-message {
+    width: 75%;
+    display: flex;
+    margin: 1%;
+    padding: 1%;
+    border-radius: 10px;
+    justify-self: flex-start;
+    align-self: flex-start;
+
+    background-color: #aaaaaa;
+}
+
+.user-message {
+    width: 75%;
+    display: flex;
+    margin: 1%;
+    padding: 1%;
+    border-radius: 10px;
+    justify-self: flex-end;
+    align-self: flex-end;
+
+    background-color: #3e69ad;
+}
+
+.send-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.ninety-percent-width {
+    min-width: 60%;
+    width: 90%;
+    max-width: 90%;
+    padding: 1%;
+
+}
+.full-width {
+    width: 100%;
+}
