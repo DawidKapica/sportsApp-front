@@ -7,6 +7,7 @@ import {environment} from '../../environments/environment';
 import {Mapping} from '../dataBaseObjects/Mapping';
 import {ExpertDto} from '../dataBaseObjects/ExpertDto';
 import {ApiService} from '../service/api.service';
+import {UserDto} from '../dataBaseObjects/UserDto';
 
 interface Messagex {
     message: string;
@@ -30,12 +31,17 @@ export class TopBarComponent  {
 
   async ngOnInit(){
       this.experts = await this.api.get(Mapping.EXPERT);
-  // }
+
+      let user:UserDto =  await this.api.getFullObject(Mapping.USER+Mapping.SEARCH+'email=' + 'kadaw77@gmail.com') as UserDto;
+        console.log(user);
+
+      // }
   }
 
     message: string = null;
 
     constructor(private comp: MainUserSiteComponent, @Inject(DOCUMENT) public document: Document, public auth: AuthService, private http: HttpClient, private api: ApiService) {
+
     }
 
     callApi(): void {
@@ -63,6 +69,9 @@ export class TopBarComponent  {
 
     public toogleSideNav() {
         this.comp.toogleNavBar();
+        let x = this.auth.user$;
+        x.forEach(e => console.log(e));
+
     }
 
     loginWithRedirect(): void {

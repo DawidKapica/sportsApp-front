@@ -79,11 +79,21 @@ export class TodayMealFieldComponent implements OnInit {
 
     addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
         this.fillEatenFoodsForChooseDate(event.value);
-        console.log(this.eatenAllFoods)
+        console.log(this.eatenAllFoods);
     }
 
     todayClick() {
         this.dateForm.setValue(new Date());
         this.fillEatenFoodsForChooseDate(new Date());
+    }
+
+    addMeal(eatenMeal: mealNutritionalValInterface[]) {
+        if (eatenMeal != null) {
+            for (let i = 0; i < eatenMeal.length; i++) {
+                this.eatenFoods.push(eatenMeal[i]);
+                this.fillEatenFoodsForChooseDate(this.dateForm.value);
+            }
+        }
+        this.changeRef.detectChanges()
     }
 }

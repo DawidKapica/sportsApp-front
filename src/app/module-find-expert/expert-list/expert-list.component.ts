@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {doubleInformationAndType} from '../../interfaceComunicationObjects/doubleInformationAndType';
 import {ExpertDto} from '../../dataBaseObjects/ExpertDto';
 
@@ -11,12 +11,17 @@ export class ExpertListComponent implements OnInit {
 
     @Input() dataSource: ExpertDto[] = [];
 
-    constructor() {
+    constructor(private cdRef: ChangeDetectorRef) {
     }
 
     ngOnInit(): void {
 
 
+    }
+
+    setDataSource(dataSource: ExpertDto[]) {
+        this.dataSource = dataSource;
+        this.cdRef.detectChanges();
     }
 
 }

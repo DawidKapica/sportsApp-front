@@ -1,4 +1,15 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    QueryList,
+    ViewChild,
+    ViewChildren
+} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -11,6 +22,7 @@ import {ConsumedFoodDto} from '../../dataBaseObjects/ConsumedFoodDto';
 import {ApiService} from '../../service/api.service';
 import {Mapping} from '../../dataBaseObjects/Mapping';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {ExpertDto} from '../../dataBaseObjects/ExpertDto';
 
 interface NutritionalProductCheck extends NutritionalProductDto {
     isChecked: boolean;
@@ -28,6 +40,9 @@ export class SearchProductFieldComponent implements OnInit, AfterViewInit {
 
     @Input()
     nutritionalProducts: NutritionalProductCheck[];
+
+    @Output()
+    changeEvent = new EventEmitter<ConsumedFoodDto>();
 
     displayedColumns: string[] = ['Nazwa', 'Kalorie', 'Kategoria', 'Dodaj'];
     dataSource: MatTableDataSource<NutritionalProductCheck> = new MatTableDataSource<NutritionalProductCheck>();
@@ -94,10 +109,13 @@ export class SearchProductFieldComponent implements OnInit, AfterViewInit {
                     consumedFoodTime: this.timeForm.value
                 };
                 this.api.post(Mapping.CONSUMED_FOOD, singleConsumedFood);
+                this.sendInfromation(singleConsumedFood);
             }
         }
 
         this.openSnackBar();
+
+
 
     }
 
@@ -106,5 +124,10 @@ export class SearchProductFieldComponent implements OnInit, AfterViewInit {
         this._snackBar.open("Twój posiłek został dodany", );
     }
 
+    sendInfromation($event: ConsumedFoodDto) {
+        // console.log(expert)
+        console.log($event)
+        this.changeEvent.emit($event)
+    }
 
 }

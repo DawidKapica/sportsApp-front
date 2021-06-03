@@ -1,5 +1,5 @@
 <div class="main-box">
-    <div class="category-box">
+    <div class="category-box" *ngIf="isDataLoaded==true">
         <app-category-gym class="category" *ngIf="isCatActive(en.fitness)" #categoryGym></app-category-gym>
         <app-category-food class="category" *ngIf="isCatActive(en.food)" #categoryFood></app-category-food>
         <app-category-about-me class="category" *ngIf="isCatActive(en.aboutMe)" #categoryFood></app-category-about-me>

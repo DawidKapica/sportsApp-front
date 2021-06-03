@@ -6,4 +6,5 @@ export interface ExerciseDto {
     caloriesBurnedInMinute: number;
     exerciseDescription: string;
     exerciseCategory: ExerciseCategoryDto;
+    parameterId?: number;
 }

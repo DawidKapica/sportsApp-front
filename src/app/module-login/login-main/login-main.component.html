@@ -1,1 +1,24 @@
-<button (click)="auth.loginWithRedirect()">Log in</button>
+<!--<button >Log in</button>-->
+<div class="login-wrapper">
+    <form #loginForm="ngForm" class="login">
+
+        <label class="title">
+            <h3 class="welcome">Witaj na stronie sportsAPP</h3>
+            <span class="appName">Aplikacji do wspomagania prowadzenia zdrowego trybu życia</span>
+            <h5 class="hint">Zaloguj się lub załż konto</h5>
+        </label>
+
+        <div class="login-group">
+<!--            <button class="btn btn-primary" (click)="auth.loginWithRedirect()">-->
+<!--                Zaloguj się-->
+<!--            </button>-->
+                        <button class="btn btn-primary" (click)="loginWithRedirect()">
+                            Zaloguj się
+                        </button>
+            <button class="btn btn-primary" (click)="loginWithRedirect()">
+                Załóż konto
+            </button>
+        </div>
+
+    </form>
+</div>

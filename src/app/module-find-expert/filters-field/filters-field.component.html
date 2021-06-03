@@ -9,7 +9,7 @@
 <!--            </div>-->
 <!--            <div>-->
                 <mat-form-field class="attribute-value-form">
-                    <input matInput placeholder="E-mail" value="mail" formControlName="mail">
+                    <input type="email" matInput placeholder="E-mail" value="mail" formControlName="mail">
                 </mat-form-field>
 <!--            </div>-->
 <!--            <div>-->
@@ -25,14 +25,22 @@
                 </mat-form-field>
 <!--            </div>-->
 <!--            <div>-->
-                <mat-form-field class="attribute-value-form">
-                    <input matInput placeholder="Specjalizacja" value="specialisation"
-                           formControlName="specialisation">
-                </mat-form-field>
+<!--                <mat-form-field class="attribute-value-form">-->
+<!--                    <input matInput placeholder="Specjalizacja" value="specialisation"-->
+<!--                           formControlName="specialisation">-->
+<!--                </mat-form-field>-->
+            <mat-form-field *ngIf="isloading==false" class="padding-1-percent input-same-size" appearance="fill">
+                <mat-label>Kategoria</mat-label>
+                <mat-select [formControl]="spec" [(value)]="selected" multiple>
+                    <div *ngFor="let item of specialisations">
+                        <mat-option value="{{item.id}}">{{item.name}}</mat-option>
+                    </div>
+                </mat-select>
+            </mat-form-field>
 <!--            </div>-->
 <!--            <div>-->
                 <mat-form-field class="attribute-value-form">
-                    <input matInput placeholder="Minimalne opinie" value="opinion" formControlName="opinion">
+                    <input matInput placeholder="Minimalne doświadczenie" value="minExp" formControlName="minExp" type="number">
                 </mat-form-field>
 <!--            </div>-->
         </div>
@@ -40,6 +48,6 @@
     </form>
 <!--    </div>-->
     <div class="button-search">
-        <button mat-raised-button>Szukaj</button>
+        <button mat-raised-button (click)="filterSearch()">Szukaj</button>
     </div>
 </div>

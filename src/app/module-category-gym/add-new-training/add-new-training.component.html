@@ -18,7 +18,7 @@
             <div class="category-exercise-row">
                 <mat-form-field class="padding-1-percent input-same-size" appearance="fill">
                     <mat-label>Kategoria</mat-label>
-                    <mat-select [(value)]="selected">
+                    <mat-select [(value)]="selectedCat">
                         <mat-option>None</mat-option>
                         <div *ngFor="let item of categories">
                             <mat-option value="{{item.id}}">{{item.name}}</mat-option>
@@ -59,7 +59,7 @@
                 <div class="single-parameter">
                     <mat-form-field class="attribute-value-form-select" appearance="fill">
                         <mat-label>Drugi parametr</mat-label>
-                        <mat-select [(value)]="selected">
+                        <mat-select [(value)]="selected2">
                             <mat-option>None</mat-option>
                             <div *ngFor="let secondParameter of parameters">
                                 <mat-option value="{{secondParameter.id}}">{{secondParameter.name}} w

@@ -1,13 +1,13 @@
 <div class="main-box">
     <app-top-bar class="v1"></app-top-bar>
-    <div class="applica-main-box">
+    <div *ngIf="isUserLoad == true" class="applica-main-box">
         <mat-sidenav-container class="custom-sidenav-container-size">
             <mat-sidenav #sidenav mode="side" opened>
                 <mat-nav-list class="nav-list-height">
                     <app-section-main-buttons class="v2" (changeEvent)="changeOther($event)"></app-section-main-buttons>
                 </mat-nav-list>
             </mat-sidenav>
-            <app-section-main-category-view class="v3" #sectionCategory></app-section-main-category-view>
+            <app-section-main-category-view class="v3" #sectionCategory ></app-section-main-category-view>
         </mat-sidenav-container>
     </div>
 </div>

@@ -52,7 +52,8 @@ export class MapComponent implements OnInit {
                             '</p>' +
                             '<p>' + isPaid + '</p>' +
                             '<p>' +
-                            'is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>',
+                            '' +
+                            'opis</p>',
                         // 'icon': 'marker',
                     },
                     'geometry': {

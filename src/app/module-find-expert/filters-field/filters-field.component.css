@@ -20,6 +20,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
     }
 }
 
@@ -27,8 +28,10 @@
     .form-box {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
+        overflow: scroll;
     }
 }
 

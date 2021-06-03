@@ -5,7 +5,7 @@
                 <div class="food-eaten-field padding-field">
                     <app-food-eaten-field *ngIf="isLoadingResults == false"
                                           [eatenFoods]="userMealNutritional"
-                                          [userData]="userData"></app-food-eaten-field>
+                                          [userData]="userData" #foodEatenField></app-food-eaten-field>
                 </div>
             </div>
         </div>
@@ -21,14 +21,14 @@
         <div class="col-lg-7 col-12 column-height">
             <div *ngIf="isLoadingResults == false" class="element-row-div justify-align-content">
                 <div class="today-meal-field padding-field">
-                    <app-today-meal-field [eatenFoods]="userMealNutritional"></app-today-meal-field>
+                    <app-today-meal-field [eatenFoods]="userMealNutritional" #mealTable></app-today-meal-field>
                 </div>
             </div>
         </div>
         <div class="col-lg-5 col-12 column-height">
             <div *ngIf="isLoadingResults == false" class="element-row-div justify-align-content">
                 <div class="search-product-field padding-field">
-                    <app-search-product-field [nutritionalProducts]="nutritionalProducts"></app-search-product-field>
+                    <app-search-product-field [nutritionalProducts]="nutritionalProducts" (changeEvent)="changeEatenFood($event)"></app-search-product-field>
                 </div>
             </div>
         </div>

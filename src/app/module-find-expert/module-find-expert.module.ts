@@ -11,6 +11,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {MatIconModule} from '@angular/material/icon';
         MatPaginatorModule,
         MatCardModule,
         MatIconModule,
+        MatSelectModule,
     ],
     exports: [
         FindExpertComponent

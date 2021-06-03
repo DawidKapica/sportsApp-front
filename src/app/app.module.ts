@@ -82,10 +82,59 @@ import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
         AuthModule.forRoot({
             domain: 'dawidkapica.eu.auth0.com',
             clientId: 'g6T9X3fcIYbvHV3m3vhhjvx8SjtiVpxu',
+            audience: 'https://sportsapp.com/api',
             httpInterceptor: {
-                allowedList: [`${environment.dev.serverUrl}/experts`],
+                allowedList: [
+                    // `${environment.dev.serverUrl}/experts`,
+                    // `${environment.dev.serverUrl}/experts/*`,
+                    // `${environment.dev.serverUrl}/experts/search?*`,
+
+                    `${environment.dev.serverUrl}/*`,
+                    // `${environment.dev.serverUrl}/exercise-categories`,
+            //         `${environment.dev.serverUrl}/users/*`,
+            //         // // `${environment.dev.serverUrl}/users/search?`,
+            //         //
+            //         // // `http://localhost:8080/users/search?email=kadaw77@gmail.com`,
+            //         //
+            //         // // `${environment.dev.serverUrl}/users/search?email=kadaw77@gmail.com`,
+            //         // `${environment.dev.serverUrl}/nutritional-products`,
+            //         `${environment.dev.serverUrl}/exercises`,
+            //         `${environment.dev.serverUrl}/parameters`,
+            //         `${environment.dev.serverUrl}/sport-facilities`,
+            //         `${environment.dev.serverUrl}/sport-facility-categories`,
+                ]
             },
+            // advancedOptions: {defaultScope: 'read:messages'},
+            // scope: 'read:experts'
         }),
+        // AuthModule.forRoot({
+        //     // The domain and clientId were configured in the previous chapter
+        //     domain: 'dawidkapica.eu.auth0.com',
+        //     clientId: 'g6T9X3fcIYbvHV3m3vhhjvx8SjtiVpxu',
+        //
+        //     // Request this audience at user authentication time
+        //     audience: 'https://dawidkapica.eu.auth0.com/api/v2/',
+        //
+        //     // Request this scope at user authentication time
+        //     // scope: 'read:experts',
+        //
+        //     // Specify configuration for the interceptor
+        //     httpInterceptor: {
+        //         allowedList: [
+        //             {
+        //                 // Match any request that starts 'https://dawidkapica.eu.auth0.com/api/v2/' (note the asterisk)
+        //                 uri: 'localhost:8080/experts',
+        //                 tokenOptions: {
+        //                 //     // The attached token should target this audience
+        //                     audience: 'https://sportsapp.com/api',
+        //                 //
+        //                 //     // // The attached token should have these scopes
+        //                 //     scope: 'read:experts'
+        //                 }
+        //             }
+        //         ]
+        //     }
+        // }),
         ModuleLoginModule,
         MatSnackBarModule
     ],

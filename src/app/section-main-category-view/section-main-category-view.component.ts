@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {categoryEnum} from '../categoryEnum';
+import {UserDto} from '../dataBaseObjects/UserDto';
+import {Mapping} from '../dataBaseObjects/Mapping';
+import {ApiService} from '../service/api.service';
 
 @Component({
     selector: 'app-section-main-category-view',
@@ -10,19 +13,29 @@ export class SectionMainCategoryViewComponent implements OnInit {
 
     en: typeof categoryEnum = categoryEnum;
 
+    isDataLoaded = false;
+
     openCategoryList: choosenCategory[] = [
         {name: categoryEnum.fitness, isOn: false},
-        {name: categoryEnum.food, isOn: false},
+        {name: categoryEnum.food, isOn: true},
         {name: categoryEnum.aboutMe, isOn: false},
-        {name: categoryEnum.message, isOn: true},
+        {name: categoryEnum.message, isOn: false},
         {name: categoryEnum.personSearch, isOn: false},
         {name: categoryEnum.sportFacilitySearch, isOn: false}
     ];
 
-    constructor() {
+    constructor(private api: ApiService) {
     }
 
-    ngOnInit(): void {
+    async ngOnInit() {
+            let user:UserDto =  await this.api.get(Mapping.USER+Mapping.SEARCH+'email=' + 'kadaw77@gmail.com') as UserDto;
+            if (user == null) {
+
+            } else {
+                this.api.setUserId(user[0].id);
+            }
+
+            this.isDataLoaded = true;
     }
 
     changeCategory(category: categoryEnum) {

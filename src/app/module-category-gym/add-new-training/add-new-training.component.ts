@@ -25,7 +25,9 @@ interface ExercisesGroups {
 
 
 export class AddNewTrainingComponent implements OnInit {
+    selectedCat = ''
     selected = 'option2';
+    selected2 = ''
     exerciseForm = new FormControl();
 
     isLoadingResults = true;

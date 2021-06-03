@@ -10,6 +10,8 @@ import {ExerciseDto} from '../../dataBaseObjects/ExerciseDto';
 import {TrainingDto} from '../../dataBaseObjects/TrainingDto';
 import {GenericInputFieldComponent} from '../generic-input-field/generic-input-field.component';
 import {AbstractControl, FormBuilder, FormControl} from '@angular/forms';
+import {ParameterDto} from '../../dataBaseObjects/ParameterDto';
+import {UserDto} from '../../dataBaseObjects/UserDto';
 
 
 export interface UserTrainingInterface {
@@ -23,6 +25,7 @@ export interface PropositionTrainingInterface {
     kategoria: string;
     kalorieSpalane: number;
     opis: string;
+    measurment?: ParameterDto;
 }
 
 export interface TableNames {
@@ -78,6 +81,7 @@ export class CategoryGymComponent implements AfterViewInit {
 
     exerciseNames: string[] = [];
     exerciseCategories: string[] = [];
+    parameters: ParameterDto[] = [];
 
     @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
     @ViewChild(MatSort) sort: MatSort;
@@ -104,14 +108,16 @@ export class CategoryGymComponent implements AfterViewInit {
     }
 
     async ngAfterViewInit() {
+
         await this.loadData();
         await this.eneablePaginators();
     }
 
     async loadData() {
-        this.allTrainingsData = await this.api.get(Mapping.TRAINING + Mapping.SEARCH + "userId=3");
+        this.allTrainingsData = await this.api.get(Mapping.TRAINING + Mapping.SEARCH + "userId=" + this.api.userId);
         this.allExercisesData = await this.api.get(Mapping.EXERCISE);
         this.allCategoriesData = await this.api.get(Mapping.EXERCISE_CATEGORY);
+        this.parameters = await this.api.get(Mapping.PARAMETER);
 
 
         for (let singleTraing of this.allTrainingsData) {
@@ -127,12 +133,13 @@ export class CategoryGymComponent implements AfterViewInit {
         for (let exercise of this.allExercisesData) {
             this.exerciseNames.push(exercise.name);
             this.exerciseCategories.push(exercise.exerciseCategory.name);
-
+            let param: ParameterDto = this.parameters.filter(e => e.id == exercise.parameterId)[0];
             let singleExercise: PropositionTrainingInterface = {
                 nazwa: exercise.name,
                 kategoria: exercise.exerciseCategory.name,
                 kalorieSpalane:exercise.caloriesBurnedInMinute,
-                opis: exercise.exerciseDescription
+                opis: exercise.exerciseDescription,
+                measurment: param
             };
             this.dataSourceExtended.data.push(singleExercise);
         }

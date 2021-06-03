@@ -41,9 +41,9 @@ export class CategoryAboutMeComponent implements OnInit {
 
     async loadData() {
 
-        this.userDetailsTab = await this.api.get(Mapping.USER_DETAIL + Mapping.SEARCH + Mapping.USERID + '3');
-        this.userData = await this.api.getFullObject(Mapping.USER + '/3');
-        this.userPlans = await this.api.get(Mapping.USER_PLANS + Mapping.SEARCH + Mapping.USERID + '3');
+        this.userDetailsTab = await this.api.get(Mapping.USER_DETAIL + Mapping.SEARCH + Mapping.USERID + this.api.userId);
+        this.userData = await this.api.getFullObject(Mapping.USER + '/' + this.api.userId);
+        this.userPlans = await this.api.get(Mapping.USER_PLANS + Mapping.SEARCH + Mapping.USERID + this.api.userId);
         await this.extractActualData(this.userDetailsTab);
         await this.prepareUserData(this.userData);
 

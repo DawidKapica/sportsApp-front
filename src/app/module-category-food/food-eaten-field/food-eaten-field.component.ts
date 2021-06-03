@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {ConsumedFoodDto} from '../../dataBaseObjects/ConsumedFoodDto';
 import {mealNutritionalValInterface} from '../../interfaceComunicationObjects/mealNutritionalValInterface';
 import {UserDto} from '../../dataBaseObjects/UserDto';
@@ -30,7 +30,7 @@ export class FoodEatenFieldComponent implements OnInit {
 
     // isDataReady = false;
 
-    constructor() {
+    constructor(private changeRef: ChangeDetectorRef) {
     }
 
     ngOnInit(): void {
@@ -56,6 +56,8 @@ export class FoodEatenFieldComponent implements OnInit {
                     this.calories = this.calories + meal.calories;
                 }
             }
+
+            console.log(this.eatenFoods);
         }
 
         if (this.userData != undefined && this.userData != null) {
@@ -64,6 +66,27 @@ export class FoodEatenFieldComponent implements OnInit {
             this.percentOfProteins =  Math.round(this.proteins / this.userData.dailyProtRequirement * 100 * 100)/100;
             this.percentOfFats =  Math.round(this.fat / this.userData.dailyFatRequirement * 100 * 100)/100;
         }
+
+        console.log(this.percentOfCarbohydrates)
     }
+
+    addMeal(eatenMeal: mealNutritionalValInterface[]) {
+        if (eatenMeal != null) {
+            for (let i = 0; i < eatenMeal.length; i++) {
+                this.carbohydrates = this.carbohydrates + eatenMeal[i].carbohydrates;
+                this.proteins = this.proteins + eatenMeal[i].proteins;
+                this.fat = this.fat + eatenMeal[i].fats;
+                this.calories = this.calories + eatenMeal[i].calories;
+                this.percentOfDailyCal = Math.round(this.calories / this.userData.dailyCalRequirement * 100 * 100)/100;
+                this.percentOfCarbohydrates = Math.round(this.carbohydrates / this.userData.dailyCarbRequirement * 100 *100)/100;
+                this.percentOfProteins =  Math.round(this.proteins / this.userData.dailyProtRequirement * 100 * 100)/100;
+                this.percentOfFats =  Math.round(this.fat / this.userData.dailyFatRequirement * 100 * 100)/100;
+            }
+        }
+        // this.calcNutritionalValues();
+        this.changeRef.detectChanges()
+    }
+
+
 
 }

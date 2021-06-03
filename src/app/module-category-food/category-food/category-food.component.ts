@@ -1,10 +1,13 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from '../../service/api.service';
 import {Mapping} from '../../dataBaseObjects/Mapping';
 import {ConsumedFoodDto} from '../../dataBaseObjects/ConsumedFoodDto';
 import {NutritionalProductDto} from '../../dataBaseObjects/NutritionalProductDto';
 import {mealNutritionalValInterface} from '../../interfaceComunicationObjects/mealNutritionalValInterface';
 import {DatePipe} from '@angular/common';
+import {MessagesDisplayComponent} from '../../module-category-message/messages-display/messages-display.component';
+import {TodayMealFieldComponent} from '../today-meal-field/today-meal-field.component';
+import {FoodEatenFieldComponent} from '../food-eaten-field/food-eaten-field.component';
 
 
 
@@ -14,6 +17,10 @@ import {DatePipe} from '@angular/common';
     styleUrls: ['./category-food.component.css']
 })
 export class CategoryFoodComponent implements OnInit {
+
+    @ViewChild('mealTable') mealTable: TodayMealFieldComponent;
+    @ViewChild('foodEatenField') foodEatenField: FoodEatenFieldComponent;
+
 
     todayUserConsumedFood: ConsumedFoodDto[];
     nutritionalProducts: NutritionalProductDto[];
@@ -97,7 +104,7 @@ export class CategoryFoodComponent implements OnInit {
                         quantity: meal.quantity,
                         proteins: eatenProduct.proteinValue,
                         fats: eatenProduct.fatValue,
-                        carbohydrates: eatenProduct.calorificValue,
+                        carbohydrates: eatenProduct.carbohydratesValue,
                         consumedFoodDate: meal.consumedFoodDate,
                         consumedFoodTime: meal.consumedFoodTime
                     };
@@ -110,6 +117,15 @@ export class CategoryFoodComponent implements OnInit {
         }
 
         return mealsEatenData;
+    }
+
+    changeEatenFood($event) {
+        console.log($event)
+        let catFood: ConsumedFoodDto[] = [];
+        catFood.push($event)
+        let dataExtract = this.dataAboutTodayProductExtract(catFood)
+        this.mealTable.addMeal(dataExtract);
+        this.foodEatenField.addMeal(dataExtract)
     }
 
 

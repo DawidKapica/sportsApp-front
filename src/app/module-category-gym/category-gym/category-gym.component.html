@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="table-container width-95per height-90per mat-elevation-z8">
-                    <table mat-table [dataSource]="dataSource" matSort>
+                    <table class="table-of-trainings"  mat-table [dataSource]="dataSource" matSort>
                         <ng-container matColumnDef="data">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Data</th>
                             <td mat-cell *matCellDef="let row"> {{row.data}} </td>
@@ -50,12 +50,9 @@
                                 "</span></td>
                         </tr>
                     </table>
-                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-
+                    <mat-paginator class="mat-paginator-sticky" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                 </div>
-
             </div>
-
         </div>
 
         <div class="col-lg-6 col-12 column-height">
@@ -120,14 +117,15 @@
                                             <div class="example-element-detail"
                                                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                                                 <div class="example-element-diagram">
-                                                    <div class="example-element-position"> {{element.nazwa}} </div>
-                                                    <div class="example-element-symbol"> {{element.kategoria}} </div>
-                                                    <div class="example-element-name"> {{element.kalorieSpalane}} </div>
+
+                                                    <div *ngIf="element.measurment != null" class="example-element-symbol"> Jednostką najczęciej wykorzystywaną do opisania postępów jest </div>
+                                                    <div class="example-element-name"> {{element.measurment.unit}} </div>
                                                 </div>
                                                 <div class="example-element-description">
+                                                    <div class="example-element-position">OPIS</div>
                                                     {{element.opis}}
                                                     <span
-                                                        class="example-element-description-attribution"> -- Wikipedia </span>
+                                                        class="example-element-description-attribution"> - </span>
                                                 </div>
                                             </div>
                                         </td>
@@ -143,7 +141,7 @@
                                 </table>
                             </div>
                             <div class="paginator-proposition-train">
-                                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                                <mat-paginator class="mat-paginator-sticky" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
                             </div>
                         </div>
                     </div>

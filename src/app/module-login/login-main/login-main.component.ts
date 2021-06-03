@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '@auth0/auth0-angular';
+import {ApiService} from '../../service/api.service';
+import {UserDto} from '../../dataBaseObjects/UserDto';
+import {Mapping} from '../../dataBaseObjects/Mapping';
 
 @Component({
   selector: 'app-login-main',
@@ -9,16 +12,21 @@ import {AuthService} from '@auth0/auth0-angular';
 })
 export class LoginMainComponent implements OnInit {
 
-    constructor(public auth: AuthService) {}
+    constructor(public auth: AuthService, private api: ApiService) {}
 
   ngOnInit(): void {
   }
 
-    loginWithRedirect(): void {
+    async loginWithRedirect() {
         // Call this to redirect the user to the login page
-        this.auth.loginWithRedirect( {redirect_uri: 'http://localhost:4200/login' } );
+        // this.auth.loginWithRedirect( {redirect_uri: 'http://localhost:4200/login' } );
+        //
+        // this.auth.idTokenClaims$.subscribe((claims) => console.log(claims));
 
-        this.auth.idTokenClaims$.subscribe((claims) => console.log(claims));
+        await this.api.loginWithRedirect();
+
+
+
     }
     //
     // logout(): void {
