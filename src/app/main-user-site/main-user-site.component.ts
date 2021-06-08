@@ -30,6 +30,7 @@ export class MainUserSiteComponent implements OnInit {
     users:UserDto[] = null;
     experts: ExpertDto[] = null;
     isUser = null;
+    userId = null;
 
     constructor(private api: ApiService, public auth: AuthService, public dialog: MatDialog) {
 
@@ -71,10 +72,18 @@ export class MainUserSiteComponent implements OnInit {
                 const dialogRef = this.dialog.open(RegisterDialogComponent, {data: email.toString()});
                 dialogRef.afterClosed().subscribe(result => {
                     userId = result;
+                    this.userId = result;
                     console.log(result);
                 });
                 console.log(userId);
+                this.userId = userId;
+                // dialogRef.close();
+
                 this.api.setUserId(userId, true);
+
+                if (this.userId != null) {
+                    dialogRef.close();
+                }
             } else {
                 this.isUser = false;
                 this.api.setUserId(expertFilter[0].id, false);
