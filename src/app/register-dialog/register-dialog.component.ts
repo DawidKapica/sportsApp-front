@@ -63,6 +63,6 @@ export class RegisterDialogComponent implements OnInit {
         this.api.setUserId(newUserData.id, true);
         this.data = x.id;
         this.dialogRef.close(this.data);
-
+        window.location.reload()
     }
 }

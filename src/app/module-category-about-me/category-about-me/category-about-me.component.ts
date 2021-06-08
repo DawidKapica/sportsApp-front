@@ -70,8 +70,9 @@ export class CategoryAboutMeComponent implements OnInit {
 
         if (userDetailTab != null) {
             userDetActual = userDetailTab[0];
-            this.lastMeasureUpdateDate = userDetActual.valueDate;
-
+            if(userDetActual !=null ) {
+                this.lastMeasureUpdateDate = userDetActual.valueDate;
+            }
             for (let userDetail of userDetailTab) {
                 if (userDetail.valueDate > userDetActual.valueDate) {
                     userDetActual = userDetail;
@@ -79,19 +80,64 @@ export class CategoryAboutMeComponent implements OnInit {
                 }
             }
         }
-
-        this.inputUserTypeFirstCol.push(
-            {firsrtFieldName: 'Waga', secondFieldName: userDetActual.weight, formControlName: "weight"},
-            {firsrtFieldName: 'Obwód w pasie', secondFieldName: userDetActual.circumferenceAbdomen, formControlName: "circumferenceAbdomen"},
-            {firsrtFieldName: 'Obwód bicepsa', secondFieldName: userDetActual.bicepsCircumference, formControlName: "bicepsCircumference"},
-            {firsrtFieldName: 'Obwód przedramienia', secondFieldName: userDetActual.forearmCircumference, formControlName: "forearmCircumference"},
-            {firsrtFieldName: 'Obwód klatki piersiowej', secondFieldName: userDetActual.chestCircumference, formControlName: "chestCircumference"},
-            {firsrtFieldName: 'Obwód w biodrach', secondFieldName: userDetActual.hipCircumference, formControlName: "hipCircumference"},
-            {firsrtFieldName: 'Obwód uda', secondFieldName: userDetActual.thighCircumference, formControlName: "thighCircumference"},
-            {firsrtFieldName: 'Obwód łydki', secondFieldName: userDetActual.calfCircumference, formControlName: "calfCircumference"},
-            {firsrtFieldName: 'Obwód szyi', secondFieldName: userDetActual.neckCircumference, formControlName: "neckCircumference"},
+        if (userDetActual != null) {
+            this.inputUserTypeFirstCol.push(
+                {firsrtFieldName: 'Waga', secondFieldName: userDetActual.weight, formControlName: "weight"},
+                {
+                    firsrtFieldName: 'Obwód w pasie',
+                    secondFieldName: userDetActual.circumferenceAbdomen,
+                    formControlName: "circumferenceAbdomen"
+                },
+                {
+                    firsrtFieldName: 'Obwód bicepsa',
+                    secondFieldName: userDetActual.bicepsCircumference,
+                    formControlName: "bicepsCircumference"
+                },
+                {
+                    firsrtFieldName: 'Obwód przedramienia',
+                    secondFieldName: userDetActual.forearmCircumference,
+                    formControlName: "forearmCircumference"
+                },
+                {
+                    firsrtFieldName: 'Obwód klatki piersiowej',
+                    secondFieldName: userDetActual.chestCircumference,
+                    formControlName: "chestCircumference"
+                },
+                {firsrtFieldName: 'Obwód w biodrach', secondFieldName: userDetActual.hipCircumference, formControlName: "hipCircumference"},
+                {firsrtFieldName: 'Obwód uda', secondFieldName: userDetActual.thighCircumference, formControlName: "thighCircumference"},
+                {firsrtFieldName: 'Obwód łydki', secondFieldName: userDetActual.calfCircumference, formControlName: "calfCircumference"},
+                {firsrtFieldName: 'Obwód szyi', secondFieldName: userDetActual.neckCircumference, formControlName: "neckCircumference"},
             );
-        if (userDetActual.weight != null && userDetActual.weight > 0 && this.userData.height != null && this.userData.height > 0 ) {
+        } else {
+            this.inputUserTypeFirstCol.push(
+                {firsrtFieldName: 'Waga', secondFieldName: '', formControlName: "weight"},
+                {
+                    firsrtFieldName: 'Obwód w pasie',
+                    secondFieldName: '',
+                    formControlName: "circumferenceAbdomen"
+                },
+                {
+                    firsrtFieldName: 'Obwód bicepsa',
+                    secondFieldName: '',
+                    formControlName: "bicepsCircumference"
+                },
+                {
+                    firsrtFieldName: 'Obwód przedramienia',
+                    secondFieldName: '',
+                    formControlName: "forearmCircumference"
+                },
+                {
+                    firsrtFieldName: 'Obwód klatki piersiowej',
+                    secondFieldName: '',
+                    formControlName: "chestCircumference"
+                },
+                {firsrtFieldName: 'Obwód w biodrach', secondFieldName: '', formControlName: "hipCircumference"},
+                {firsrtFieldName: 'Obwód uda', secondFieldName: '', formControlName: "thighCircumference"},
+                {firsrtFieldName: 'Obwód łydki', secondFieldName: '', formControlName: "calfCircumference"},
+                {firsrtFieldName: 'Obwód szyi', secondFieldName: '', formControlName: "neckCircumference"},
+            );
+        }
+        if (userDetActual != null && userDetActual.weight != null && userDetActual.weight > 0 && this.userData.height != null && this.userData.height > 0 ) {
             this.BMI = Math.round(userDetActual.weight/((this.userData.height/100) * (this.userData.height)/100)*100)/100;
         } else {
             this.BMI = 0;

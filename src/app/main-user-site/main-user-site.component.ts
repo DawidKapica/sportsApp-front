@@ -31,6 +31,7 @@ export class MainUserSiteComponent implements OnInit {
     experts: ExpertDto[] = null;
     isUser = null;
     userId = null;
+    x=0;
 
     constructor(private api: ApiService, public auth: AuthService, public dialog: MatDialog) {
 
@@ -67,22 +68,29 @@ export class MainUserSiteComponent implements OnInit {
             console.log(expertFilter);
             console.log(this.experts);
             if (expertFilter == null || expertFilter.length == 0) {
-                this.isUser = true;
-                let userId = null;
-                const dialogRef = this.dialog.open(RegisterDialogComponent, {data: email.toString()});
-                dialogRef.afterClosed().subscribe(result => {
-                    userId = result;
-                    this.userId = result;
-                    console.log(result);
-                });
-                console.log(userId);
-                this.userId = userId;
-                // dialogRef.close();
+                if (this.userId == null && this.x >= 0) {
 
-                this.api.setUserId(userId, true);
+                    this.isUser = true;
+                    let userId = null;
+                    this.x--;
+                    const dialogRef = this.dialog.open(RegisterDialogComponent, {data: email.toString()});
+                    dialogRef.afterClosed().subscribe(result => {
+                        userId = result;
+                        this.userId = result;
+                        console.log(result);
+                    });
+                    console.log(userId);
+                    this.userId = userId;
+                    // dialogRef.close();
 
+                    this.api.setUserId(userId, true);
+
+                    if (this.userId != null && this.x >= 0) {
+                        dialogRef.close();
+                    }
+                }
                 if (this.userId != null) {
-                    dialogRef.close();
+                    this.x = 0;
                 }
             } else {
                 this.isUser = false;
