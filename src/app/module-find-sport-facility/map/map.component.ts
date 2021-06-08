@@ -53,7 +53,7 @@ export class MapComponent implements OnInit {
                             '<p>' + isPaid + '</p>' +
                             '<p>' +
                             '' +
-                            'opis</p>',
+                            'początek 15km trasy, nie wymagającej, idealnej dla osób niezaawansowanych</p>',
                         // 'icon': 'marker',
                     },
                     'geometry': {

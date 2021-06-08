@@ -28,7 +28,7 @@ export class GoalsFieldComponent implements OnInit {
 
 
     openSnackBar() {
-        this._snackBar.open("Dodano nowy plan", );
+        this._snackBar.open("Dodano nowy plan", 'Zamknij', {duration:7000});
     }
 
 

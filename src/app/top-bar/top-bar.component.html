@@ -5,10 +5,11 @@
       </button>
 
 
-<!--            <ul *ngIf="auth.user$ | async as user">-->
-<!--            <li>{{ user.name }}</li>-->
-<!--          </ul>-->
+
   </span>
+<!--    <div *ngIf="auth.user$ | async as user">-->
+<!--        <span #XXX>{{ user.name }}</span>-->
+<!--    </div>-->
     <h1>SPORTS APP</h1>
     <!--    <button (click)="callApi()" type="button" class="btn btn-primary">-->
     <!--        Get Public Message-->
@@ -19,7 +20,7 @@
     <span>
         <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
           <button mat-button (click)="auth.logout({ returnTo: 'http://localhost:4200/login' })">
-            <span class="button-span-color">Log out</span>
+            <span class="button-span-color">Wyloguj</span>
         </button>
     </ng-container>
 

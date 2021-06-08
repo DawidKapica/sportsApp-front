@@ -162,8 +162,14 @@ tr.example-element-row:not(.example-expanded-row):active {
 .example-element-detail {
     overflow: scroll;
     display: flex;
+    justify-content: space-between;
     width: 100%
 }
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
+    color: white !important;
+}
+
 
 .example-element-diagram {
     /*min-width: 80px;*/

@@ -21,7 +21,7 @@ interface Messagex {
 })
 
 
-export class TopBarComponent  {
+export class TopBarComponent {
 
   // constructor() { }
   //
@@ -33,8 +33,6 @@ export class TopBarComponent  {
       this.experts = await this.api.get(Mapping.EXPERT);
 
       let user:UserDto =  await this.api.getFullObject(Mapping.USER+Mapping.SEARCH+'email=' + 'kadaw77@gmail.com') as UserDto;
-        console.log(user);
-
       // }
   }
 

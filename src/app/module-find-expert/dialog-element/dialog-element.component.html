@@ -1,0 +1,15 @@
+<div class="main-opinion-box">
+<h1 mat-dialog-title>Opinie</h1>
+<div mat-dialog-content>
+    <div *ngFor="let opinion of data">
+        <div class="single-opinion">
+            Ocena: {{opinion.rate}}
+            <div *ngIf="opinion.content!= null"> {{opinion.content}} </div>
+        </div>
+    </div>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Zamknij</button>
+</div>
+</div>

@@ -54,8 +54,8 @@
         </p>
     </mat-card-content>
     <mat-card-actions>
-        <span>Opinie: {{opinionRate}}/5</span><button mat-button class="button-opinion">Zobacz opinie</button>
-        <button mat-raised-button class="button-contact">Nawiąż kontakt</button>
+        <span>Opinie: {{opinionRate}}/5</span><button mat-button class="button-opinion" (click)="openDialog()">Zobacz opinie</button>
+        <button mat-raised-button class="button-contact" (click)="openContactExpert()">Nawiąż kontakt</button>
 
     </mat-card-actions>
 </mat-card>

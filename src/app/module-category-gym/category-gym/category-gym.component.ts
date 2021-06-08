@@ -12,12 +12,20 @@ import {GenericInputFieldComponent} from '../generic-input-field/generic-input-f
 import {AbstractControl, FormBuilder, FormControl} from '@angular/forms';
 import {ParameterDto} from '../../dataBaseObjects/ParameterDto';
 import {UserDto} from '../../dataBaseObjects/UserDto';
+import {single} from 'rxjs/operators';
+import {TrainingValueDto} from '../../dataBaseObjects/TrainingValueDto';
 
 
 export interface UserTrainingInterface {
     data: string;
     nazwa: string;
     kategoria: string;
+    name?: string;
+    parameterFirst?: ParameterDto;
+    parameterFirstVal?: number;
+    parameterSecond?: ParameterDto;
+    parameterSecondVal?: number;
+    description?: string;
 }
 
 export interface PropositionTrainingInterface {
@@ -55,7 +63,10 @@ export class CategoryGymComponent implements AfterViewInit {
     @ViewChild('caloriesExerciseInput') caloriesExerciseInput: GenericInputFieldComponent;
 
 
-    displayedColumns: string[] = ['data', 'nazwa', 'kateogria', 'select'];
+    // displayedColumns: string[] = ['data', 'nazwa', 'kateogria', 'select'];
+    displayedColumns: string[] = ['data', 'nazwa', 'kategoria'];
+    displayedColumnsHeader:string[] = ['Data', 'Nazwa', 'Kategoria'];
+
     dataSource: MatTableDataSource<UserTrainingInterface> = new MatTableDataSource<UserTrainingInterface>();
     selection = new SelectionModel<UserTrainingInterface>(true, []);
 
@@ -122,13 +133,38 @@ export class CategoryGymComponent implements AfterViewInit {
 
         for (let singleTraing of this.allTrainingsData) {
             let exercise = this.allExercisesData.find(({id}) => id === singleTraing.exerciseId);
+            let paramFirst: ParameterDto = null;
+            let valueFirst = null;
+            let paramSecond: ParameterDto = null;
+            let valueSecond = null;
+            let description = null;
+            if (singleTraing.trainingValuesId != null) {
+                let trainingVal: TrainingValueDto = await this.api.getFullObject(Mapping.TRAINING_VALUES + "/" + singleTraing.trainingValuesId) as TrainingValueDto;
+
+                if (trainingVal.parameterId != null) {
+                    paramFirst = this.parameters.filter(e => e.id == trainingVal.parameterId)[0];
+                    valueFirst = trainingVal.value;
+                }
+                if (trainingVal.secondParameterId != null) {
+                    paramSecond = this.parameters.filter(e => e.id == trainingVal.secondParameterId)[0];
+                    valueSecond = trainingVal.secondValue;
+                }
+                description = trainingVal.description
+            }
             let training:UserTrainingInterface = {
                 data: singleTraing.trainingDate.toString(),
                 nazwa: exercise.name,
-                kategoria: exercise.exerciseCategory.name
+                kategoria: exercise.exerciseCategory.name,
+                name: singleTraing.name,
+                parameterFirst: paramFirst,
+                parameterFirstVal: valueFirst,
+                parameterSecond: paramSecond,
+                parameterSecondVal: valueSecond,
+                description: description
             };
             this.dataSource.data.push(training);
         }
+        console.log(this.dataSource)
 
         for (let exercise of this.allExercisesData) {
             this.exerciseNames.push(exercise.name);
@@ -137,7 +173,7 @@ export class CategoryGymComponent implements AfterViewInit {
             let singleExercise: PropositionTrainingInterface = {
                 nazwa: exercise.name,
                 kategoria: exercise.exerciseCategory.name,
-                kalorieSpalane:exercise.caloriesBurnedInMinute,
+                kalorieSpalane:exercise.caloriesBurnedInMinute*60,
                 opis: exercise.exerciseDescription,
                 measurment: param
             };
@@ -152,6 +188,7 @@ export class CategoryGymComponent implements AfterViewInit {
             this.dataSource.paginator = this.paginator.toArray()[0];
             this.dataSource.sort = this.sort;
             this.dataSourceExtended.paginator = this.paginator.toArray()[1];
+
     }
 
     findTraining() {

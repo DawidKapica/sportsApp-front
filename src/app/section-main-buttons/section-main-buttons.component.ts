@@ -1,6 +1,7 @@
 import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Output, QueryList, ViewChildren} from '@angular/core';
 import {MainCategoryButtonComponent} from '../category-button/main-category-button.component';
 import {categoryEnum} from '../categoryEnum';
+import {ApiService} from '../service/api.service';
 
 @Component({
     selector: 'app-section-main-buttons',
@@ -23,10 +24,21 @@ export class SectionMainButtonsComponent implements AfterViewInit {
         {iconName: 'home_work', nameRef: categoryEnum.sportFacilitySearch}
     ];
 
-    constructor(private cdRef:ChangeDetectorRef) {
+    buttonsExpert: buttonIconName[] = [
+        {iconName: 'mail', nameRef: categoryEnum.message},
+    ]
+
+    isUser = null;
+    isDataLoaded = false;
+
+    constructor(private cdRef:ChangeDetectorRef, private api:ApiService) {
+        this.isUser = this.api.isUser;
     }
 
     ngAfterViewInit(): void {
+        this.isUser = this.api.isUser;
+        this.isDataLoaded = true;
+
         this.buttonsComponent.first.click = true;
         this.cdRef.detectChanges();
     }

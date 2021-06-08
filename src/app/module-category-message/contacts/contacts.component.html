@@ -1,5 +1,5 @@
-<div style="padding: 1%; border-radius: 10px">
-    <span style="margin: 1%">Lista osób z którymi się kontaktowałes</span>
+<div style="padding: 1%; border-radius: 10px" *ngIf="isUser == true">
+    <span style="margin: 1%">Lista osób z którymi się kontaktowałeś</span>
     <mat-button-toggle-group class="button-group">
 <!--    <div *ngFor="let expert of ExpertList">-->
 <!--        <div>-->
@@ -8,5 +8,18 @@
             </mat-button-toggle>
 <!--        </div>-->
 <!--    </div>-->
+    </mat-button-toggle-group>
+</div>
+
+<div style="padding: 1%; border-radius: 10px" *ngIf="isUser != true">
+    <span style="margin: 1%">Lista osób z którymi się kontaktowałeś</span>
+    <mat-button-toggle-group class="button-group">
+        <!--    <div *ngFor="let expert of ExpertList">-->
+        <!--        <div>-->
+        <mat-button-toggle *ngFor="let user of UserList" [checked]="UserCheck.id==user.id" mat-button (click)="sendInformationForEpert(user)">
+            {{user.firstName}} {{user.lastName}}
+        </mat-button-toggle>
+        <!--        </div>-->
+        <!--    </div>-->
     </mat-button-toggle-group>
 </div>

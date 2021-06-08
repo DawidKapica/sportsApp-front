@@ -39,7 +39,7 @@ export class CategoryFoodComponent implements OnInit {
         await this.loadData();
         this.waterDrink = this.waterExtract(this.todayUserConsumedFood);
         this.userMealNutritional = this.dataAboutTodayProductExtract(this.todayUserConsumedFood);
-
+        // this.api.checkUser();
         this.isLoadingResults = false;
         this.cdRef.detectChanges();
     }
@@ -54,11 +54,8 @@ export class CategoryFoodComponent implements OnInit {
         let test20201010String = '2020-10-10';
 
         this.todayUserConsumedFood = await this.api.get(Mapping.CONSUMED_FOOD + Mapping.SEARCH + Mapping.USERID + 3);
-        console.log(this.todayUserConsumedFood);
         this.nutritionalProducts = await this.api.get(Mapping.NUTRITIONAL_PRODUCT);
         this.userData = await this.api.getFullObject(Mapping.USER + '/3');
-
-
     }
 
     waterExtract(consumedFoods: ConsumedFoodDto[]): number {

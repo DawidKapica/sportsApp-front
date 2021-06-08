@@ -12,10 +12,13 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
+import { DialogElementComponent } from './dialog-element/dialog-element.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogSendMessageComponent } from './dialog-send-message/dialog-send-message.component';
 
 
 @NgModule({
-    declarations: [FindExpertComponent, FiltersFieldComponent, SingleExpertComponent, ExpertListComponent],
+    declarations: [FindExpertComponent, FiltersFieldComponent, SingleExpertComponent, ExpertListComponent, DialogElementComponent, DialogSendMessageComponent],
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -26,6 +29,7 @@ import {MatSelectModule} from '@angular/material/select';
         MatCardModule,
         MatIconModule,
         MatSelectModule,
+        MatDialogModule,
     ],
     exports: [
         FindExpertComponent

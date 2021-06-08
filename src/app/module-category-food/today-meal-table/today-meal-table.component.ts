@@ -9,6 +9,7 @@ import {mealNutritionalValInterface} from '../../interfaceComunicationObjects/me
 export class TodayMealTableComponent implements OnInit, OnChanges {
     mealNutritionalVal: mealNutritionalValInterface[];
 
+    isAnyResults = true;
     @Input()
     set eatenFoods(mealNutritionalValInterfaceTab: mealNutritionalValInterface[]) {
         this.mealNutritionalVal = mealNutritionalValInterfaceTab;
@@ -21,6 +22,9 @@ export class TodayMealTableComponent implements OnInit, OnChanges {
 
     constructor() {
         // this.changeRef.detectChanges();
+        if(this.mealNutritionalVal == null || this.mealNutritionalVal == []) {
+            this.isAnyResults = false;
+        }
     }
 
     ngOnInit(): void {
@@ -29,6 +33,9 @@ export class TodayMealTableComponent implements OnInit, OnChanges {
 
     ngOnChanges(val): void {
         // console.log('in ngOnChanges');
+        if(this.mealNutritionalVal == null || this.mealNutritionalVal == []) {
+            this.isAnyResults = false;
+        }
     }
 
 }

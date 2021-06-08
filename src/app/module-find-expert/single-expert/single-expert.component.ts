@@ -6,6 +6,10 @@ import {ApiService} from '../../service/api.service';
 import {Mapping} from '../../dataBaseObjects/Mapping';
 import {PersonDto} from '../../dataBaseObjects/PersonDto';
 import {OpinionDto} from '../../dataBaseObjects/OpinionDto';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogElementComponent} from '../dialog-element/dialog-element.component';
+import {SectionMainButtonsComponent} from '../../section-main-buttons/section-main-buttons.component';
+import {DialogSendMessageComponent} from '../dialog-send-message/dialog-send-message.component';
 
 @Component({
     selector: 'app-single-expert',
@@ -24,7 +28,16 @@ export class SingleExpertComponent implements OnInit {
 
     isLoadingResults = true;
 
-    constructor(private api: ApiService) {
+    constructor(private api: ApiService, public dialog: MatDialog) {
+    }
+
+
+    openDialog() {
+        this.dialog.open(DialogElementComponent, {data: this.opinions});
+    }
+
+    openContactExpert() {
+        this.dialog.open(DialogSendMessageComponent, {data: this.expert});
     }
 
     async ngOnInit() {

@@ -1,15 +1,31 @@
 <div class="main-box" *ngIf="isLoading == false">
-    <div *ngFor="let message of messagesExpert" [ngClass]="{'user-message': message.isUserSender, 'expert-message' : !message.isUserSender}">
-<!--        <div>-->
-            <span>
+    <div class="message-box-main">
+        <div class="messages-box" *ngIf="isUser==true">
+            <div *ngFor="let message of messagesExpert"
+                 [ngClass]="{'user-message': message.isUserSender, 'expert-message' : !message.isUserSender}">
+                <!--        <div>-->
+                <span>
                 {{message.content}}
             </span>
-<!--        </div>-->
+                <!--        </div>-->
+            </div>
+        </div>
+        <div class="messages-box" *ngIf="isUser!=true">
+            <div *ngFor="let message of messagesExpert"
+                 [ngClass]="{'user-message': !message.isUserSender, 'expert-message' : message.isUserSender}">
+                <!--        <div>-->
+                <span>
+                {{message.content}}
+            </span>
+                <!--        </div>-->
+            </div>
+        </div>
     </div>
     <div class="send-box">
         <form class="ninety-percent-width">
             <mat-form-field class="full-width">
-                <textarea matInput class="full-width" placeholder="Opisz tutaj swój plan" [formControl]="messageToSend"></textarea>
+                <textarea matInput class="full-width" placeholder="Napisz tutaj wiadomość"
+                          [formControl]="messageToSend"></textarea>
             </mat-form-field>
         </form>
         <button mat-button id="menu" (click)="sendMessage()">

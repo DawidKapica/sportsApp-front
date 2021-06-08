@@ -1,0 +1,14 @@
+<div class="main-opinion-box">
+    <h1 mat-dialog-title>Skontaktuj się z {{data.firstName}} {{data.lastName}}</h1>
+    <div mat-dialog-content>
+        <form class="ninety-percent-width">
+            <mat-form-field class="full-width">
+                <textarea matInput class="full-width" placeholder="Wiadomość do eksperta" [formControl]="messageToSend"></textarea>
+            </mat-form-field>
+        </form>
+    </div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close (click)="sendMessage()">Wyślij wiadomość</button>
+    <button mat-button mat-dialog-close>Zamknij</button>
+</div>
+</div>

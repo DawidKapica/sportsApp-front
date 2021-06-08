@@ -63,3 +63,11 @@
     margin: 4px;
     /*min-width: 100px;*/
 }
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: white !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: #30b7ff;
+}

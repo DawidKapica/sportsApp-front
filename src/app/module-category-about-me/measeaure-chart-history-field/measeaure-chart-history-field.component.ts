@@ -136,10 +136,10 @@ export class MeaseaureChartHistoryFieldComponent implements OnInit {
         console.log(this.weightInWeekTab);
         for (let i = 0; i < this.weightInWeekTab.length; i++) {
             if (this.weightInWeekTab[i].numberOfEntries != 0) {
-                console.log("if");
+                // console.log("if");
                 this.weightInWeeksForChart.push((this.weightInWeekTab[i].numberOfValue / this.weightInWeekTab[i].numberOfEntries));
             } else {
-                console.log("else");
+                // console.log("else");
 
                 this.weightInWeeksForChart.push(0);
             }
@@ -148,8 +148,8 @@ export class MeaseaureChartHistoryFieldComponent implements OnInit {
             } else {
                 this.circumferenceAbdomenInWeeksForChart.push(0);
             }
-            if (this.forearmCircumferenceInWeekTab[i].numberOfEntries != 0) {
-                this.bicepsCircumferenceInWeeksForChart.push((this.forearmCircumferenceInWeekTab[i].numberOfValue / this.forearmCircumferenceInWeekTab[i].numberOfEntries));
+            if (this.bicepsCircumferenceInWeekTab[i].numberOfEntries != 0) {
+                this.bicepsCircumferenceInWeeksForChart.push((this.bicepsCircumferenceInWeekTab[i].numberOfValue / this.bicepsCircumferenceInWeekTab[i].numberOfEntries));
             } else {
                 this.bicepsCircumferenceInWeeksForChart.push(0);
             }
@@ -189,13 +189,17 @@ export class MeaseaureChartHistoryFieldComponent implements OnInit {
             {data: this.weightInWeeksForChart, label: 'Średnia waga w danym tygodniu'}
         ];
 
+        // console.log(this.userDetailsData);
+
         this.dataForChartUpBody = [
-            {data: this.circumferenceAbdomenInWeeksForChart, label: 'Obwód brzucha'},
+            {data: this.circumferenceAbdomenInWeeksForChart, label: 'Obwód pasa'},
             {data: this.bicepsCircumferenceInWeeksForChart, label: 'Obwód bicepsa'},
             {data: this.chestCircumferenceInWeeksForChart, label: 'Obwód klatki piersiowej'},
             {data: this.neckCircumferenceInWeeksForChart, label: 'Obwód szyi'},
             {data: this.forearmCircumferenceInWeeksForChart, label: 'Obwód przedramienia'},
         ];
+
+        // console.log(this.dataForChartUpBody);
 
         this.dataForChartDownBody = [
             {data: this.hipCircumferenceInWeeksForChart, label: 'Obwód bioder'},
@@ -206,8 +210,8 @@ export class MeaseaureChartHistoryFieldComponent implements OnInit {
 
         this.isLoadingData = false;
 
-        console.log(this.dateForChartWeight);
-        console.log(this.dataForChartLabelsWeight);
+        // console.log(this.dateForChartWeight);
+        // console.log(this.dataForChartLabelsWeight);
     }
 
 }

@@ -1,6 +1,6 @@
 export interface PersonDto {
-    id: number;
+    id?: number;
     firstName: string;
     lastName: string;
-    birthdate: Date;
+    birthdate?: Date;
 }

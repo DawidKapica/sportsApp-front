@@ -12,6 +12,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { DialogAddOpinionComponent } from './dialog-add-opinion/dialog-add-opinion.component';
+import { DialogEdiExpertInfoComponent } from './dialog-edi-expert-info/dialog-edi-expert-info.component';
 
 
 
@@ -19,7 +21,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
   declarations: [
       CategoryMessageComponent,
       ContactsComponent,
-      MessagesDisplayComponent
+      MessagesDisplayComponent,
+      DialogAddOpinionComponent,
+      DialogEdiExpertInfoComponent
   ],
     imports: [
         CommonModule,

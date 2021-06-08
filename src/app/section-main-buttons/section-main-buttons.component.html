@@ -1,5 +1,14 @@
-<div class="main-box">
-    <div *ngFor="let i of buttons;">
+<div class="main-box" *ngIf="isUser!=false">
+    <div  *ngFor="let i of buttons;">
+        <app-main-category-button #buttons
+                                  [iconName]="i.iconName"
+                                  [buttonName]="i.nameRef"
+                                  (changeEvent)="changeOther($event)">
+        </app-main-category-button>
+    </div>
+</div>
+<div class="main-box" *ngIf="isUser==false">
+    <div  *ngFor="let i of buttonsExpert;">
         <app-main-category-button #buttons
                                   [iconName]="i.iconName"
                                   [buttonName]="i.nameRef"

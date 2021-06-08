@@ -1,10 +1,11 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from '../../service/api.service';
 import {MessageDto} from '../../dataBaseObjects/MessageDto';
 import {Mapping} from '../../dataBaseObjects/Mapping';
 import {MatSidenav} from '@angular/material/sidenav';
 import {MessagesDisplayComponent} from '../messages-display/messages-display.component';
 import {ExpertDto} from '../../dataBaseObjects/ExpertDto';
+import {UserDto} from '../../dataBaseObjects/UserDto';
 
 @Component({
     selector: 'app-category-message',
@@ -17,19 +18,27 @@ export class CategoryMessageComponent implements OnInit {
 
     @ViewChild('messageDisplay') messageDisplay: MessagesDisplayComponent;
 
+    @Input() makeExpertContact: ExpertDto;
+
+    isUser = true;
 
     constructor(private cdRef: ChangeDetectorRef, private api: ApiService) {
+        this.isUser = this.api.isUser;
     }
 
     messages: MessageDto[] = [];
     expertsList: ExpertDto[] = [];
     ExpertChosen: ExpertDto = null;
 
+    userList: UserDto[] = [];
+    userChosen: UserDto = null;
+
     isLoadingResults = true;
     isCollapsed = false;
 
 
     async ngOnInit() {
+        if (this.isUser == true) {
         this.messages = await this.api.get(Mapping.MESSAGES + Mapping.SEARCH + Mapping.USERID + this.api.userId);
 
         let unique = new Set(this.messages.map(item => item.expertId));
@@ -58,6 +67,34 @@ export class CategoryMessageComponent implements OnInit {
 
         this.isLoadingResults = false;
         this.cdRef.detectChanges();
+        } else {
+            this.messages = await this.api.get(Mapping.MESSAGES + Mapping.SEARCH + "expertId=" + this.api.userId);
+            // console.log(this.messages);
+            let unique = new Set(this.messages.map(item => item.userId));
+
+            for (let userId of unique) {
+                let user: any = await this.api.getFullObject(Mapping.USER + '/' + userId)
+                // console.log(user);
+                this.userList.push(user);
+            }
+
+
+            let messagesWithExpert: MessageDto[] = [];
+            if(this.userList != null && this.userList != []) {
+
+                let expertDirstId = this.userList[0].id
+                for (let messageSingle of this.messages) {
+                    if(messageSingle.userId == expertDirstId) {
+                        messagesWithExpert.push(messageSingle);
+                    }
+                }
+                this.messageDisplay.messagesToDisplay(messagesWithExpert, expertDirstId);
+                this.userChosen = this.userList[0];
+            }
+
+            this.isLoadingResults = false;
+            this.cdRef.detectChanges();
+        }
     }
 
     public toogleSideNav() {

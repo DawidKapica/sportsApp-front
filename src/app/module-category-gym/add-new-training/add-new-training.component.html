@@ -59,7 +59,7 @@
                 <div class="single-parameter">
                     <mat-form-field class="attribute-value-form-select" appearance="fill">
                         <mat-label>Drugi parametr</mat-label>
-                        <mat-select [(value)]="selected2">
+                        <mat-select [(value)]="selected2" >
                             <mat-option>None</mat-option>
                             <div *ngFor="let secondParameter of parameters">
                                 <mat-option value="{{secondParameter.id}}">{{secondParameter.name}} w
@@ -78,7 +78,7 @@
 
             <div class="description">
                 <mat-form-field class="description-box">
-                    <textarea matInput placeholder="Opisz tutaj swój plan" formControlName="duration"></textarea>
+                    <textarea matInput placeholder="Opisz tutaj swój trening" formControlName="duration"></textarea>
                 </mat-form-field>
             </div>
         </form>

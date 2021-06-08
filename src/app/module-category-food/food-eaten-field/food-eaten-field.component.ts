@@ -56,8 +56,6 @@ export class FoodEatenFieldComponent implements OnInit {
                     this.calories = this.calories + meal.calories;
                 }
             }
-
-            console.log(this.eatenFoods);
         }
 
         if (this.userData != undefined && this.userData != null) {
@@ -67,7 +65,6 @@ export class FoodEatenFieldComponent implements OnInit {
             this.percentOfFats =  Math.round(this.fat / this.userData.dailyFatRequirement * 100 * 100)/100;
         }
 
-        console.log(this.percentOfCarbohydrates)
     }
 
     addMeal(eatenMeal: mealNutritionalValInterface[]) {

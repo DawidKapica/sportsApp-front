@@ -121,7 +121,7 @@ export class SearchProductFieldComponent implements OnInit, AfterViewInit {
 
 
     openSnackBar() {
-        this._snackBar.open("Twój posiłek został dodany", );
+        this._snackBar.open("Twój posiłek został dodany", 'Zamknij', {duration:7000} );
     }
 
     sendInfromation($event: ConsumedFoodDto) {

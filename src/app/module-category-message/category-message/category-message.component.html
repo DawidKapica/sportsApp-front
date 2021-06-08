@@ -1,17 +1,38 @@
-<div class="header-message" >
+<div class="header-message" *ngIf="isUser==true">
     <button mat-raised-button class="menu" (click)="toogleSideNav()">
         <mat-icon class="button-span-color menu-icon-size">menu_open</mat-icon>
         <span *ngIf="isCollapsed == false">Schowaj listę osób</span>
         <span *ngIf="isCollapsed == true">Pokaż listę osób</span>
 
     </button>
-    <div *ngIf="isLoadingResults==false">TWOJE WIADOMOSCi Z {{ExpertChosen.firstName}} {{ExpertChosen.lastName}}</div>
+    <div *ngIf="isLoadingResults==false"><button mat-button>Wystaw opinię</button>TWOJE WIADOMOSCi Z {{ExpertChosen.firstName}} {{ExpertChosen.lastName}}</div>
 </div>
-<div class="main-box">
+<div class="main-box" *ngIf="isUser==true">
     <mat-sidenav-container  autosize class="custom-sidenav-container-size">
         <mat-sidenav #sidenav mode="side" opened>
             <mat-nav-list class="nav-list-heightf">
                 <app-contacts class="v2" *ngIf="isLoadingResults==false" (changeEvent)="changeOther($event)" [ExpertList]="expertsList" [ExpertCheck]="ExpertChosen"></app-contacts>
+            </mat-nav-list>
+        </mat-sidenav>
+        <app-messages-display class="v3" #messageDisplay></app-messages-display>
+    </mat-sidenav-container>
+</div>
+
+
+<div class="header-message" *ngIf="isUser==false">
+    <button mat-raised-button class="menu" (click)="toogleSideNav()">
+        <mat-icon class="button-span-color menu-icon-size">menu_open</mat-icon>
+        <span *ngIf="isCollapsed == false">Schowaj listę osób</span>
+        <span *ngIf="isCollapsed == true">Pokaż listę osób</span>
+
+    </button>
+    <div *ngIf="isLoadingResults==false"><button mat-button>Edytuj infromacje o sobie</button>TWOJE WIADOMOSCi Z {{userChosen.firstName}} {{userChosen.lastName}}</div>
+</div>
+<div class="main-box" *ngIf="isUser==false">
+    <mat-sidenav-container  autosize class="custom-sidenav-container-size">
+        <mat-sidenav #sidenav mode="side" opened>
+            <mat-nav-list class="nav-list-heightf">
+                <app-contacts class="v2" *ngIf="isLoadingResults==false" (changeEvent)="changeOther($event)" [UserList]="userList" [UserCheck]="userChosen"></app-contacts>
             </mat-nav-list>
         </mat-sidenav>
         <app-messages-display class="v3" #messageDisplay></app-messages-display>

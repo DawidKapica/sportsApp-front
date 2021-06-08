@@ -76,7 +76,7 @@ export class NewMesaurementComponent implements OnInit {
     }
 
     openSnackBar() {
-        this._snackBar.open("Twoje parametry zaaktualizowanie", );
+        this._snackBar.open("Twoje parametry zaaktualizowanie", 'Zamknij', {duration:7000});
     }
 
 

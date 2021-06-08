@@ -7,6 +7,8 @@ import {ExerciseDto} from '../../dataBaseObjects/ExerciseDto';
 import {ParameterDto} from '../../dataBaseObjects/ParameterDto';
 import {SportFacilitiesDto} from '../../dataBaseObjects/SportFacilitiesDto';
 import {SportFacilitiesCategoryDto} from '../../dataBaseObjects/SportFacilitiesCategoryDto';
+import {Observable} from 'rxjs';
+import {startWith} from 'rxjs/operators';
 
 interface ExercisesGroups {
     disabled?: boolean;
@@ -32,6 +34,8 @@ export class FiltersFieldComponent implements OnInit {
     sportFacilities: SportFacilitiesDto[];
 
     sportFacilitiesGroups: ExercisesGroups[] = [];
+
+    stateGroupOptions: Observable<ExercisesGroups[]>;
 
 
     constructor(private api: ApiService, private cdRef: ChangeDetectorRef) {
@@ -60,8 +64,23 @@ export class FiltersFieldComponent implements OnInit {
             this.sportFacilitiesGroups.find(e => e.name == singleSportFacilities.sportFacilitiesCategory.name).sportFacility.push(singleSportFacilities);
         }
 
+        // this.stateGroupOptions = this.sportFacilitiesGroups.get('stateGroup')!.valueChanges
+        //     .pipe(
+        //         startWith(''),
+        //         map(value => this._filterGroup(value))
+        //     );
+
         this.isLoadingResults = false;
         this.cdRef.detectChanges();
     }
-
+    //
+    // private _filterGroup(value: string): ExercisesGroups[] {
+    //     if (value) {
+    //         return this.sportFacilitiesGroups
+    //             .map(group => ({letter: group.letter, names: _filter(group.names, value)}))
+    //             .filter(group => group.names.length > 0);
+    //     }
+    //
+    //     return this.stateGroups;
+    // }
 }

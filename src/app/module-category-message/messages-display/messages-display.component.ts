@@ -19,11 +19,16 @@ export class MessagesDisplayComponent implements OnInit {
 
     messageToSend: FormControl = new FormControl('');
 
+    isUser = true;
+
 
     constructor(private api: ApiService, private cdRef: ChangeDetectorRef) {
+        this.isUser = this.api.isUser;
     }
 
     ngOnInit(): void {
+        this.messagesExpert.sort((a, b) => (a.id > b.id) ? 1 : -1)
+        console.log(this.messagesExpert)
         this.isLoading = false;
         this.cdRef.detectChanges();
     }
@@ -43,19 +48,35 @@ export class MessagesDisplayComponent implements OnInit {
 
     sendMessage() {
 
-        let message: MessageDto = {
-            isUserSender: true,
-            expertId: this.expertId,
-            userId: this.api.userId,
-            content: this.messageToSend.value,
-            time: null
+        if(this.isUser==true) {
+            let message: MessageDto = {
+                isUserSender: true,
+                expertId: this.expertId,
+                userId: this.api.userId,
+                content: this.messageToSend.value,
+                time: null
+            }
+            this.api.post(Mapping.MESSAGES, message);
+
+            this.messagesExpert.push(message);
+            this.cdRef.detectChanges();
+
+            this.messageToSend.setValue('');
+        } else {
+            let message: MessageDto = {
+                isUserSender: false,
+                expertId: this.api.userId,
+                userId: this.expertId,
+                content: this.messageToSend.value,
+                time: null
+            }
+            this.api.post(Mapping.MESSAGES, message);
+
+            this.messagesExpert.push(message);
+            this.cdRef.detectChanges();
+
+            this.messageToSend.setValue('');
         }
-        this.api.post(Mapping.MESSAGES, message);
-
-        this.messagesExpert.push(message);
-        this.cdRef.detectChanges();
-
-        this.messageToSend.setValue('');
 
     }
 

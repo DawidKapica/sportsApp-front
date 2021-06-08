@@ -1,6 +1,22 @@
 <div class="main-box">
     <form class="form-box" [formGroup]="formGroup">
         <div class="forms-line">
+
+            <mat-form-field class="padding-1-percent input-same-size">
+                <mat-label>Nazwa obiektu</mat-label>
+                <input type="text"
+                       matInput
+                       formControlName="nameForm"
+                       [matAutocomplete]="autoGroup" [formControl]="nameForm">
+                <mat-autocomplete #autoGroup="matAutocomplete">
+                    <mat-optgroup *ngFor="let group of sportFacilitiesGroups" [label]="group.name">
+                        <mat-option *ngFor="let sportFacility of group.sportFacility" [value]="sportFacility.id">
+                            {{sportFacility.name}}
+                        </mat-option>
+                    </mat-optgroup>
+                </mat-autocomplete>
+            </mat-form-field>
+
             <mat-form-field class="padding-1-percent input-same-size" appearance="fill">
                 <mat-label>Kategoria</mat-label>
                 <mat-select [(value)]="selected" >
@@ -11,17 +27,19 @@
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="padding-1-percent input-same-size" appearance="fill">
-                <mat-label>Ćwiczenie</mat-label>
-                <mat-select [formControl]="nameForm">
-                    <mat-option>None</mat-option>
-                    <mat-optgroup *ngFor="let group of sportFacilitiesGroups" [label]="group.name">
-                        <mat-option *ngFor="let sportFacility of group.sportFacility" [value]="sportFacility.id">
-                            {{sportFacility.name}}
-                        </mat-option>
-                    </mat-optgroup>
-                </mat-select>
-            </mat-form-field>
+<!--            <mat-form-field class="padding-1-percent input-same-size" appearance="fill">-->
+<!--                <mat-label>Ćwiczenie</mat-label>-->
+<!--                <mat-select [formControl]="nameForm">-->
+<!--                    <mat-option>None</mat-option>-->
+<!--                    <mat-optgroup *ngFor="let group of sportFacilitiesGroups" [label]="group.name">-->
+<!--                        <mat-option *ngFor="let sportFacility of group.sportFacility" [value]="sportFacility.id">-->
+<!--                            {{sportFacility.name}}-->
+<!--                        </mat-option>-->
+<!--                    </mat-optgroup>-->
+<!--                </mat-select>-->
+<!--            </mat-form-field>-->
+
+
 
             <mat-form-field class="padding-1-percent input-same-size" appearance="fill">
                 <mat-label>Obiekty mogą być</mat-label>

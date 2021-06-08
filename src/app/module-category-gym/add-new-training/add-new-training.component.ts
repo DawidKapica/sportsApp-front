@@ -26,8 +26,8 @@ interface ExercisesGroups {
 
 export class AddNewTrainingComponent implements OnInit {
     selectedCat = ''
-    selected = 'option2';
-    selected2 = ''
+    selected = null;
+    selected2 = null;
     exerciseForm = new FormControl();
 
     isLoadingResults = true;
@@ -50,7 +50,7 @@ export class AddNewTrainingComponent implements OnInit {
         // this.formGroup.addControl('exercise', new FormControl('exercise'));
         this.formGroup.addControl('parameter', new FormControl(''));
         this.formGroup.addControl('parameterValue', new FormControl(''));
-        this.formGroup.addControl('parameter', new FormControl(''));
+        this.formGroup.addControl('secondParameter', new FormControl(''));
         this.formGroup.addControl('secondParameterValue', new FormControl(''));
         this.formGroup.addControl('duration', new FormControl(''));
 
@@ -76,25 +76,28 @@ export class AddNewTrainingComponent implements OnInit {
         }
     }
 
-    addTraining() {
-        this.formGroup.controls['name'].value;
-        // let trainingValues: TrainingValueDto = {
-        //     parameterId: this.formGroup.controls['name'].value,
-        //     value:  this.formGroup.controls['name'].value,
-        //     secondParameterId:  this.formGroup.controls['name'].value,
-        //     description:  this.formGroup.controls['name'].value,
-        //     secondValue:  this.formGroup.controls['name'].value,
-        // }
+    async addTraining() {
+        // this.formGroup.controls['name'].value;
+        let trainingValues: TrainingValueDto = {
+            parameterId: this.selected,
+            value:  this.formGroup.controls['parameterValue'].value,
+            secondParameterId:  this.selected2,
+            description:  this.formGroup.controls['duration'].value,
+            secondValue:  this.formGroup.controls['secondParameterValue'].value,
+        };
 
+
+        let trainValAdded = await this.api.postFullObject(Mapping.TRAINING_VALUES, trainingValues);
+
+        console.log(trainValAdded)
 
         let training: TrainingDto = {
             userId: this.api.userId,
             exerciseId: this.exerciseForm.value,
             trainingDate: this.formGroup.controls['date'].value,
             name: this.formGroup.controls['name'].value,
-            trainingValuesId: 1
+            trainingValuesId: trainValAdded.id
         }
-        console.log(this.exerciseForm)
         this.api.post(Mapping.TRAINING, training)
 
         this.openSnackBar();

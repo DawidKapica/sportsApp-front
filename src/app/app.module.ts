@@ -38,6 +38,7 @@ import {AuthHttpInterceptor, AuthModule} from '@auth0/auth0-angular';
 import {ModuleLoginModule} from './module-login/module-login.module';
 import {environment} from '../environments/environment';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { RegisterDialogComponent } from './register-dialog/register-dialog.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
         MainCategoryButtonComponent,
         SectionMainButtonsComponent,
         SectionMainCategoryViewComponent,
+        RegisterDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -136,7 +138,7 @@ import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
         //     }
         // }),
         ModuleLoginModule,
-        MatSnackBarModule
+        MatSnackBarModule,
     ],
     providers: [
         {
