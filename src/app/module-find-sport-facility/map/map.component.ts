@@ -21,7 +21,7 @@ export class MapComponent implements OnInit {
 
     ngOnInit(): void {
 
-        Object.getOwnPropertyDescriptor(mapboxgl, "accessToken").set(environment.mapbox.accessToken);
+        Object.getOwnPropertyDescriptor(mapboxgl, "accessToken").set("pk.eyJ1IjoiZGF3aWRrIiwiYSI6ImNraWI2MmRjNDB3Y2EzMWxjaHE4b3V5aTIifQ.qvXuKs0c6RBiFKPbiFQMxw");
         // mapboxgl.accessToken = environment.mapbox.accessToken;
 
         let map = new mapboxgl.Map({

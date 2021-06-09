@@ -58,7 +58,7 @@ export class TopBarComponent {
 
     callSecureApi(): void {
         this.http
-            .get(`${environment.dev.serverUrl}/experts`)
+            .get(`http://localhost:8080/experts`)
             .subscribe((result: Messagex) => {
                 this.message = result.message;
             });

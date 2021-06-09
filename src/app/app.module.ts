@@ -91,7 +91,7 @@ import { RegisterDialogComponent } from './register-dialog/register-dialog.compo
                     // `${environment.dev.serverUrl}/experts/*`,
                     // `${environment.dev.serverUrl}/experts/search?*`,
 
-                    `${environment.dev.serverUrl}/*`,
+                    `http://localhost:8080/*`,
                     // `${environment.dev.serverUrl}/exercise-categories`,
             //         `${environment.dev.serverUrl}/users/*`,
             //         // // `${environment.dev.serverUrl}/users/search?`,
