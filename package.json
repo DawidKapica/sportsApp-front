@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-      "heroku-postbuild": "node --max_old_space_size=800 ./node_modules/@angular/cli/bin/ng build --prod && npm install -g http-server-spa"
+      "heroku-postbuild": "node --max_old_space_size=800 ./node_modules/@angular/cli/bin/ng build --prod && npm install -g http-server-spa",
+      "start": "node --max_old_space_size=2560 node_modules/.bin/react-scripts start"
   },
   "private": true,
   "dependencies": {
