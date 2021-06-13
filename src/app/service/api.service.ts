@@ -18,6 +18,8 @@ interface Messagex {
 export class ApiService {
 
     apiURL = 'http://localhost:8080';
+    // webURL = 'http://localhost:4200';
+    webURL = 'https://sportsapp-dk.herokuapp.com';
     public userId;
     public isUser:boolean;
 
@@ -42,7 +44,7 @@ export class ApiService {
 
     async loginWithRedirect() {
 
-        this.authService.loginWithRedirect( {redirect_uri: 'http://localhost:4200' } );
+        this.authService.loginWithRedirect( {redirect_uri: this.webURL } );
 
         // let user: any = await this.authService.user$;
         // console.log(user.name)
