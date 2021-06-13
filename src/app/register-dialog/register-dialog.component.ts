@@ -18,7 +18,6 @@ export class RegisterDialogComponent implements OnInit {
         {firsrtFieldName: 'Nazwisko', secondFieldName: '', formControlName: "lastName", type: "input"},
         {firsrtFieldName: 'Data urodzenia', secondFieldName: '', formControlName: "birthdate", type: "date"},
         {firsrtFieldName: 'Wzrost', secondFieldName: '', formControlName: "height", type: "inputNum"},
-        {firsrtFieldName: 'Email', secondFieldName: '', formControlName: "email", type: "input"},
     ];
     userDietInformation: doubleInformationAndType[] = [
         {firsrtFieldName: 'Kalorii', secondFieldName: '', formControlName: "dailyCalRequirement", type: "inputNum"},
