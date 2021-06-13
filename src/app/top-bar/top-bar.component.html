@@ -19,7 +19,7 @@
     <!--    </button>-->
     <span>
         <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-          <button mat-button (click)="auth.logout({ returnTo: 'http://localhost:4200/login' })">
+          <button mat-button (click)="auth.logout({ returnTo: 'https://sportsapp-dk.herokuapp.com/login' })">
             <span class="button-span-color">Wyloguj</span>
         </button>
     </ng-container>

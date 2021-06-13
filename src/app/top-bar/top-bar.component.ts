@@ -81,7 +81,7 @@ export class TopBarComponent {
 
     logout(): void {
         // Call this to log the user out of the application
-        this.auth.logout({ returnTo: window.location.origin });
+        this.auth.logout({ returnTo: window.location.origin});
     }
 
 }

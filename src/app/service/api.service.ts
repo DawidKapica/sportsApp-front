@@ -17,7 +17,8 @@ interface Messagex {
 })
 export class ApiService {
 
-    apiURL = 'http://localhost:8080';
+    // apiURL = 'http://localhost:8080';
+    apiURL = 'https://sportsapp-dawid-kapica.herokuapp.com';
     // webURL = 'http://localhost:4200';
     webURL = 'https://sportsapp-dk.herokuapp.com';
     public userId;
