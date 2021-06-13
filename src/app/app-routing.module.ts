@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {MainUserSiteComponent} from './main-user-site/main-user-site.component';
 import {LoginMainComponent} from './module-login/login-main/login-main.component';
 import {AuthGuard} from '@auth0/auth0-angular';
+import {FormsModule} from '@angular/forms';
 
 const routes: Routes = [
     {
@@ -24,6 +25,8 @@ const routes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
+    // FormsModule,
+    // ReactiveFormsModule],
     exports: [RouterModule]
 })
 
