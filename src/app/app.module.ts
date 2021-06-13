@@ -91,7 +91,9 @@ import { RegisterDialogComponent } from './register-dialog/register-dialog.compo
                     // `${environment.dev.serverUrl}/experts/*`,
                     // `${environment.dev.serverUrl}/experts/search?*`,
 
+                    // `http://localhost:8080/*`,
                     `https://sportsapp-dawid-kapica.herokuapp.com/*`,
+
                     // `${environment.dev.serverUrl}/exercise-categories`,
             //         `${environment.dev.serverUrl}/users/*`,
             //         // // `${environment.dev.serverUrl}/users/search?`,

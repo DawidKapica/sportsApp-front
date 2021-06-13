@@ -53,9 +53,9 @@ export class CategoryFoodComponent implements OnInit {
         let todayString = yyyy + '-' + mm + '-' + dd;
         let test20201010String = '2020-10-10';
 
-        this.todayUserConsumedFood = await this.api.get(Mapping.CONSUMED_FOOD + Mapping.SEARCH + Mapping.USERID + 3);
+        this.todayUserConsumedFood = await this.api.get(Mapping.CONSUMED_FOOD + Mapping.SEARCH + Mapping.USERID + this.api.userId);
         this.nutritionalProducts = await this.api.get(Mapping.NUTRITIONAL_PRODUCT);
-        this.userData = await this.api.getFullObject(Mapping.USER + '/3');
+        this.userData = await this.api.getFullObject(Mapping.USER + '/' + this.api.userId);
     }
 
     waterExtract(consumedFoods: ConsumedFoodDto[]): number {
