@@ -66,7 +66,6 @@ export class FiltersFieldComponent implements OnInit {
             specialisation: this.spec.value,
             opinion: this.formGroup.controls['minExp'].value,
         };
-
         this.changeEvent.emit(searchFill);
     }
 

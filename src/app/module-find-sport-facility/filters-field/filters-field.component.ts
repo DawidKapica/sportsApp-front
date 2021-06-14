@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ApiService} from '../../service/api.service';
 import {Mapping} from '../../dataBaseObjects/Mapping';
@@ -16,6 +16,12 @@ interface ExercisesGroups {
     sportFacility: SportFacilitiesDto[];
 }
 
+interface searchFilter {
+    isPaid: boolean
+    name: string,
+    category: string,
+}
+
 @Component({
     selector: 'app-filters-field',
     templateUrl: './filters-field.component.html',
@@ -25,10 +31,12 @@ export class FiltersFieldComponent implements OnInit {
 
     nameForm = new FormControl();
     formGroup: FormGroup = new FormGroup({});
-    selected = 'option2';
+    selected = 'undefined';
     selectedIsPaid = 'noMetter'
     isLoadingResults = true;
 
+    @Output()
+    changeEvent = new EventEmitter<searchFilter>();
 
     categories: SportFacilitiesCategoryDto[];
     sportFacilities: SportFacilitiesDto[];
@@ -73,6 +81,21 @@ export class FiltersFieldComponent implements OnInit {
         this.isLoadingResults = false;
         this.cdRef.detectChanges();
     }
+
+    filterSearch() {
+        let isPaid = null;
+        if (this.selectedIsPaid == "unPaid") {
+            isPaid = false;
+        } else if (this.selectedIsPaid == "paid") {
+            isPaid = true;
+        }
+        let searchFill: searchFilter = {
+            category: this.selected,
+            isPaid: isPaid,
+            name: this.nameForm.value
+        };
+        this.changeEvent.emit(searchFill);
+    }
     //
     // private _filterGroup(value: string): ExercisesGroups[] {
     //     if (value) {
@@ -83,4 +106,6 @@ export class FiltersFieldComponent implements OnInit {
     //
     //     return this.stateGroups;
     // }
+
+
 }

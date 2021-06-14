@@ -78,6 +78,12 @@ export class AddNewTrainingComponent implements OnInit {
 
     async addTraining() {
         // this.formGroup.controls['name'].value;
+        if (this.selected == null) {
+            this.selected = 1;
+        }
+        if(this.selected2 == null) {
+            this.selected2 = this.selected
+        }
         let trainingValues: TrainingValueDto = {
             parameterId: this.selected,
             value:  this.formGroup.controls['parameterValue'].value,

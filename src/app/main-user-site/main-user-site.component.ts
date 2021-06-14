@@ -56,17 +56,17 @@ export class MainUserSiteComponent implements OnInit {
 
     async checkUser(email ){
 
-        console.log( email.toString());
+        // console.log( email.toString());
         // this.api.checkUser();
 
         let zxc = this.users.filter(a => a.email == email.toLowerCase() );
-        console.log(zxc);
-        console.log(this.users);
+        // console.log(zxc);
+        // console.log(this.users);
         if (zxc === null || zxc === [] || zxc === undefined || zxc.length == 0) {
             // let experts: ExpertDto[] = await this.api.get(Mapping.EXPERT);
             let expertFilter = this.experts.filter(a => a.mail.toLowerCase() == email.toLowerCase() )
-            console.log(expertFilter);
-            console.log(this.experts);
+            // console.log(expertFilter);
+            // console.log(this.experts);
             if (expertFilter == null || expertFilter.length == 0) {
                 if (this.userId == null && this.x >= 0) {
 
@@ -77,9 +77,9 @@ export class MainUserSiteComponent implements OnInit {
                     dialogRef.afterClosed().subscribe(result => {
                         userId = result;
                         this.userId = result;
-                        console.log(result);
+                        // console.log(result);
                     });
-                    console.log(userId);
+                    // console.log(userId);
                     this.userId = userId;
                     // dialogRef.close();
 

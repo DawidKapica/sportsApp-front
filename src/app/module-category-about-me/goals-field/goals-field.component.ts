@@ -3,6 +3,8 @@ import {mealNutritionalValInterface} from '../../interfaceComunicationObjects/me
 import {FormControl} from '@angular/forms';
 import {UserPlanDto} from '../../dataBaseObjects/UserPlanDto';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {ApiService} from '../../service/api.service';
+import {Mapping} from '../../dataBaseObjects/Mapping';
 
 @Component({
   selector: 'app-goals-field',
@@ -17,13 +19,25 @@ export class GoalsFieldComponent implements OnInit {
     displayedColumns: string[] = ['Nazwa', 'Kalorie', 'Kategoria', 'Dodaj1'];
     isLoadingResults = false;
     dateForm = new FormControl(new Date());
-  constructor(private _snackBar: MatSnackBar) { }
+    titleForm = new FormControl("");
+    textForm = new FormControl("");
+
+  constructor(private _snackBar: MatSnackBar, private api: ApiService) { }
 
   ngOnInit(): void {
   }
 
   addPlan() {
+    let newPlan: UserPlanDto = {
+        goalStatus: 0,
+        endDate: this.dateForm.value,
+        description: this.textForm.value,
+        title: this.titleForm.value,
+        startDate: new Date(),
+        userId: this.api.userId
 
+      };
+      this.api.post(Mapping.USER_PLANS, newPlan);
   }
 
 

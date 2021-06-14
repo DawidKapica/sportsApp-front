@@ -8,7 +8,7 @@
             <div class="title-date-plan full-width row no-gutters">
                 <mat-form-field class="col-md-6 col-lg-12 no-gutters">
                     <mat-label>Tytuł planu</mat-label>
-                    <input matInput placeholder="Tytuł" #input>
+                    <input matInput placeholder="Tytuł" #input [formControl]="titleForm">
                 </mat-form-field>
                 <mat-form-field class="col-md-6 col-lg-12 no-gutters " appearance="fill">
                     <mat-label>Data osiągniecia planu</mat-label>
@@ -19,7 +19,7 @@
             </div>
             <form class="full-width">
                 <mat-form-field class="full-width">
-                    <textarea matInput placeholder="Opisz tutaj swój plan"></textarea>
+                    <textarea matInput placeholder="Opisz tutaj swój plan" [formControl]="textForm"></textarea>
                 </mat-form-field>
             </form>
 

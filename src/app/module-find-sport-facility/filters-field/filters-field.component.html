@@ -6,11 +6,11 @@
                 <mat-label>Nazwa obiektu</mat-label>
                 <input type="text"
                        matInput
-                       formControlName="nameForm"
+                       formControl="nameForm"
                        [matAutocomplete]="autoGroup" [formControl]="nameForm">
                 <mat-autocomplete #autoGroup="matAutocomplete">
                     <mat-optgroup *ngFor="let group of sportFacilitiesGroups" [label]="group.name">
-                        <mat-option *ngFor="let sportFacility of group.sportFacility" [value]="sportFacility.id">
+                        <mat-option *ngFor="let sportFacility of group.sportFacility" [value]="sportFacility.name">
                             {{sportFacility.name}}
                         </mat-option>
                     </mat-optgroup>
@@ -53,6 +53,6 @@
         </div>
     </form>
     <div class="button-search">
-        <button mat-raised-button>Szukaj</button>
+        <button mat-raised-button (click)="filterSearch()">Szukaj</button>
     </div>
 </div>

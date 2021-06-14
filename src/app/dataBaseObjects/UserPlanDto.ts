@@ -1,8 +1,8 @@
 export interface UserPlanDto {
-    id: number;
+    id?: number;
     userId: number;
     description: string;
-    goal: number;
+    goal?: number;
     startDate: Date;
     endDate: Date;
     goalStatus?: number;
