@@ -27,8 +27,8 @@ export class GoalsFieldComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addPlan() {
-    let newPlan: UserPlanDto = {
+  async addPlan() {
+      let newPlan: UserPlanDto = {
         goalStatus: 0,
         endDate: this.dateForm.value,
         description: this.textForm.value,
@@ -37,7 +37,9 @@ export class GoalsFieldComponent implements OnInit {
         userId: this.api.userId
 
       };
-      this.api.post(Mapping.USER_PLANS, newPlan);
+      let x = await this.api.postFullObject(Mapping.USER_PLANS, newPlan);
+      console.log(x);
+      this.userPlans.push(x);
   }
 
 

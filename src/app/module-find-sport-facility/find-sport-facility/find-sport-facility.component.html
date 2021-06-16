@@ -3,6 +3,6 @@
         <app-filters-field (changeEvent)="searchSportFacilities($event)"></app-filters-field>
     </div>
     <div *ngIf="isLoadingResults==false" class="map">
-        <app-map [sportFacilities]="sportFacilities"></app-map>
+        <app-map [sportFacilities]="sportFacilities" #mapSport></app-map>
     </div>
 </div>

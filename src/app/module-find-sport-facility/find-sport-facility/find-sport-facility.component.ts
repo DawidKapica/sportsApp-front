@@ -1,7 +1,9 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from '../../service/api.service';
 import {Mapping} from '../../dataBaseObjects/Mapping';
 import {SportFacilitiesDto} from '../../dataBaseObjects/SportFacilitiesDto';
+import {ExpertListComponent} from '../../module-find-expert/expert-list/expert-list.component';
+import {MapComponent} from '../map/map.component';
 
 interface searchFilter {
     isPaid: boolean
@@ -18,6 +20,8 @@ export class FindSportFacilityComponent implements OnInit {
     isLoadingResults = true;
 
     sportFacilities: any;
+
+    @ViewChild('mapSport') mapSport: MapComponent;
 
     constructor(private api: ApiService, private cdRef: ChangeDetectorRef) {
     }
@@ -43,18 +47,21 @@ export class FindSportFacilityComponent implements OnInit {
             if ($event.name != "" && $event.name != null && $event.name != undefined && $event.name != "undefined" && $event.category != null && $event.category != "" && $event.category != undefined && $event.category != "undefined") {
                 let sportFacilityTrue = await this.api.get(Mapping.SPORT_FACILITY + Mapping.SEARCH + "isPaid=true" + "&sportFacilitiesCategory=" + $event.category + "&name=" + $event.name);
                 let sportFacilityFalse = await this.api.get(Mapping.SPORT_FACILITY + Mapping.SEARCH + "isPaid=false" + "&sportFacilitiesCategory=" + $event.category + "&name=" + $event.name);
-                sportFacilityTab.push(sportFacilityTrue);
-                sportFacilityTab.push(sportFacilityFalse)
+                let x  = sportFacilityTab.concat(sportFacilityTrue);
+               let y = sportFacilityTab.concat(sportFacilityFalse)
+                sportFacilityTab = y;
             } else if ($event.name != "" && $event.name != null && $event.name != undefined && $event.name != "undefined") {
                 let sportFacilityTrue = await this.api.get(Mapping.SPORT_FACILITY + Mapping.SEARCH + "isPaid=true" + "&name=" + $event.name);
                 let sportFacilityFalse = await this.api.get(Mapping.SPORT_FACILITY + Mapping.SEARCH + "isPaid=false" + "&name=" + $event.name);
-                sportFacilityTab.push(sportFacilityTrue);
-                sportFacilityTab.push(sportFacilityFalse)
+                let x  = sportFacilityTab.concat(sportFacilityTrue);
+                let y = sportFacilityTab.concat(sportFacilityFalse)
+                sportFacilityTab = y;
             } else if ($event.category != null && $event.category != "" && $event.category != undefined && $event.category != "undefined") {
                 let sportFacilityTrue = await this.api.get(Mapping.SPORT_FACILITY + Mapping.SEARCH + "isPaid=true" + "&sportFacilitiesCategory=" + $event.category);
                 let sportFacilityFalse = await this.api.get(Mapping.SPORT_FACILITY + Mapping.SEARCH + "isPaid=false" + "&sportFacilitiesCategory=" + $event.category);
-                sportFacilityTab.push(sportFacilityTrue);
-                sportFacilityTab.push(sportFacilityFalse)
+                let x  = sportFacilityTab.concat(sportFacilityTrue);
+                let y = sportFacilityTab.concat(sportFacilityFalse)
+                sportFacilityTab = y;
             } else {
                 let sportFacilityTrue = await this.api.get(Mapping.SPORT_FACILITY);
                 let sportFacilityFalse = await this.api.get(Mapping.SPORT_FACILITY);
@@ -65,25 +72,25 @@ export class FindSportFacilityComponent implements OnInit {
         } else {
             if ($event.name != "" && $event.name != null && $event.name != undefined && $event.category != null && $event.category != "" && $event.category != undefined) {
                 let sportFacility = await this.api.get(Mapping.SPORT_FACILITY + Mapping.SEARCH + "isPaid=" + $event.isPaid + "&sportFacilitiesCategory=" + $event.category + "&name=" + $event.name);
-                sportFacilityTab.push(sportFacility);
+                sportFacilityTab = (sportFacility);
             } else if ($event.name != "" && $event.name != null && $event.name != undefined && $event.name != "undefined") {
                 let sportFacility = await this.api.get(Mapping.SPORT_FACILITY + Mapping.SEARCH + "isPaid=" + $event.isPaid + "&name=" + $event.name);
                 console.log(sportFacility);
 
-                sportFacilityTab.push(sportFacility);
+                sportFacilityTab = (sportFacility);
             } else if ($event.category != null && $event.category != "" && $event.category != undefined && $event.category != "undefined") {
                 let sportFacility = await this.api.get(Mapping.SPORT_FACILITY + Mapping.SEARCH + "isPaid=" + $event.isPaid + "&sportFacilitiesCategory=" + $event.category );
                 console.log(sportFacility);
 
-                sportFacilityTab.push(sportFacility);
+                sportFacilityTab = (sportFacility);
             } else {
                 let sportFacility = await this.api.get(Mapping.SPORT_FACILITY + Mapping.SEARCH + "isPaid=" + $event.isPaid );
                 console.log(sportFacility);
 
-                sportFacilityTab.push(sportFacility);
+                sportFacilityTab = (sportFacility);
             }
         }
-
+        this.mapSport.changeValues(sportFacilityTab);
         console.log(sportFacilityTab);
     }
 

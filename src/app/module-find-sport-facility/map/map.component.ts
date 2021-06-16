@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../../environments/environment';
 import {SportFacilitiesDto} from '../../dataBaseObjects/SportFacilitiesDto';
+import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-map',
@@ -15,7 +16,7 @@ export class MapComponent implements OnInit {
 
     @Input() sportFacilities: SportFacilitiesDto[];
 
-    constructor() {
+    constructor(private cdRef: ChangeDetectorRef) {
 
     }
 
@@ -177,6 +178,172 @@ export class MapComponent implements OnInit {
             });
         });
     }
+
+
+
+
+    public changeValues (points: SportFacilitiesDto[]) {
+
+        this.sportFacilities = points;
+        Object.getOwnPropertyDescriptor(mapboxgl, "accessToken").set("pk.eyJ1IjoiZGF3aWRrIiwiYSI6ImNraWI2MmRjNDB3Y2EzMWxjaHE4b3V5aTIifQ.qvXuKs0c6RBiFKPbiFQMxw");
+        // mapboxgl.accessToken = environment.mapbox.accessToken;
+
+        let map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/mapbox/streets-v9',
+            center: [19.76, 51.98],
+            zoom: 6.15
+        });
+        map.addControl(new mapboxgl.NavigationControl());
+
+        let featuresTable: any[] = [];
+        for (let sportFacility of points) {
+            let isPaid: string = '';
+            if (sportFacility.paid == true) {
+                isPaid = 'Obiekt jest płatny'
+            } else if (sportFacility.paid == false) {
+                isPaid = 'Obiekt jest bezpłatny'
+            } else {
+                isPaid = 'Brak informacji czy obiekt jest płatny'
+            }
+            featuresTable.push(
+                {
+                    'type': 'Feature',
+                    'properties': {
+                        'description':
+                            'Nazwa: ' + sportFacility.name +
+                            '<p>' + 'Kategoria: ' + sportFacility.sportFacilitiesCategory.name +
+                            '</p>' +
+                            '<p>' + isPaid + '</p>' +
+                            '<p>' +
+                            'brak opisu' +
+                            '</p>',
+                        // 'icon': 'marker',
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [sportFacility.parallel, sportFacility.equator]
+                    },
+
+                }
+            );
+        }
+
+        map.on('load', function() {
+            map.addSource('places', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': featuresTable,
+                },
+            });
+            //
+            // map.on('load', function() {
+            //     map.addSource('places', {
+            //         'type': 'geojson',
+            //         'data': {
+            //             'type': 'FeatureCollection',
+            //             'features': [
+            //                 {
+            //                     'type': 'Feature',
+            //                     'properties': {
+            //                         'description':
+            //                             '<strong>Make it Mount Pleasant</strong><p><a href="http://www.mtpleasantdc.com/makeitmtpleasant" target="_blank" title="Opens in a new window">Make it Mount Pleasant</a> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>',
+            //                         'icon': 'theatre',
+            //                     },
+            //                     'geometry': {
+            //                         'type': 'Point',
+            //                         'coordinates': [19.76, 51.98]
+            //                     }
+            //                 },
+            //                 {
+            //                     'type': 'Feature',
+            //                     'properties': {
+            //                         'description':
+            //                             '<strong>Mad Men Season Five Finale Watch Party</strong><p>Head to Lounge 201 (201 Massachusetts Avenue NE) Sunday for a <a href="http://madmens5finale.eventbrite.com/" target="_blank" title="Opens in a new window">Mad Men Season Five Finale Watch Party</a>, complete with 60s costume contest, Mad Men trivia, and retro food and drink. 8:00-11:00 p.m. $10 general admission, $20 admission and two hour open bar.</p>',
+            //                         'icon': 'theatre'
+            //                     },
+            //                     'geometry': {
+            //                         'type': 'Point',
+            //                         'coordinates': [-77.003168, 38.894651]
+            //                     }
+            //                 },
+            //
+            //             ]
+            //         }
+            //     });
+// Add a layer showing the places.
+
+            map.addLayer({
+                'id': 'places',
+                'type': 'symbol',
+                'source': 'places',
+                'layout': {
+                    'icon-image': 'marker-15',
+                    'icon-allow-overlap': true,
+                    'icon-size': 2.5
+                    // 'marker-color': '#3bb2d0',
+                    // 'marker-size': 'large',
+                    // 'marker-symbol': 'rocket'
+                }
+            });
+//             featuresTable.forEach(function (marker) {
+// // Create a DOM element for each marker.
+//                 var el = document.createElement('div');
+//                 el.className = 'marker';
+//                 el.style.backgroundImage = 'marker-15';
+//                 el.style.width = marker.properties.iconSize[0] + 'px';
+//                 el.style.height = marker.properties.iconSize[1] + 'px';
+//                 el.style.backgroundSize = '100%';
+//
+//                 el.addEventListener('click', function () {
+//                     window.alert(marker.properties.message);
+//                 });
+//
+// // Add markers to the map.
+//                 new mapboxgl.Marker(el)
+//                     .setLngLat(marker.geometry.coordinates)
+//                     .addTo(map);
+//             });
+
+// When a click event occurs on a feature in the places layer, open a popup at the
+// location of the feature, with description HTML from its properties.
+
+            map.on('click', 'places', function(e) {
+                if (e.features[0].geometry.type == 'Point') {
+                    var coordinates: [number, number] = e.features[0].geometry.coordinates.slice() as [number, number];
+                }
+                var description = e.features[0].properties.description;
+
+// Ensure that if the map is zoomed out such that multiple
+// copies of the feature are visible, the popup appears
+// over the copy being pointed to.
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+
+                if (e.features[0].geometry.type === 'Point') {
+                    new mapboxgl.Popup()
+                        .setLngLat(coordinates)
+                        .setHTML(description)
+                        .addTo(map);
+                }
+            });
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+            map.on('mouseenter', 'places', function() {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+
+// Change it back to a pointer when it leaves.
+            map.on('mouseleave', 'places', function() {
+                map.getCanvas().style.cursor = '';
+            });
+        });
+
+        this.cdRef.detectChanges();
+    }
+
 
 
 }
