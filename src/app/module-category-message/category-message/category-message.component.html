@@ -26,7 +26,7 @@
         <span *ngIf="isCollapsed == true">Pokaż listę osób</span>
 
     </button>
-    <div *ngIf="isLoadingResults==false"><button mat-button>Edytuj infromacje o sobie</button>TWOJE WIADOMOSCi Z {{userChosen.firstName}} {{userChosen.lastName}}</div>
+    <div *ngIf="isLoadingResults==false"><button mat-button (click)="openDialogExpert()">Edytuj infromacje o sobie</button>TWOJE WIADOMOSCi Z {{userChosen.firstName}} {{userChosen.lastName}}</div>
 </div>
 <div class="main-box" *ngIf="isUser==false">
     <mat-sidenav-container  autosize class="custom-sidenav-container-size">
