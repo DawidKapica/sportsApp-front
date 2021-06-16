@@ -34,11 +34,11 @@ export class FindExpertComponent implements OnInit {
     constructor(private api: ApiService) {
     }
 
-    experts: ExpertDto;
+    // experts: ExpertDto;
 
 
     async ngOnInit() {
-        this.experts = await this.api.get(Mapping.EXPERT + "/" + this.api.userId);
+        // this.experts = await this.api.get(Mapping.EXPERT + "/" + this.api.userId);
     }
 
     async  searchExperts($event: searchFilter) {
