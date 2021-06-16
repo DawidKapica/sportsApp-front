@@ -9,6 +9,7 @@ import {UserDto} from '../../dataBaseObjects/UserDto';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogElementComponent} from '../../module-find-expert/dialog-element/dialog-element.component';
 import {DialogOpinionComponent} from '../dialog-opinion/dialog-opinion.component';
+import {DialogInfoExpertComponent} from '../dialog-info-expert/dialog-info-expert.component';
 
 @Component({
     selector: 'app-category-message',
@@ -127,6 +128,11 @@ export class CategoryMessageComponent implements OnInit {
 
     openDialog() {
         this.dialog.open(DialogOpinionComponent, {data: this.ExpertChosen});
+
+    }
+
+    openDialogExpert() {
+        this.dialog.open(DialogInfoExpertComponent, {data: this.api.userId});
 
     }
 

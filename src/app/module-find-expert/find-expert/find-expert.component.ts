@@ -4,6 +4,7 @@ import {Mapping} from '../../dataBaseObjects/Mapping';
 import {ExpertDto} from '../../dataBaseObjects/ExpertDto';
 import {ExpertListComponent} from '../expert-list/expert-list.component';
 import {$e} from 'codelyzer/angular/styles/chars';
+import {ExpertSpecialisationDto} from '../../dataBaseObjects/ExpertSpecialisationDto';
 
 interface searchFilter {
     phone: string,
@@ -37,9 +38,7 @@ export class FindExpertComponent implements OnInit {
 
 
     async ngOnInit() {
-        this.experts = await this.api.get(Mapping.EXPERT);
-
-
+        this.experts = await this.api.get(Mapping.EXPERT + "/" + this.api.userId);
     }
 
     async  searchExperts($event: searchFilter) {
