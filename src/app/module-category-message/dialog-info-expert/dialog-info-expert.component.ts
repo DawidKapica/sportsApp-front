@@ -30,7 +30,7 @@ export class DialogInfoExpertComponent implements OnInit {
 
     async loadData() {
 
-        this.expertInfo = await this.api.get(Mapping.EXPERT + Mapping.SEARCH + Mapping.USERID);
+        this.expertInfo = await this.api.get(Mapping.EXPERT + Mapping.SEARCH + "expertId=" + this.api.userId);
         this.expertSpecialisations = await this.api.get(Mapping.EXPERT_SPECIALISATION + Mapping.SEARCH + this.api.userId);
 
         for (let specialisation of this.expertSpecialisations) {
