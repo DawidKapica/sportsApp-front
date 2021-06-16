@@ -1,12 +1,34 @@
 <div class="main-box" *ngIf="isLoadingResults==false">
-    <input matInput value="{{expertInfo.firstName}}"/>
-    <input matInput value="{{expertInfo.lastName}}"/>
-    <input matInput value="{{expertInfo.mail}}"/>
-    <input matInput value="{{expertInfo.phone}}"/>
-    <input matInput value="{{expertInfo.description}}"/>
-    <input matInput value="{{expertInfo.education}}"/>
-    <input matInput value="{{expertInfo.birthdate}}"/>
-    <input matInput value="{{expertInfo.firstName}}"/>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Imie</mat-label>
+            <input matInput value="{{expertInfo.firstName}}"/>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nazwisko</mat-label>
+            <input matInput value="{{expertInfo.lastName}}">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>E-mail</mat-label>
+            <input matInput value="{{expertInfo.mail}}">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Telefon</mat-label>
+            <input matInput value="{{expertInfo.phone}}">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Opis</mat-label>
+            <input matInput value="{{expertInfo.description}}">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Edukacja</mat-label>
+            <input matInput value="{{expertInfo.education}}">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Urodziny</mat-label>
+            <input matInput value="{{expertInfo.birthdate}}">
+        </mat-form-field>
 
-    <button mat-button>Zaaktualizuj dane</button>
+        <button mat-button mat-dialog-close="">Zaaktualizuj dane</button>
+    </form>
 </div>
