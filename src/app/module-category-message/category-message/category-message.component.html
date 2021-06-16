@@ -5,7 +5,7 @@
         <span *ngIf="isCollapsed == true">Pokaż listę osób</span>
 
     </button>
-    <div *ngIf="isLoadingResults==false"><button mat-button>Wystaw opinię</button>TWOJE WIADOMOSCi Z {{ExpertChosen.firstName}} {{ExpertChosen.lastName}}</div>
+    <div *ngIf="isLoadingResults==false"><button mat-button click="">Wystaw opinię</button>TWOJE WIADOMOSCi Z {{ExpertChosen.firstName}} {{ExpertChosen.lastName}}</div>
 </div>
 <div class="main-box" *ngIf="isUser==true">
     <mat-sidenav-container  autosize class="custom-sidenav-container-size">

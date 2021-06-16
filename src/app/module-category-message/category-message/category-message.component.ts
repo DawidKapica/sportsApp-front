@@ -6,6 +6,9 @@ import {MatSidenav} from '@angular/material/sidenav';
 import {MessagesDisplayComponent} from '../messages-display/messages-display.component';
 import {ExpertDto} from '../../dataBaseObjects/ExpertDto';
 import {UserDto} from '../../dataBaseObjects/UserDto';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogElementComponent} from '../../module-find-expert/dialog-element/dialog-element.component';
+import {DialogOpinionComponent} from '../dialog-opinion/dialog-opinion.component';
 
 @Component({
     selector: 'app-category-message',
@@ -22,7 +25,7 @@ export class CategoryMessageComponent implements OnInit {
 
     isUser = true;
 
-    constructor(private cdRef: ChangeDetectorRef, private api: ApiService) {
+    constructor(private cdRef: ChangeDetectorRef, private api: ApiService, public dialog: MatDialog) {
         this.isUser = this.api.isUser;
     }
 
@@ -64,6 +67,8 @@ export class CategoryMessageComponent implements OnInit {
             this.messageDisplay.messagesToDisplay(messagesWithExpert, expertDirstId);
             this.ExpertChosen = this.expertsList[0];
         }
+
+
 
         this.isLoadingResults = false;
         this.cdRef.detectChanges();
@@ -118,6 +123,11 @@ export class CategoryMessageComponent implements OnInit {
         this.messageDisplay.messagesToDisplay(messagesWithExpert, $event.id);
 
         // this.messageDisplay.changeCategory($event)
+    }
+
+    openDialog() {
+        this.dialog.open(DialogOpinionComponent, {data: this.ExpertChosen});
+
     }
 
 

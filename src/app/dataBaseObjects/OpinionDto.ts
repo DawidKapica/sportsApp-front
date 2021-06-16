@@ -1,5 +1,5 @@
 export interface OpinionDto {
-    id: number;
+    id?: number;
     content: string;
     userId: number;
     expertId: number;

@@ -14,6 +14,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { DialogAddOpinionComponent } from './dialog-add-opinion/dialog-add-opinion.component';
 import { DialogEdiExpertInfoComponent } from './dialog-edi-expert-info/dialog-edi-expert-info.component';
+import { DialogOpinionComponent } from './dialog-opinion/dialog-opinion.component';
+import {MatSliderModule} from '@angular/material/slider';
 
 
 
@@ -23,7 +25,8 @@ import { DialogEdiExpertInfoComponent } from './dialog-edi-expert-info/dialog-ed
       ContactsComponent,
       MessagesDisplayComponent,
       DialogAddOpinionComponent,
-      DialogEdiExpertInfoComponent
+      DialogEdiExpertInfoComponent,
+      DialogOpinionComponent
   ],
     imports: [
         CommonModule,
@@ -35,7 +38,8 @@ import { DialogEdiExpertInfoComponent } from './dialog-edi-expert-info/dialog-ed
         MatFormFieldModule,
         MatInputModule,
         ReactiveFormsModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        MatSliderModule
     ],
     exports: [
         CategoryMessageComponent

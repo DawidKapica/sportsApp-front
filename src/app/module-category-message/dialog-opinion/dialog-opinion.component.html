@@ -1,0 +1,19 @@
+<div class="main-box">
+    <form class="full-width">
+        <mat-slider
+            class="example-margin"
+            [max]="5"
+            [min]="1"
+            [step]="1"
+            [tickInterval]="1"
+            [(ngModel)]="value"
+            aria-labelledby="example-name-label">
+        </mat-slider>
+        <mat-form-field class="full-width">
+            <textarea matInput placeholder="Opisz tutaj swój plan" [formControl]="formControlOpinion"></textarea>
+        </mat-form-field>
+    </form>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close (click)="sendOpinion()">Zamknij</button>
+    </div>
+</div>
