@@ -1,6 +1,6 @@
 # SportsAppFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7. The project was deployed on the heroku server at the link: sportsapp-dk.herokuapp.com/login
 
 ## Development server
 
